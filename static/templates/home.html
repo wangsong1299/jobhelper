@@ -1,0 +1,49 @@
+{% load i18n admin_static %}
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+    <title>WeUI</title>
+    <link rel="stylesheet" href="{% static "job/css/weui.min.css" %}"/>
+    <link rel="stylesheet" href="{% static "job/css/example.css" %}"/>
+    <link rel="stylesheet" href="{% static "job/css/style.css" %}"/>
+</head>
+<body ontouchstart>
+    <div class="container" id="container">
+    <div class="bd">
+        <div class="weui_cells_title u_info">
+             <img class="weui_uploader_file u_headimg" src={{avatar}} >
+             <div class="u_name">{{name}}</div>
+             <div class="u_area">{{province}}&nbsp;&nbsp;{{city}}</div>
+        </div>
+        <div class="weui_cells weui_cells_access">
+            <a class="weui_cell" href="/resume/nav/">
+                <div class="weui_cell_bd weui_cell_primary">
+                    <p>我的简历</p>
+                </div>
+                <div class="weui_cell_ft">
+                </div>
+            </a>
+            <a class="weui_cell" href="/recruit/">
+                <div class="weui_cell_bd weui_cell_primary">
+                    <p>招聘信息</p>
+                </div>
+                <div class="weui_cell_ft">
+                </div>
+            </a>
+            <a class="weui_cell" href="/recruit/myshow/2">
+                <div class="weui_cell_bd weui_cell_primary">
+                    <p>我的投递</p>
+                </div>
+                <div class="weui_cell_ft">
+                </div>
+            </a>
+        </div>
+    </div>
+    </div>
+    <script src="{% static "job/js/zepto.min.js" %}"></script>
+    <!--<script src="../js/router.min.js"></script>
+    <script src="../js/example.js"></script>-->
+</body>
+</html>

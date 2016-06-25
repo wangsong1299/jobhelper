@@ -1,0 +1,385 @@
+{% load i18n admin_static %}
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+    <title>WeUI</title>
+    <link rel="stylesheet" href="{% static "job/css/weui.min.css" %}"/>
+    <link rel="stylesheet" href="{% static "job/css/example.css" %}"/>
+    <link rel="stylesheet" href="{% static "job/css/style.css" %}"/>
+</head>
+<body ontouchstart>
+    <div class="container" id="container">
+    <article id="sec_info"> 
+    <div class="bd">
+        <h1 class="page_title">个人信息</h1>
+        <div class="weui_cells weui_cells_form">
+            <!--姓名-->
+            <div class="weui_cell">
+                <div class="weui_cell_hd"><label class="weui_label">姓名</label></div>
+                <div class="weui_cell_bd weui_cell_primary">
+                    <input class="weui_input J_name" type="text" placeholder="请输入姓名"/>
+                </div>
+            </div>
+             <!--性别-->
+            <div class="weui_cell weui_cell_select weui_select_after">
+                <div class="weui_cell_hd">
+                    <label for="" class="weui_label">性别</label>
+                </div>
+                <div class="weui_cell_bd weui_cell_primary">
+                    <select class="weui_select J_sex" name="sex">
+                        <option value="0" selected>保密</option>
+                        <option value="1">男</option>
+                        <option value="2">女</option>
+                    </select>
+                </div>
+            </div>
+            <!--出生年月-->
+            <div class="weui_cell">
+                <div class="weui_cell_hd"><label for="" class="weui_label">出生年月</label></div>
+                <div class="weui_cell_bd weui_cell_primary">
+                    <input class="weui_input J_birth" type="date" value=""/>
+                </div>
+            </div>
+            <!--参加工作时间-->
+            <div class="weui_cell">
+                <div class="weui_cell_hd"><label for="" class="weui_label">工作时间</label></div>
+                <div class="weui_cell_bd weui_cell_primary">
+                    <input class="weui_input J_startwork" type="date" value=""/>
+                </div>
+            </div>
+            <!--居住城市-->
+            <div class="weui_cell weui_cell_select weui_select_after">
+                <div class="weui_cell_hd">
+                    <label for="" class="weui_label">省份</label>
+                </div>
+                <div class="weui_cell_bd weui_cell_primary">
+                    <select class="weui_select J_province" name="province">     
+                    </select>
+                </div>
+            </div>
+            <div class="weui_cell weui_cell_select weui_select_after">
+                <div class="weui_cell_hd">
+                    <label for="" class="weui_label">城市</label>
+                </div>
+                <div class="weui_cell_bd weui_cell_primary">
+                    <select class="weui_select J_city" name="city">     
+                    </select>
+                </div>
+            </div>
+            <div class="weui_cell weui_cell_select weui_select_after" style="display:none">
+                <div class="weui_cell_hd">
+                    <label for="" class="weui_label">地区</label>
+                </div>
+                <div class="weui_cell_bd weui_cell_primary">
+                    <select class="weui_select" name="area">     
+                    </select>
+                </div>
+            </div>
+            <!--性格描述-->
+            <div class="weui_cells_title">性格描述</div>
+            <div class="weui_cell">
+                <div class="weui_cell_bd weui_cell_primary">
+                    <textarea class="weui_textarea J_character" placeholder="请输入评论" rows="3"></textarea>
+                    <div class="weui_textarea_counter"><span>0</span>/200</div>
+                </div>
+            </div>
+            <div style="height:20px"></div>
+             <!--手机号码-->
+            <div class="weui_cell">
+                <div class="weui_cell_hd"><label class="weui_label">手机</label></div>
+                <div class="weui_cell_bd weui_cell_primary">
+                    <input class="weui_input J_phone" type="number" pattern="[0-9]*" placeholder="请输入手机号"/>
+                </div>
+            </div>
+              <!--手机号码-->
+            <div class="weui_cell">
+                <div class="weui_cell_hd"><label class="weui_label">邮箱地址</label></div>
+                <div class="weui_cell_bd weui_cell_primary">
+                    <input class="weui_input J_email" type="text" placeholder="请输入邮箱"/>
+                </div>
+            </div>           
+        </div>
+        <div class="button_sp_area">
+            <a href="javascript:;" class="weui_btn weui_btn_disabled weui_btn_plain_primary J_next_1">下一步</a>
+        </div>
+    </div>        
+    </article>
+
+    <article id="sec_edu" style="display:none">
+    <div class="bd">
+        <h1 class="page_title">教育信息</h1>
+        <div class="weui_cells weui_cells_form">
+            <!--学校-->
+            <div class="weui_cell">
+                <div class="weui_cell_hd"><label class="weui_label">学校名称</label></div>
+                <div class="weui_cell_bd weui_cell_primary">
+                    <input class="weui_input J_university" type="text" placeholder="请输入学校名称"/>
+                </div>
+            </div>
+            <!--入学时间-->
+            <div class="weui_cell">
+                <div class="weui_cell_hd"><label for="" class="weui_label">入学时间</label></div>
+                <div class="weui_cell_bd weui_cell_primary">
+                    <input class="weui_input J_intended_time" type="date" value=""/>
+                </div>
+            </div>
+            <!--毕业时间-->
+            <div class="weui_cell">
+                <div class="weui_cell_hd"><label for="" class="weui_label">毕业时间</label></div>
+                <div class="weui_cell_bd weui_cell_primary">
+                    <input class="weui_input J_graduation_time" type="date" value=""/>
+                </div>
+            </div>
+            <!--专业名称-->
+            <div class="weui_cell">
+                <div class="weui_cell_hd"><label class="weui_label">专业名称</label></div>
+                <div class="weui_cell_bd weui_cell_primary">
+                    <input class="weui_input J_major" type="text" placeholder="请输入专业"/>
+                </div>
+            </div>  
+             <!--学位-->
+            <div class="weui_cell weui_cell_select weui_select_after">
+                <div class="weui_cell_hd">
+                    <label for="" class="weui_label">学位</label>
+                </div>
+                <div class="weui_cell_bd weui_cell_primary">
+                    <select class="weui_select J_degree" name="sex">
+                        <option value="学士" selected>学士</option>
+                        <option value="硕士">硕士</option>
+                        <option value="博士">博士</option>
+                        <option value="博士后">博士后</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="button_sp_area">
+            <a href="javascript:;" class="weui_btn weui_btn_plain_default J_add_edu" data-add='1'>再添加一段经历</a>
+            <a href="javascript:;" class="weui_btn weui_btn_disabled weui_btn_plain_primary J_next_2">下一步</a>
+        </div>
+    </div>        
+    </article>
+
+    <article id="sec_work" style="display:none">
+    <div class="bd">
+        <h1 class="page_title">工作经历</h1>
+        <div class="weui_cells weui_cells_form">
+            <!--学校-->
+            <div class="weui_cell">
+                <div class="weui_cell_hd"><label class="weui_label">公司名称</label></div>
+                <div class="weui_cell_bd weui_cell_primary">
+                    <input class="weui_input J_company" type="text" placeholder="请输入公司名称"/>
+                </div>
+            </div>
+            <!--入学时间-->
+            <div class="weui_cell">
+                <div class="weui_cell_hd"><label for="" class="weui_label">入职时间</label></div>
+                <div class="weui_cell_bd weui_cell_primary">
+                    <input class="weui_input J_entry_time" type="date" value=""/>
+                </div>
+            </div>
+            <!--毕业时间-->
+            <div class="weui_cell">
+                <div class="weui_cell_hd"><label for="" class="weui_label">离职时间</label></div>
+                <div class="weui_cell_bd weui_cell_primary">
+                    <input class="weui_input J_resign_time" type="date" value=""/>
+                </div>
+            </div>
+            <!--专业名称-->
+            <div class="weui_cell">
+                <div class="weui_cell_hd"><label class="weui_label">岗位名称</label></div>
+                <div class="weui_cell_bd weui_cell_primary">
+                    <input class="weui_input J_position" type="text" placeholder="请输入岗位"/>
+                </div>
+            </div>  
+           <!--工作描述-->
+            <div class="weui_cells_title">工作描述</div>
+            <div class="weui_cell">
+                <div class="weui_cell_bd weui_cell_primary">
+                    <textarea class="weui_textarea J_description" placeholder="请输入评论" rows="3"></textarea>
+                    <div class="weui_textarea_counter"><span>0</span>/200</div>
+                </div>
+            </div>
+
+        </div>
+        <div class="button_sp_area">
+            <a href="javascript:;" class="weui_btn weui_btn_plain_default J_add_comp" data-add='1'>再添加一段经历</a>
+            <a href="javascript:;" class="weui_btn weui_btn_disabled weui_btn_plain_primary J_save">保存</a>
+        </div>
+    </div>        
+    </article>
+
+    <input type="hidden" class="J_resume_id" value=''>
+    </div>
+    <script src="{% static "job/js/zepto.min.js" %}"></script>
+    <script src="{% static "job/js/diqu.js" %}"></script>
+<!--    <script src="../js/router.min.js"></script>
+    <script src="../js/example.js"></script>-->
+
+    <script type="text/javascript">
+    $(document).ready(function(){
+        var hash=window.location.hash.split("#")[1];
+        var resume_id={{id|safe}};
+        if(hash){
+            var section=hash.split('=')[0];
+            if(section=='com'){
+                $("#sec_info").hide();
+                $("#sec_work").show();  
+                $('.J_resume_id').val(resume_id);
+            }else if(section=='edu'){
+                $("#sec_edu").show();
+                $("#sec_info").hide();
+                $('.J_resume_id').val(resume_id);
+            }
+        }
+
+        new PCAS("province","city","area");
+
+        $(".J_next_1").click(function(){
+            var name=$('.J_name').val().trim();
+            var sex=$('.J_sex').val().trim();
+            var birth=$('.J_birth').val().trim();
+            var startwork=$('.J_startwork').val().trim();
+            var province=$('.J_province').val().trim();
+            var city=$('.J_city').val().trim();
+            var character=$('.J_character').val().trim();
+            var phone=$('.J_phone').val().trim();
+            var email=$('.J_email').val().trim();
+            if(name==''){
+                alert("请填写名字");
+            }else if(birth==''){
+                alert("请选择出生日期");
+            }else if(startwork==''){
+                alert("请选择开始工作时间");
+            }else if(phone==''||!(/^1[3,4,5,6,7,8]\d{9}$/.test(phone))){
+                alert("请填写正确的手机号");
+            }else if(province==''){
+                alert("请选择省份");
+            }else if(city==''){
+                alert("请选择城市");
+            }else if(character==''){
+                alert("请描述个性");
+            }else if(email==''){
+                alert("请填写邮箱地址");
+            }else{
+                $.ajax({
+                      type : "POST",
+                      url : "/resume/fill_info/",
+                      data:{'name':name,'sex':sex,'birth':birth,'startwork':startwork,'province':province,'city':city,'character':character,'phone':phone,'email':email},
+                      dataType : "json",
+                      success : function(data){  
+                            console.log(data,data.code==200);
+                            if(data.code==200){
+                                $("#sec_edu").show();
+                                $("#sec_info").hide();
+                                $('.J_resume_id').val(data.resume_id);
+                            }else{
+                                alert(data.message);
+                            }
+                      }
+                })
+            }
+        })
+
+        $(".J_next_2,.J_add_edu").click(function(){
+            var addflag=$(this).attr('data-add');
+            var resume_id=$('.J_resume_id').val().trim();
+            var university=$('.J_university').val().trim();
+            var intended_time=$('.J_intended_time').val().trim();
+            var graduation_time=$('.J_graduation_time').val().trim();
+            var major=$('.J_major').val().trim();
+            var degree=$('.J_degree').val().trim();
+            if(resume_id==''){
+                alert("上一步资料填写不完整");
+            }else if(university==''){
+                alert("请选择大学");
+            }else if(intended_time==''){
+                alert("请选择入学时间");
+            }else if(graduation_time==''){
+                alert("请选择毕业时间");
+            }else if(major==''){
+                alert("请填写专业");
+            }else if(degree==''){
+                alert("请填写学位");
+            }else{
+                $.ajax({
+                      type : "POST",
+                      url : "/resume/fill_edu/",
+                      data:{'resume_id':resume_id,'university':university,'intended_time':intended_time,'graduation_time':graduation_time,'major':major,'degree':degree},
+                      dataType : "json",
+                      success : function(data){  
+                            if(data.code==200){
+                                if(addflag){
+                                    window.location.href="#sec_edu";
+                                    $('.J_university').val('');
+                                    $('.J_intended_time').val('');
+                                    $('.J_graduation_time').val('');
+                                    $('.J_major').val('');
+                                    $('.J_degree').val('');
+                                }else{
+                                    $("#sec_edu").hide();
+                                    $("#sec_work").show();                                   
+                                }
+                            }else{
+                                alert(data.message);
+                            }
+                      }
+                })            
+            }
+
+        })
+
+        $(".J_save,.J_add_comp").click(function(){
+            var addflag=$(this).attr('data-add');
+            var resume_id=$('.J_resume_id').val().trim();
+            var company=$('.J_company').val().trim();
+            var entry_time=$('.J_entry_time').val().trim();
+            var resign_time=$('.J_resign_time').val().trim();
+            var position=$('.J_position').val().trim();
+            var description=$('.J_description').val().trim();
+            if(resume_id==''){
+                alert("上一步资料填写不完整");
+            }else if(company==''){
+                alert("请选择公司");
+            }else if(entry_time==''){
+                alert("请选择入职时间");
+            }else if(resign_time==''){
+                alert("请选择离职时间");
+            }else if(position==''){
+                alert("请填写岗位");
+            }else if(description==''){
+                alert("请描述工作");
+            }else{
+                $.ajax({
+                      type : "POST",
+                      url : "/resume/fill_comp/",
+                      data:{'resume_id':resume_id,'company':company,'entry_time':entry_time,'resign_time':resign_time,'position':position,'description':description},
+                      dataType : "json",
+                      success : function(data){  
+                            if(data.code==200){
+                                if(addflag){
+                                     window.location.href="#sec_comp";
+                                    $('.J_resume_id').val('');
+                                    $('.J_company').val('');
+                                    $('.J_entry_time').val('');
+                                    $('.J_resign_time').val('');
+                                    $('.J_position').val('');
+                                    $('.J_description').val('');
+                                }else{
+                                     alert("ok");
+                                     window.location.href='/';
+                                }
+                            }else{
+                                alert(data.message);
+                            }
+                      }
+                })            
+            }
+
+        })
+
+    })
+    </script>
+</body>
+</html>

@@ -1,0 +1,121 @@
+{% load i18n admin_static %}
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+    <title>WeUI</title>
+    <link rel="stylesheet" href="{% static "job/css/weui.min.css" %}"/>
+    <link rel="stylesheet" href="{% static "job/css/example.css" %}"/>
+    <link rel="stylesheet" href="{% static "job/css/style.css" %}"/>
+</head>
+<body ontouchstart>
+    <div class="container" id="container">
+    <div class="bd">
+        <div class="weui_cells_title u_info" style="height:120px">
+             <img class="weui_uploader_file u_headimg" src="http://shp.qpic.cn/weixinsrc_pic/pScBR7sbqjOBJomcuvVJ6iacVrbMJaoJZkFUIq4nzQZUIqzTKziam7ibg/"/>
+             <div class="u_name">{{name}}</div>
+             <div class="u_area">{{province}}&nbsp;&nbsp;{{city}}</div>
+        </div>
+        <div class="weui_cells weui_cells_access">
+            <a class="weui_cell" href="javascript:;">
+                <div class="weui_cell_bd weui_cell_primary">
+                    <p>基本信息</p>
+                </div>
+            </a>
+        </div>
+        <div class="u-box">
+            <div class="u-line">
+                <span class="u-tt">手机:</span>
+                <span class="u-ct">{{info.phone}}</span>
+            </div>
+            <div class="u-line">
+                <span class="u-tt">email:</span>
+                <span class="u-ct">{{info.email}}</span>
+            </div>
+            <div class="u-line">
+                <span class="u-tt">性别:</span>
+                <span class="u-ct">{{info.sex}}</span>
+            </div>
+            <div class="u-line">
+                <span class="u-tt">生日:</span>
+                <span class="u-ct">{{info.birth}}</span>
+            </div>
+            <div class="u-line">
+                <span class="u-tt">工作时间:</span>
+                <span class="u-ct">{{info.startwork}}</span>
+            </div>
+            <div class="u-line">
+                <span class="u-tt">性格描述:</span>
+                <span class="u-ct">{{info.character}}</span>
+            </div>
+        </div>
+        <div class="weui_cells weui_cells_access">
+            <a class="weui_cell" href="javascript:;">
+                <div class="weui_cell_bd weui_cell_primary">
+                    <p>教育信息</p>
+                </div>
+            </a>
+        </div>
+        <div class="u-box">
+            {% for key, value in edu_info.items %}
+                <div class="u-line">
+                    <span class="u-tt">大学:</span>
+                    <span class="u-ct">{{value.university}}</span>
+                </div>
+                <div class="u-line">
+                    <span class="u-tt">入学时间:</span>
+                    <span class="u-ct">{{value.intended_time}}</span>
+                </div>
+                <div class="u-line">
+                    <span class="u-tt">毕业时间:</span>
+                    <span class="u-ct">{{value.graduation_time}}</span>
+                </div>
+                <div class="u-line">
+                    <span class="u-tt">专业:</span>
+                    <span class="u-ct">{{value.major}}</span>
+                </div>
+                <div class="u-line">
+                    <span class="u-tt">学位:</span>
+                    <span class="u-ct">{{value.degree}}</span>
+                </div>
+                <hr>
+            {% endfor %}
+        </div>
+        <div class="weui_cells weui_cells_access">
+            <a class="weui_cell" href="javascript:;">
+                <div class="weui_cell_bd weui_cell_primary">
+                    <p>工作信息</p>
+                </div>
+            </a>
+        </div>
+        <div class="u-box">
+            {% for key, value in com_info.items %}
+                <div class="u-line">
+                    <span class="u-tt">公司:</span>
+                    <span class="u-ct">{{value.company}}</span>
+                </div>
+                <div class="u-line">
+                    <span class="u-tt">入职时间:</span>
+                    <span class="u-ct">{{value.entry_time}}</span>
+                </div>
+                <div class="u-line">
+                    <span class="u-tt">离职时间:</span>
+                    <span class="u-ct">{{value.resign_time}}</span>
+                </div>
+                <div class="u-line">
+                    <span class="u-tt">岗位:</span>
+                    <span class="u-ct">{{value.position}}</span>
+                </div>
+                <div class="u-line">
+                    <span class="u-tt">工作描述:</span>
+                    <span class="u-ct">{{value.description}}</span>
+                </div>
+                <hr>
+            {% endfor %}
+        </div>
+
+    </div>
+    <script src="{% static "job/js/zepto.min.js" %}"></script>
+</body>
+</html>

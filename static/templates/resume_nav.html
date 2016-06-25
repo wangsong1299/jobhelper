@@ -1,0 +1,107 @@
+{% load i18n admin_static %}
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+    <title>WeUI</title>
+    <link rel="stylesheet" href="{% static "job/css/weui.min.css" %}"/>
+    <link rel="stylesheet" href="{% static "job/css/example.css" %}"/>
+    <link rel="stylesheet" href="{% static "job/css/style.css" %}"/>
+    <style>
+        h2{text-align: center;float: left;width:100%;}
+    </style>
+</head>
+<body ontouchstart>
+    <div class="container" id="container">
+    <div class="bd">
+        <div class="weui_cells_title u_info">
+             <img class="weui_uploader_file u_headimg" src={{avatar}} >
+             <div class="u_name">{{name}}</div>
+             <div class="u_area">{{province}}&nbsp;&nbsp;{{city}}</div>
+                {% ifequal state 0 %}
+                    <h2>快去填写简历吧</h2>
+                {% endifequal %}
+                {% ifequal state 1 %}
+                    <h2>不完整</h2>
+                {% endifequal %}
+                {% ifequal state 2 %}
+                    <h2>完整，待审核</h2>
+                {% endifequal %}
+                {% ifequal state 3 %}
+                    <h2>审核通过</h2>
+                {% endifequal %}
+        </div>
+        <div class="weui_cells weui_cells_access">
+            <!--基本信息-->
+            {% ifequal state 0 %}
+            <a class="weui_cell" href="/resume/fill/">
+            {% endifequal %}
+            {% ifnotequal state 0 %}
+            <a class="weui_cell" href="/resume/modify/1/0">
+            {% endifnotequal %}         
+                <div class="weui_cell_bd weui_cell_primary">
+                    <p>基本信息</p>
+                </div>
+                <div class="weui_cell_ft">
+                </div>
+            </a>
+           <!--教育信息-->
+            {% ifequal state 0 %}
+            <a class="weui_cell J_edu" href="javascript:;">
+            {% endifequal %}
+            {% ifnotequal state 0 %}
+                {% ifequal edus_blank 1 %}
+                <a class="weui_cell" href="/resume/fill#edu=1">
+                {% endifequal %}
+                {% ifnotequal edus_blank 1 %}
+                <a class="weui_cell" href="/resume/edu_list">
+                {% endifnotequal %}
+            {% endifnotequal %}         
+                <div class="weui_cell_bd weui_cell_primary">
+                    <p>教育信息</p>
+                </div>
+                <div class="weui_cell_ft">
+                </div>
+            </a>
+           <!--工作信息-->
+            {% ifequal state 0 %}
+             <a class="weui_cell J_work" href="javascript:;">
+            {% endifequal %}
+            {% ifnotequal state 0 %}
+                {% ifequal coms_blank 1 %}
+                <a class="weui_cell" href="/resume/fill#com=1">
+                {% endifequal %}
+                {% ifnotequal coms_blank 1 %}
+                 <a class="weui_cell" href="/resume/com_list">
+                {% endifnotequal %}
+            {% endifnotequal %}         
+                <div class="weui_cell_bd weui_cell_primary">
+                    <p>工作信息</p>
+                </div>
+                <div class="weui_cell_ft">
+                </div>
+            </a>
+            <!--预览简历-->
+            <a class="weui_cell" href="/resume/preview">
+                <div class="weui_cell_bd weui_cell_primary">
+                    <p>预览简历</p>
+                </div>
+                <div class="weui_cell_ft">
+                </div>
+            </a>
+        </div>
+    </div>
+    </div>
+    <script src="{% static "job/js/zepto.min.js" %}"></script>
+    <!--<script src="../js/router.min.js"></script>
+    <script src="../js/example.js"></script>-->
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('.J_edu,.J_work').click(function(){
+                alert("请先填写基本信息");
+            })
+        })
+    </script>
+</body>
+</html>

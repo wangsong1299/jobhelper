@@ -1,0 +1,45 @@
+{% load i18n admin_static %}
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+    <title>WeUI</title>
+    <link rel="stylesheet" href="{% static "job/css/weui.min.css" %}"/>
+    <link rel="stylesheet" href="{% static "job/css/example.css" %}"/>
+    <link rel="stylesheet" href="{% static "job/css/style.css" %}"/>
+    <style>
+        h2{text-align: center;float: left;width:100%;}
+    </style>
+</head>
+<body ontouchstart>
+    <div class="container" id="container">
+    <div class="bd">
+        <input type="button" value="submit" id="submit">
+    </div>
+    </div>
+    <script src="{% static "job/js/zepto.min.js" %}"></script>
+    <!--<script src="../js/router.min.js"></script>
+    <script src="../js/example.js"></script>-->
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('#submit').click(function(){
+                $.ajax({
+                      type : "POST",
+                      url : "/wechatjob/",
+                      data:{},
+                      dataType : "json",
+                      success : function(data){  
+                            if(data.code==200){
+                                alert('修改成功');
+                            }else{
+                                alert(data.message);
+                            }
+                      }
+                })
+
+             })
+        })
+    </script>
+</body>
+</html>
