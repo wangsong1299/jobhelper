@@ -43,4 +43,5 @@ body{background: #f4f3ef}
 .u-btn{width: 68%;height:40px;margin: 25px 16% 0;background: #f7dd46;text-align: center;font-size: 15px;line-height: 40px;color:#735800;border-radius: 5px}
 
 .m-bd-blank{width: 100%;height: 600px;background: url('../images/resume_blank.png');background-size: 100% 600px;}
-
+.m-bd-blank .ct{padding:155px 40px 0;text-align: center;height: 45px;}
+.m-bd-blank .btn{padding:305px 40px 0;text-align: center;height:45px;line-height: 45px;color:#735800;}
