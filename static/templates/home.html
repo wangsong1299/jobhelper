@@ -6,40 +6,42 @@
     <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
     <title>WeUI</title>
     <link rel="stylesheet" href="{% static "job/css/weui.min.css" %}"/>
-    <link rel="stylesheet" href="{% static "job/css/example.css" %}"/>
     <link rel="stylesheet" href="{% static "job/css/style.css" %}"/>
 </head>
 <body ontouchstart>
     <div class="container" id="container">
     <div class="bd">
-        <div class="weui_cells_title u_info">
-             <img class="weui_uploader_file u_headimg" src={{avatar}} >
-             <div class="u_name">{{name}}</div>
-             <div class="u_area">{{province}}&nbsp;&nbsp;{{city}}</div>
+        <div class="m-hd_bg">
+            
         </div>
-        <div class="weui_cells weui_cells_access">
-            <a class="weui_cell" href="/resume/nav/">
-                <div class="weui_cell_bd weui_cell_primary">
-                    <p>我的简历</p>
-                </div>
-                <div class="weui_cell_ft">
-                </div>
-            </a>
-            <a class="weui_cell" href="/recruit/">
-                <div class="weui_cell_bd weui_cell_primary">
-                    <p>招聘信息</p>
-                </div>
-                <div class="weui_cell_ft">
+        <div class="u-info">
+            <div>
+                 <img class="weui_uploader_file u-headimg" src={{avatar}} >
+            </div>
+             <div class="u-name">{{name}}</div>
+             <div class="u-area">{{province}}&nbsp;&nbsp;{{city}}</div>
+        </div>
+        <div class="u-listbox">
+            <a href="/resume/nav/">
+                <div class="u-list">
+                    <p class="u-list-1">我的简历</p>
                 </div>
             </a>
-            <a class="weui_cell" href="/recruit/myshow/2">
-                <div class="weui_cell_bd weui_cell_primary">
-                    <p>我的投递</p>
+            <a href="/recruit/">
+                <div class="u-list">
+                    <p class="u-list-2">招聘信息</p>
                 </div>
-                <div class="weui_cell_ft">
+            </a>
+            <a href="/recruit/myshow/2">
+                <div class="u-list">
+                    <p class="u-list-3">我的投递</p>
                 </div>
             </a>
         </div>
+        <div class="m-ft_bg">
+            
+        </div>
+
     </div>
     </div>
     <script src="{% static "job/js/zepto.min.js" %}"></script>

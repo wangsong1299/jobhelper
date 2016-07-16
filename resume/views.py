@@ -206,14 +206,18 @@ def nav(request):
 	name=resume.name
 	edus_blank=1
 	coms_blank=1
-	if state==1:
-		edus=Education.objects.filter(resume=resume)
-		coms=Company.objects.filter(resume=resume)
-		if(len(edus)>0):
-			edus_blank=0
-		if(len(coms)>0):
-			coms_blank=0
-	return render_to_response('resume_nav.html',{'state':state,'id':id,'province':province,'city':city,'avatar':avatar,'name':name,'edus_blank':edus_blank,'coms_blank':coms_blank})
+	state=0
+	if state==0:
+		return render_to_response('resume_blank.html')
+	else:
+		if state==1:
+			edus=Education.objects.filter(resume=resume)
+			coms=Company.objects.filter(resume=resume)
+			if(len(edus)>0):
+				edus_blank=0
+			if(len(coms)>0):
+				coms_blank=0
+		return render_to_response('resume_nav.html',{'state':state,'id':id,'province':province,'city':city,'avatar':avatar,'name':name,'edus_blank':edus_blank,'coms_blank':coms_blank})
 
 #简历edu_list页
 def edu_list(request):
