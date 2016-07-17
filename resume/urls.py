@@ -22,6 +22,8 @@ urlpatterns = patterns('',
 
      url(r'^nav/$', views.nav),
      #信息列表页
+     url(r'^info_list/$', views.info_list),
+     
      url(r'^edu_list/$', views.edu_list),
      url(r'^com_list/$', views.com_list),
      #信息展示和修改页

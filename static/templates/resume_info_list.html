@@ -1,0 +1,75 @@
+{% load i18n admin_static %}
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+    <title>WeUI</title>
+    <link rel="stylesheet" href="{% static "job/css/weui.min.css" %}"/>
+    <link rel="stylesheet" href="{% static "job/css/style.css" %}"/>
+    <style>
+        h2{text-align: center;float: left;width:100%;}
+    </style>
+</head>
+<body ontouchstart>
+    <div class="container" id="container">
+    <div class="m-hd">
+        我的简历
+    </div>
+    <div class="bd">
+        <div class="u-subtt">
+            <img src="/static/job/images/navicon_1.png" alt="" class="icon">
+            <span class="tt">个人信息</span>
+            <div class="desc">必填</div>
+            <a href="/resume/modify/1/0">
+                <span class="edit">编辑</span>
+                <img src="/static/job/images/edit.png" alt="" class="editicon">            
+            </a>
+        </div>
+        <div class="m-infobox">
+            <div class="u-line u-line-1">
+                <img src="/static/job/images/navicon_1.png" alt="" class="headimg">
+                <div class="name">{{info.name}}</div>
+                <div class="detail">
+                     <img src="/static/job/images/infoicon_1.png" alt="" class="icon">
+                     <div class="ct">{{info.sex}}</div>
+                     <div class="split"></div>
+                     <img src="/static/job/images/infoicon_2.png" alt="" class="icon">
+                     <div class="ct-2">{{info.birth}}</div>
+                     <div class="split"></div>
+                     <img src="/static/job/images/infoicon_3.png" alt="" class="icon">
+                     <div class="ct-3">本科</div>
+                </div>
+            </div>
+            <div class="u-line">
+                <div class="ctk">参加工作时间</div>
+                <div class="ctv">{{info.startwork}}</div>
+            </div>
+            <div class="u-line">
+                <div class="ctk">现居住城市</div>
+                <div class="ctv">{{info.province}}&nbsp;&nbsp;{{info.city}}</div>
+            </div>
+            <div class="u-line">
+                <div class="ctk">手机号码</div>
+                <div class="ctv">{{info.phone}}</div>              
+            </div>
+            <div class="u-line">
+                <div class="ctk">邮箱地址</div>
+                <div class="ctv">{{info.email}}</div>              
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <script src="{% static "job/js/zepto.min.js" %}"></script>
+    <!--<script src="../js/router.min.js"></script>
+    <script src="../js/example.js"></script>-->
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('.J_edu,.J_work').click(function(){
+                alert("请先填写基本信息");
+            })
+        })
+    </script>
+</body>
+</html>
