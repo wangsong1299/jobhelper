@@ -45,3 +45,37 @@ body{background: #f4f3ef}
 .m-bd-blank{width: 100%;height: 600px;background: url('../images/resume_blank.png');background-size: 100% 600px;}
 .m-bd-blank .ct{padding:155px 40px 0;text-align: center;height: 45px;}
 .m-bd-blank .btn{padding:305px 40px 0;text-align: center;height:45px;line-height: 45px;color:#735800;}
+
+/*简历个人信息show页面*/
+.u-subtt{width: 100%;height: 42px;line-height: 42px;background: #fff;border-bottom: solid 1px #e5e5e5;}
+.u-subtt .icon{width: 20px;height: 20px;padding-left: 15px;padding-top: 10px;float: left;}
+.u-subtt .tt{width: auto;padding-left: 12px;float: left;}
+.u-subtt .desc{width: 40px;height: 16px;border-radius: 8px;border: solid #f3677e 1px;font-size: 10px;text-align: center;color:#f3677e;float: left;margin-left: 10px;margin-top: 12px;line-height: 16px; }
+.u-subtt .edit{color:#f1bb46;float: right;padding-right: 20px;}
+.u-subtt .editicon{width: 16px;height: 16px;float: right;margin-right: 10px;margin-top: 12px;}
+
+.m-infobox{width: 100%;height: 200px;background: #fff};
+.m-infobox .u-line{height: 30px;}
+.m-infobox .u-line-1{height: 65px;}
+.m-infobox .u-line .headimg{height: 45px;width: 45px;float: left;margin-left: 15px;margin-top: 10px;}
+.m-infobox .u-line .name{height: 20px;width: 230px;float: left;margin-left: 20px;margin-top: 10px;color: #f1bb46;font-size: 16px;}
+.m-infobox .u-line .detail{height: 20px;width: 230px;float: left;margin-left: 20px;margin-top: 10px;}
+.m-infobox .u-line .detail .icon{width: 15px;height: 15px;float: left;margin-top:5px; margin-left: 2px;}
+.m-infobox .u-line .detail .ct,.ct-2,.ct-3{width: 40px;text-align: center;float: left;}
+.m-infobox .u-line .detail .ct-2{width: 75px}
+.m-infobox .u-line .detail .ct-3{width: 50px}
+.m-infobox .u-line .detail .split{width: 1px;height:16px;float: left;margin-left: 2px;margin-top: 5px;background: #999}
+.m-infobox .u-line .ctk{width: 125px;height: 30px;line-height: 30px;text-align: left;text-indent: 15px;color:#bab6ae;float: left;}
+.m-infobox .u-line .ctv{width: 190px;height: 30px;line-height: 30px;text-align: left;color: #443506;float: left;}
+
+
+
+
+
+
+
+
+
+
+
+
