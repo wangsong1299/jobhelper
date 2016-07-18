@@ -103,6 +103,15 @@ def modify_edu(request):
 	return HttpResponse(json.dumps({'code':200}))
 
 @csrf_exempt
+def delete_edu(request):
+	edu_id = request.POST.get('edu_id', None)
+	try:
+		Education.objects.filter(id=edu_id).delete()
+	except Exception, e:
+		return comutils.baseresponse(e, 500)
+	return HttpResponse(json.dumps({'code':200}))
+
+@csrf_exempt
 def fill_comp(request):
 	resume_id = request.POST.get('resume_id', None)
 	company = request.POST.get('company', None)
@@ -237,7 +246,7 @@ def edu_list(request):
 	edu_info={}
 	i=0
 	for e in edus:
-		edu_info[i]={'university':e.university,'intended_time':e.intended_time,'graduation_time':e.graduation_time,'major':e.major,'degree':e.degree}
+		edu_info[i]={'id':e.id,'university':e.university,'intended_time':e.intended_time,'graduation_time':e.graduation_time,'major':e.major,'degree':e.degree}
 		i=i+1
 	print edu_info
 	return render_to_response('resume_edu_list.html',{'info':edu_info})

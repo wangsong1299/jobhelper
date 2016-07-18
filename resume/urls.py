@@ -6,13 +6,14 @@ from resume import tests
 urlpatterns = patterns('',
     # 首页
     #url(r'^home/$', views.home),
-    
+    #api
      url(r'^fill_info/$', views.fill_info),
      url(r'^fill_edu/$', views.fill_edu),
      url(r'^fill_comp/$', views.fill_comp),
      url(r'^modify_info/$', views.modify_info),
      url(r'^modify_edu/$', views.modify_edu),
      url(r'^modify_comp/$', views.modify_comp),
+     url(r'^delete_edu/$', views.delete_edu),
 
      #预览页
      url(r'^preview$', views.preview),
