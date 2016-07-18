@@ -1,7 +1,5 @@
 body{background: #f4f3ef}
 
-.button_sp_area{width: 60%;margin:0 auto;padding: 0 10px}
-
 .u-box{width: 100%;min-height:100px;padding: 5px 20px;font-size: 12px}
 .u-box .u-line{width: 100%;min-height: 30px;line-height: 30px;}
 .u-box .u-tt{width: 25%;display: inline-block;}
@@ -40,7 +38,9 @@ body{background: #f4f3ef}
 .u-navlistbox .u-list-2:before{position:absolute;content:'';width: 20px;height: 20px;background: url('../images/navicon_2.png');background-size:20px 20px;top:30%;left:5%;}
 .u-navlistbox .u-list-3:before{position:absolute;content:'';width: 20px;height: 20px;background: url('../images/navicon_3.png');background-size:20px 20px;top:30%;left:5%;}
 
+/*btn*/
 .u-btn{width: 68%;height:40px;margin: 25px 16% 0;background: #f7dd46;text-align: center;font-size: 15px;line-height: 40px;color:#735800;border-radius: 5px}
+.u-btn-mini{width: 30%;height:40px;margin: 25px 9% 0;background: #f7dd46;text-align: center;font-size: 15px;line-height: 40px;color:#735800;border-radius: 5px;display: inline-block;}
 
 .m-bd-blank{width: 100%;height: 600px;background: url('../images/resume_blank.png');background-size: 100% 600px;}
 .m-bd-blank .ct{padding:155px 40px 0;text-align: center;height: 45px;}
@@ -68,11 +68,31 @@ body{background: #f4f3ef}
 .m-infobox .u-line .ctk{width: 125px;height: 30px;line-height: 30px;text-align: left;text-indent: 15px;color:#bab6ae;float: left;}
 .m-infobox .u-line .ctv{width: 190px;height: 30px;line-height: 30px;text-align: left;color: #443506;float: left;}
 
-
-
-
-
-
+/*个人信息新建页*/
+#sec_info{background: #f8f8f8}
+.m-info-form{margin-top: 0;color:#776f5b;font-size: 12px;}
+.m-info-form .headimg{width: 30px;height: 30px;float: right;margin-right: 20px;}
+.m-info-form .u-img:after {
+  content: " ";
+  display: inline-block;
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+  height: 6px;
+  width: 6px;
+  border-width: 2px 2px 0 0;
+  border-color: #C8C8CD;
+  border-style: solid;
+  position: relative;
+  top: -2px;
+  position: absolute;
+  top: 50%;
+  right: 15px;
+  margin-top: -3px;
+}
+.m-info-form .u-ipt{text-align: right;}
+.m-info-form .u-sel{color:#776f5b;}
+.m-info-form .u-sel.sex{padding-left:70%}
+.m-info-form .u-sel.area{padding-left:65%;}
 
 
 

@@ -5,106 +5,118 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
     <title>WeUI</title>
-    <link rel="stylesheet" href="{% static "job/css/weui.min.css" %}"/>
-    <link rel="stylesheet" href="{% static "job/css/example.css" %}"/>
+    <link rel="stylesheet" href="{% static "job/css/weui.css" %}"/>
     <link rel="stylesheet" href="{% static "job/css/style.css" %}"/>
 </head>
 <body ontouchstart>
     <div class="container" id="container">
     <article id="sec_info"> 
-    <div class="bd">
-        <h1 class="page_title">个人信息</h1>
-        <div class="weui_cells weui_cells_form">
-            <!--姓名-->
-            <div class="weui_cell">
-                <div class="weui_cell_hd"><label class="weui_label">姓名</label></div>
-                <div class="weui_cell_bd weui_cell_primary">
-                    <input class="weui_input J_name" type="text" placeholder="请输入姓名"/>
-                </div>
-            </div>
-             <!--性别-->
-            <div class="weui_cell weui_cell_select weui_select_after">
-                <div class="weui_cell_hd">
-                    <label for="" class="weui_label">性别</label>
-                </div>
-                <div class="weui_cell_bd weui_cell_primary">
-                    <select class="weui_select J_sex" name="sex">
-                        <option value="0" selected>保密</option>
-                        <option value="1">男</option>
-                        <option value="2">女</option>
-                    </select>
-                </div>
-            </div>
-            <!--出生年月-->
-            <div class="weui_cell">
-                <div class="weui_cell_hd"><label for="" class="weui_label">出生年月</label></div>
-                <div class="weui_cell_bd weui_cell_primary">
-                    <input class="weui_input J_birth" type="date" value=""/>
-                </div>
-            </div>
-            <!--参加工作时间-->
-            <div class="weui_cell">
-                <div class="weui_cell_hd"><label for="" class="weui_label">工作时间</label></div>
-                <div class="weui_cell_bd weui_cell_primary">
-                    <input class="weui_input J_startwork" type="date" value=""/>
-                </div>
-            </div>
-            <!--居住城市-->
-            <div class="weui_cell weui_cell_select weui_select_after">
-                <div class="weui_cell_hd">
-                    <label for="" class="weui_label">省份</label>
-                </div>
-                <div class="weui_cell_bd weui_cell_primary">
-                    <select class="weui_select J_province" name="province">     
-                    </select>
-                </div>
-            </div>
-            <div class="weui_cell weui_cell_select weui_select_after">
-                <div class="weui_cell_hd">
-                    <label for="" class="weui_label">城市</label>
-                </div>
-                <div class="weui_cell_bd weui_cell_primary">
-                    <select class="weui_select J_city" name="city">     
-                    </select>
-                </div>
-            </div>
-            <div class="weui_cell weui_cell_select weui_select_after" style="display:none">
-                <div class="weui_cell_hd">
-                    <label for="" class="weui_label">地区</label>
-                </div>
-                <div class="weui_cell_bd weui_cell_primary">
-                    <select class="weui_select" name="area">     
-                    </select>
-                </div>
-            </div>
-            <!--性格描述-->
-            <div class="weui_cells_title">性格描述</div>
-            <div class="weui_cell">
-                <div class="weui_cell_bd weui_cell_primary">
-                    <textarea class="weui_textarea J_character" placeholder="请输入评论" rows="3"></textarea>
-                    <div class="weui_textarea_counter"><span>0</span>/200</div>
-                </div>
-            </div>
-            <div style="height:20px"></div>
-             <!--手机号码-->
-            <div class="weui_cell">
-                <div class="weui_cell_hd"><label class="weui_label">手机</label></div>
-                <div class="weui_cell_bd weui_cell_primary">
-                    <input class="weui_input J_phone" type="number" pattern="[0-9]*" placeholder="请输入手机号"/>
-                </div>
-            </div>
-              <!--手机号码-->
-            <div class="weui_cell">
-                <div class="weui_cell_hd"><label class="weui_label">邮箱地址</label></div>
-                <div class="weui_cell_bd weui_cell_primary">
-                    <input class="weui_input J_email" type="text" placeholder="请输入邮箱"/>
-                </div>
-            </div>           
+        <div class="m-hd">
+            我的简历
         </div>
-        <div class="button_sp_area">
-            <a href="javascript:;" class="weui_btn weui_btn_disabled weui_btn_plain_primary J_next_1">下一步</a>
-        </div>
-    </div>        
+        <div class="bd">
+            <div class="u-subtt">
+                <img src="/static/job/images/navicon_1.png" alt="" class="icon">
+                <span class="tt">个人信息</span>
+                <div class="desc">必填</div>
+            </div>
+            <div class="weui_cells weui_cells_form m-info-form">
+                <!--头像-->
+                <div class="weui_cell">
+                    <div class="weui_cell_hd"><label class="weui_label">头像</label></div>
+                    <div class="weui_cell_bd weui_cell_primary u-img">
+                        <img src="{{avatar}}" class="headimg" alt="">
+                    </div>
+                </div>
+                <!--姓名-->
+                <div class="weui_cell">
+                    <div class="weui_cell_hd"><label class="weui_label">姓名</label></div>
+                    <div class="weui_cell_bd weui_cell_primary">
+                        <input class="weui_input u-ipt J_name" type="text" placeholder="请输入姓名"/>
+                    </div>
+                </div>
+                <!--性别-->
+                <div class="weui_cell weui_cell_select weui_select_after">
+                    <div class="weui_cell_hd">
+                        <label for="" class="weui_label">性别</label>
+                    </div>
+                    <div class="weui_cell_bd weui_cell_primary">
+                        <select class="weui_select u-sel sex J_sex" name="sex">
+                            <option value="0" selected>保密</option>
+                            <option value="1">男</option>
+                            <option value="2">女</option>
+                        </select>
+                    </div>
+                </div>
+                <!--出生年月-->
+                <div class="weui_cell">
+                    <div class="weui_cell_hd"><label for="" class="weui_label">出生年月</label></div>
+                    <div class="weui_cell_bd weui_cell_primary">
+                        <input class="weui_input u-ipt J_birth" type="date" value=""/>
+                    </div>
+                </div>
+                <!--参加工作时间-->
+                <div class="weui_cell">
+                    <div class="weui_cell_hd"><label for="" class="weui_label">工作时间</label></div>
+                    <div class="weui_cell_bd weui_cell_primary">
+                        <input class="weui_input u-ipt J_startwork" type="date" value=""/>
+                    </div>
+                </div>
+                <!--居住城市-->
+                <div class="weui_cell weui_cell_select weui_select_after">
+                    <div class="weui_cell_hd">
+                        <label for="" class="weui_label">省份</label>
+                    </div>
+                    <div class="weui_cell_bd weui_cell_primary">
+                        <select class="weui_select u-sel area J_province" name="province">     
+                        </select>
+                    </div>
+                </div>
+                <div class="weui_cell weui_cell_select weui_select_after">
+                    <div class="weui_cell_hd">
+                        <label for="" class="weui_label">城市</label>
+                    </div>
+                    <div class="weui_cell_bd weui_cell_primary">
+                        <select class="weui_select u-sel area J_city" name="city">     
+                        </select>
+                    </div>
+                </div>
+                <div class="weui_cell weui_cell_select weui_select_after" style="display:none">
+                    <div class="weui_cell_hd">
+                        <label for="" class="weui_label">地区</label>
+                    </div>
+                    <div class="weui_cell_bd weui_cell_primary">
+                        <select class="weui_select" name="area">     
+                        </select>
+                    </div>
+                </div>
+                 <!--手机号码-->
+                <div class="weui_cell">
+                    <div class="weui_cell_hd"><label class="weui_label">手机</label></div>
+                    <div class="weui_cell_bd weui_cell_primary">
+                        <input class="weui_input u-ipt J_phone" type="number" pattern="[0-9]*" placeholder="请输入手机号"/>
+                    </div>
+                </div>
+                  <!--手机号码-->
+                <div class="weui_cell">
+                    <div class="weui_cell_hd"><label class="weui_label">邮箱地址</label></div>
+                    <div class="weui_cell_bd weui_cell_primary">
+                        <input class="weui_input u-ipt J_email" type="text" placeholder="请输入邮箱"/>
+                    </div>
+                </div>  
+                <!--性格描述-->
+                <div class="weui_cells_title">性格描述</div>
+                <div class="weui_cell">
+                    <div class="weui_cell_bd weui_cell_primary">
+                        <textarea class="weui_textarea J_character" placeholder="请输入评论" rows="3"></textarea>
+                        <div class="weui_textarea_counter"><span>0</span>/200</div>
+                    </div>
+                </div>
+                <div style="height:20px"></div>        
+            </div>       
+            <div class="u-btn J_next_1">下一步</div>
+            <div style="height:40px"></div>
+        </div>        
     </article>
 
     <article id="sec_edu" style="display:none">

@@ -28,6 +28,7 @@ urlpatterns = patterns('',
      url(r'^com_list/$', views.com_list),
      #信息展示和修改页
      url(r'^modify/(\d{1,6})/(\d{1,6})/$', views.modify),
+     #新建页
      url(r'^fill/$', views.fill),
 
 

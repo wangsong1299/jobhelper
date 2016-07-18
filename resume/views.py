@@ -193,7 +193,9 @@ def preview_all(request,salt):
 #简历新建页
 def fill(request):
 	id=request.session.get('id',False)
-	return render_to_response('resume.html',{'id':id})
+	resume=Resume.objects.filter(id=id)[0]
+	avatar=resume.avatar
+	return render_to_response('resume_fill.html',{'id':id,'avatar':avatar})
 
 #简历nav页
 def nav(request):
@@ -206,7 +208,7 @@ def nav(request):
 	name=resume.name
 	edus_blank=1
 	coms_blank=1
-	state=3
+	state=1
 	if state==0:
 		return render_to_response('resume_blank.html')
 	else:
@@ -235,9 +237,10 @@ def edu_list(request):
 	edu_info={}
 	i=0
 	for e in edus:
-		edu_info[i]={'title':e.university,'id':e.id,'section':2}
+		edu_info[i]={'university':e.university,'intended_time':e.intended_time,'graduation_time':e.graduation_time,'major':e.major,'degree':e.degree}
 		i=i+1
-	return render_to_response('resume_list.html',{'info':edu_info})
+	print edu_info
+	return render_to_response('resume_edu_list.html',{'info':edu_info})
 
 #简历edu_list页
 def com_list(request):
@@ -259,7 +262,7 @@ def modify(request,section,item_id):
 	if section==1:
 		r=Resume.objects.filter(id=id)[0]
 		sex_choice={0:'保密',1:'男',2:'女'}
-		info={'name':r.name,'phone':r.phone,'province':r.province,'city':r.city,'email':r.email,'sex':sex_choice[r.sex],'birth':r.birth,'startwork':r.start_work_date,'character':r.character}
+		info={'name':r.name,'phone':r.phone,'province':r.province,'city':r.city,'email':r.email,'sex':sex_choice[r.sex],'birth':r.birth,'startwork':r.start_work_date,'character':r.character,'avatar':r.avatar}
 	if section==2:
 		e=Education.objects.filter(id=item_id)[0]
 		info={'university':e.university,'intended_time':e.intended_time,'graduation_time':e.graduation_time,'major':e.major,'degree':e.degree}
