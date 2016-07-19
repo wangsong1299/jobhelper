@@ -14,7 +14,7 @@ urlpatterns = patterns('',
      url(r'^modify_edu/$', views.modify_edu),
      url(r'^modify_comp/$', views.modify_comp),
      url(r'^delete_edu/$', views.delete_edu),
-
+     url(r'^delete_com/$', views.delete_com),
      #预览页
      url(r'^preview$', views.preview),
      url(r'^preview_all/(\w{1,100})/$', views.preview_all),

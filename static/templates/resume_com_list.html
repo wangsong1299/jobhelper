@@ -1,0 +1,94 @@
+{% load i18n admin_static %}
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+    <title>WeUI</title>
+    <link rel="stylesheet" href="{% static "job/css/weui.css" %}"/>
+    <link rel="stylesheet" href="{% static "job/css/style.css" %}"/>
+</head>
+<body ontouchstart>
+    <div class="container" id="container">
+    <div class="m-hd">
+        我的简历
+    </div>
+    <div class="bd">
+        <div class="u-subtt">
+            <img src="/static/job/images/navicon_2.png" alt="" class="icon">
+            <span class="tt">工作经历</span>
+            <div class="desc">必填</div>
+            <a href="/resume/fill#com=1">
+                <span class="edit">新增</span>
+                <img src="/static/job/images/add.png" alt="" class="editicon">            
+            </a>
+        </div>
+        {% for key, value in info.items %}
+        <div class="m-edubox J_edubox_{{value.id}}">
+            <div class="u-line">
+                <div class="ctk">公司名称</div>
+                <div class="ctv">{{value.company}}</div>
+            </div>
+            <div class="u-line">
+                <div class="ctk">行业类别</div>
+                <div class="ctv"></div>
+            </div>
+            <div class="u-line">
+                <div class="ctk">职位名称</div>
+                <div class="ctv">{{value.position}}</div>
+            </div>
+            <div class="u-line">
+                <div class="ctk">起始任职</div>
+                <div class="ctv">{{value.entry_time}}</div>
+            </div>
+            <div class="u-line">
+                <div class="ctk">结束任职</div>
+                <div class="ctv">{{value.resign_time}}</div>
+            </div>
+            <div class="u-line u-line-1">
+                <div class="ctk">工作描述</div>
+                <div class="ctv"></div>
+                <div class="textarea">
+                    {{value.description}}
+                </div>
+            </div>
+            <a href="/resume/modify/3/{{value.id}}" class="btn">
+                <img src="/static/job/images/edit.png" alt="" class="edit">             
+            </a>
+                <img src="/static/job/images/delete.png" alt="" class="delete J_delete" data-id={{value.id}}>
+        </div>
+        {% endfor %}
+    </div>
+    </div>
+    <script src="{% static "job/js/zepto.min.js" %}"></script>
+    <!--<script src="../js/router.min.js"></script>
+    <script src="../js/example.js"></script>-->
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('.J_delete').click(function(){
+                var com_id=$(this).attr('data-id');
+                if(com_id==''){
+                    alert("系统错误");
+                }else{
+                    $.ajax({
+                          type : "POST",
+                          url : "/resume/delete_com/",
+                          data:{'com_id':com_id},
+                          dataType : "json",
+                          success : function(data){  
+                                if(data.code==200){
+                                    alert("删除成功");
+                                    $('.J_edubox_'+com_id).remove();
+                                }else{
+                                    alert(data.message);
+                                }
+                          }
+                    })            
+                }
+
+            })
+        })
+    </script>
+
+</body>
+</html>

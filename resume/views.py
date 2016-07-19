@@ -151,6 +151,15 @@ def modify_comp(request):
 		return comutils.baseresponse(e, 500)
 	return HttpResponse(json.dumps({'code':200}))
 
+@csrf_exempt
+def delete_com(request):
+	com_id = request.POST.get('com_id', None)
+	try:
+		Company.objects.filter(id=com_id).delete()
+	except Exception, e:
+		return comutils.baseresponse(e, 500)
+	return HttpResponse(json.dumps({'code':200}))
+
 #预览页面
 def preview(request):
 	id=request.session.get('id',False)
@@ -259,9 +268,9 @@ def com_list(request):
 	com_info={}
 	i=0
 	for c in coms:
-		com_info[i]={'title':c.company,'id':c.id,'section':3}
+		com_info[i]={'id':c.id,'company':c.company,'entry_time':c.entry_time,'resign_time':c.resign_time,'position':c.position,'description':c.description}
 		i=i+1
-	return render_to_response('resume_list.html',{'info':com_info})
+	return render_to_response('resume_com_list.html',{'info':com_info})
 
 #展示和修改页
 def modify(request,section,item_id):
