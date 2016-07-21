@@ -183,35 +183,32 @@
 
 {% ifequal section 2 %}
     <article id="sec_edu" >
+    <div class="m-hd">
+        我的简历
+    </div>
     <div class="bd">
-        <h1 class="page_title">教育信息</h1>
-        <div class="weui_cells weui_cells_form">
+        <div class="u-subtt">
+            <img src="/static/job/images/navicon_2.png" alt="" class="icon">
+            <span class="tt">教育背景</span>
+            <div class="desc">必填</div>
+            <a href="/resume/fill#edu=1">
+                <span class="edit">新增</span>
+                <img src="/static/job/images/add.png" alt="" class="editicon">            
+            </a>
+        </div>
+        <div class="weui_cells weui_cells_form m-info-form">
             <!--学校-->
             <div class="weui_cell">
                 <div class="weui_cell_hd"><label class="weui_label">学校名称</label></div>
                 <div class="weui_cell_bd weui_cell_primary">
-                    <input class="weui_input J_university" type="text" value={{info.university}}>
+                    <input class="weui_input u-ipt J_university" type="text" value={{info.university}}>
                 </div>
-            </div>
-            <!--入学时间-->
-            <div class="weui_cell">
-                <div class="weui_cell_hd"><label for="" class="weui_label">入学时间</label></div>
-                <div class="weui_cell_bd weui_cell_primary">
-                    <input class="weui_input J_intended_time" type="date" value={{info.intended_time}}>
-                </div>
-            </div>
-            <!--毕业时间-->
-            <div class="weui_cell">
-                <div class="weui_cell_hd"><label for="" class="weui_label">毕业时间</label></div>
-                <div class="weui_cell_bd weui_cell_primary">
-                    <input class="weui_input J_graduation_time" type="date" value={{info.graduation_time}}>
-                </div>
-            </div>
+            </div>   
             <!--专业名称-->
             <div class="weui_cell">
                 <div class="weui_cell_hd"><label class="weui_label">专业名称</label></div>
                 <div class="weui_cell_bd weui_cell_primary">
-                    <input class="weui_input J_major" type="text" value={{info.major}}>
+                    <input class="weui_input u-ipt J_major" type="text" value={{info.major}}>
                 </div>
             </div>  
              <!--学位-->
@@ -220,7 +217,7 @@
                     <label for="" class="weui_label">学位</label>
                 </div>
                 <div class="weui_cell_bd weui_cell_primary">
-                    <select class="weui_select J_degree" name="degree">
+                    <select class="weui_select u-sel degree J_degree" name="degree">
                         <option value="学士">学士</option>
                         <option value="硕士">硕士</option>
                         <option value="博士">博士</option>
@@ -228,11 +225,33 @@
                     </select>
                 </div>
             </div>
+            <!--入学时间-->
+            <div class="weui_cell">
+                <div class="weui_cell_hd"><label for="" class="weui_label">入学时间</label></div>
+                <div class="weui_cell_bd weui_cell_primary">
+                    <input class="weui_input u-ipt J_intended_time" type="date" value={{info.intended_time}}>
+                </div>
+            </div>
+            <!--毕业时间-->
+            <div class="weui_cell">
+                <div class="weui_cell_hd"><label for="" class="weui_label">毕业时间</label></div>
+                <div class="weui_cell_bd weui_cell_primary">
+                    <input class="weui_input u-ipt J_graduation_time" type="date" value={{info.graduation_time}}>
+                </div>
+            </div>
+
+            <!--专业名称-->
+            <div class="weui_cell">
+                <div class="weui_cell_hd"><label class="weui_label">专业名称</label></div>
+                <div class="weui_cell_bd weui_cell_primary">
+                    <input class="weui_input J_major" type="text" value=>
+                </div>
+            </div>
+            <div style="height:20px"></div>  
         </div>
-        <div class="button_sp_area">
-            <a class="weui_btn weui_btn_mini weui_btn_default J_back" href="javascript:;">返回</a>
-            <a class="weui_btn weui_btn_mini weui_btn_primary J_modify" href="javascript:;">修改</a>
-        </div>
+       <div class="u-btn-mini J_back">返回</div>
+        <div class="u-btn-mini J_modify">修改</div>
+        <div style="height:40px"></div>
     </div>        
     </article>
     <script type="text/javascript">
@@ -272,50 +291,68 @@
 
 {% ifequal section 3 %}
    <article id="sec_com">
+    <div class="m-hd">
+        我的简历
+    </div>
     <div class="bd">
-        <h1 class="page_title">工作经历</h1>
-        <div class="weui_cells weui_cells_form">
-            <!--学校-->
+        <div class="u-subtt">
+            <img src="/static/job/images/navicon_2.png" alt="" class="icon">
+            <span class="tt">工作经历</span>
+            <div class="desc">必填</div>
+            <a href="/resume/fill#com=1">
+                <span class="edit">新增</span>
+                <img src="/static/job/images/add.png" alt="" class="editicon">            
+            </a>
+        </div>
+        <div class="weui_cells weui_cells_form m-info-form">
+            <!--公司-->
             <div class="weui_cell">
                 <div class="weui_cell_hd"><label class="weui_label">公司名称</label></div>
                 <div class="weui_cell_bd weui_cell_primary">
-                    <input class="weui_input J_company" type="text" value={{info.company}}>
+                    <input class="weui_input u-ipt J_company" type="text" value={{info.company}}>
                 </div>
             </div>
-            <!--入学时间-->
+           <!--行业类别-->
             <div class="weui_cell">
-                <div class="weui_cell_hd"><label for="" class="weui_label">入职时间</label></div>
+                <div class="weui_cell_hd"><label class="weui_label">行业类别</label></div>
                 <div class="weui_cell_bd weui_cell_primary">
-                    <input class="weui_input J_entry_time" type="date" value={{info.entry_time}}>
-                </div>
-            </div>
-            <!--毕业时间-->
-            <div class="weui_cell">
-                <div class="weui_cell_hd"><label for="" class="weui_label">离职时间</label></div>
-                <div class="weui_cell_bd weui_cell_primary">
-                    <input class="weui_input J_resign_time" type="date" value={{info.resign_time}}>
+                    <input class="weui_input u-ipt J_company" type="text" placeholder="请输入行业类别"/>
                 </div>
             </div>
             <!--专业名称-->
             <div class="weui_cell">
                 <div class="weui_cell_hd"><label class="weui_label">岗位名称</label></div>
                 <div class="weui_cell_bd weui_cell_primary">
-                    <input class="weui_input J_position" type="text" value={{info.position}}>
+                    <input class="weui_input u-ipt J_position" type="text" value={{info.position}}>
                 </div>
             </div>  
+            <!--起始任职-->
+            <div class="weui_cell">
+                <div class="weui_cell_hd"><label for="" class="weui_label">起始任职</label></div>
+                <div class="weui_cell_bd weui_cell_primary">
+                    <input class="weui_input u-ipt J_entry_time" type="date" value={{info.entry_time}}>
+                </div>
+            </div>
+            <!--结束任职-->
+            <div class="weui_cell">
+                <div class="weui_cell_hd"><label for="" class="weui_label">结束任职</label></div>
+                <div class="weui_cell_bd weui_cell_primary">
+                    <input class="weui_input u-ipt J_resign_time" type="date" value={{info.resign_time}}>
+                </div>
+            </div>
            <!--工作描述-->
             <div class="weui_cells_title">工作描述</div>
             <div class="weui_cell">
                 <div class="weui_cell_bd weui_cell_primary">
                     <textarea class="weui_textarea J_description" rows="3">{{info.description}}</textarea>
+                    <div class="weui_textarea_counter"><span>0</span>/200</div>
                 </div>
             </div>
-
+            <div style="height:20px"></div>  
         </div>
-        <div class="button_sp_area">
-            <a class="weui_btn weui_btn_mini weui_btn_default J_back" href="javascript:;">返回</a>
-            <a class="weui_btn weui_btn_mini weui_btn_primary J_modify" href="javascript:;">修改</a>        
-        </div>
+        <div class="u-btn-mini J_back">返回</div>
+        <div class="u-btn-mini J_modify">修改</div>
+        <div style="height:40px"></div>
     </div>        
     </article>
     <script type="text/javascript">
