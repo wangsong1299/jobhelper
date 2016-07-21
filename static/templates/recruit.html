@@ -16,27 +16,27 @@
     <div class="bd">
         {% for key, value in recruit_info.items %}
         <div class="u-workbox">
-            <img src="http://wx.qlogo.cn/mmopen/LIND77SSexibODU6MXJnyy4b4mxObW6IfFFgPydwOyYnI8XYiaSA66xXX6Z1a0mxVezV722ibqHONdJHwY7RBeAmw/0" alt="">
-            <div class="position">数据库</div>
+            <img src={{value.logo}} alt="">
+            <div class="position">{{value.position}}</div>
             <div class="company">{{value.company}}</div>
             <div class="detail">
                  <img src="/static/job/images/workicon_1.png" alt="" class="icon">
-                 <div class="ct">本科</div>
+                 <div class="ct">{{value.degree}}</div>
                  <img src="/static/job/images/workicon_2.png" alt="" class="icon">
-                 <div class="ct-2">3-4年</div>
+                 <div class="ct-2">{{value.years}}年</div>
                  <img src="/static/job/images/workicon_3.png" alt="" class="icon">
-                 <div class="ct-3">男</div>
+                 <div class="ct-3">{{value.sex}}</div>
             </div>  
-            <div class="money">10-15k</div>
+            <div class="money">{{value.salary}}</div>
             <div class="time">刚刚</div>    
         </div>
         <div class="u-hr"></div>
         <div class="u-workbox-2">
             <img src="/static/job/images/workicon_4.png" alt="" class="icon">
-            <div class="address">jfslkjjsjdkfjsklfjsld</div>
+            <div class="address">{{value.address}}</div>
             <div class="label">职位描述：</div>
             <div class="desc">
-                {{value.description}}{{value.description}}{{value.description}}{{value.description}}{{value.description}}{{value.description}}{{value.description}}{{value.description}}{{value.description}}
+                {{value.description}}
             </div>
             <div class="btn J_btn"  data-recruit={{value.id}} data-resume='2'>投递</div>
             <div style="height:15px"></div>
