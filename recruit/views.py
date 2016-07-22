@@ -13,7 +13,7 @@ def index(request):
 	recruit_info={}
 	i=0
 	for r in recruits:
-		recruit_info[i]={'company':r.company,'description':r.description,'id':r.id}
+		recruit_info[i]={'position':r.position,'company':r.company,'degree':r.degree,'years':r.years,'sex':r.sex,'address':r.address,'salary':r.salary,'logo':r.logo,'description':r.description,'id':r.id}
 		i=i+1
 	return render_to_response('recruit.html',{'recruit_info':recruit_info})
 #首页
