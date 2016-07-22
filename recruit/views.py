@@ -26,7 +26,7 @@ def myshow(request,id):
 	for c in connects:
 		recruit_id=c.recruit_id
 		r=Recruit.objects.filter(id=recruit_id)[0]
-		myshow_info[i]={'company':r.company,'description':r.description,'id':recruit_id}
+		myshow_info[i]={'position':'开发工程师','salary':'10-15k','company':r.company,'description':r.description,'id':recruit_id}
 		i=i+1
 	return render_to_response('myrecruit.html',{'myshow_info':myshow_info})
 
