@@ -39,8 +39,8 @@ class Recruit(models.Model):
 
 class Connect(models.Model):
 	STATE_CHOICES2 = (
-		(0, '未投递'),
-		(1, '已投递'),
+		(0, '投递中'),
+		(1, '投递成功'),
 	)
 	# 简历id
 	resume_id=models.CharField(max_length = 30)

@@ -30,10 +30,6 @@
                 <div class="ctv">{{value.company}}</div>
             </div>
             <div class="u-line">
-                <div class="ctk">行业类别</div>
-                <div class="ctv"></div>
-            </div>
-            <div class="u-line">
                 <div class="ctk">职位名称</div>
                 <div class="ctv">{{value.position}}</div>
             </div>
@@ -66,26 +62,28 @@
     <script type="text/javascript">
         $(document).ready(function(){
             $('.J_delete').click(function(){
-                var com_id=$(this).attr('data-id');
-                if(com_id==''){
-                    alert("系统错误");
-                }else{
-                    $.ajax({
-                          type : "POST",
-                          url : "/resume/delete_com/",
-                          data:{'com_id':com_id},
-                          dataType : "json",
-                          success : function(data){  
-                                if(data.code==200){
-                                    alert("删除成功");
-                                    $('.J_edubox_'+com_id).remove();
-                                }else{
-                                    alert(data.message);
-                                }
-                          }
-                    })            
+                var con=confirm("确认删除");
+                if(con){
+                    var com_id=$(this).attr('data-id');
+                    if(com_id==''){
+                        alert("系统错误");
+                    }else{
+                        $.ajax({
+                              type : "POST",
+                              url : "/resume/delete_com/",
+                              data:{'com_id':com_id},
+                              dataType : "json",
+                              success : function(data){  
+                                    if(data.code==200){
+                                        alert("删除成功");
+                                        $('.J_edubox_'+com_id).remove();
+                                    }else{
+                                        alert(data.message);
+                                    }
+                              }
+                        })            
+                    }
                 }
-
             })
         })
     </script>

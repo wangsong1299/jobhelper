@@ -16,9 +16,9 @@ class Resume(models.Model):
 
 	STATE_CHOICES = (
 		(0, '空白'),
-		(1, '不完整'),
-		(2, '完整,未审核'),
-		(3, '已审核'),
+		(1, '未审核'),
+		(2, '未通过'),
+		(3, '已通过'),
 	)
 
 	#名字
@@ -28,9 +28,9 @@ class Resume(models.Model):
 	nation=models.CharField(max_length = 30)
 	province=models.CharField(max_length = 30)
 	city=models.CharField(max_length = 30)
-		# 手机号码
+	# 手机号码
 	phone = models.CharField(max_length = 12, unique = True)
-		# 头像
+	# 头像
 	avatar = models.CharField(max_length = 200, blank = True, default = DEFAULT_AVATAR)
 	# 性别
 	sex = models.IntegerField(default = UNKNOWN, choices = SEX_CHOICES)
