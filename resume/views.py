@@ -232,15 +232,15 @@ def nav(request):
 			if(len(coms)>0):
 				coms_blank=0
 		return render_to_response('resume_nav.html',{'state':state,'id':id,'province':province,'city':city,'avatar':avatar,'name':name,'edus_blank':edus_blank,'coms_blank':coms_blank})
+
 #简历info_list页
 def info_list(request):
 	id=request.session.get('id',False)
 	r=Resume.objects.filter(id=id)[0]
 	sex_choice={0:'保密',1:'男',2:'女'}
-	info={'name':r.name,'phone':r.phone,'province':r.province,'city':r.city,'email':r.email,'sex':sex_choice[r.sex],'birth':r.birth,'startwork':r.start_work_date,'character':r.character,'avatar':r.avatar}
-	print info
+	birth=(r.birth).split('-')[0]+'-'+(r.birth).split('-')[1]
+	info={'name':r.name,'phone':r.phone,'province':r.province,'city':r.city,'email':r.email,'sex':sex_choice[r.sex],'birth':birth,'startwork':r.start_work_date,'character':r.character,'avatar':r.avatar}
 	return render_to_response('resume_info_list.html',{'info':info})
-
 
 #简历edu_list页
 def edu_list(request):
