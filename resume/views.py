@@ -238,6 +238,7 @@ def info_list(request):
 	r=Resume.objects.filter(id=id)[0]
 	sex_choice={0:'保密',1:'男',2:'女'}
 	info={'name':r.name,'phone':r.phone,'province':r.province,'city':r.city,'email':r.email,'sex':sex_choice[r.sex],'birth':r.birth,'startwork':r.start_work_date,'character':r.character,'avatar':r.avatar}
+	print info
 	return render_to_response('resume_info_list.html',{'info':info})
 
 

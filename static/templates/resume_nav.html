@@ -24,10 +24,10 @@
                     <span>快去填写简历吧</span>
                 {% endifequal %}
                 {% ifequal state 1 %}
-                    <span style="color:#f3677c">简历不完善</span>
+                    <span>审核中</span>
                 {% endifequal %}
                 {% ifequal state 2 %}
-                    <span>审核中</span>
+                    <span style="color:#f3677c">简历不完善</span>
                 {% endifequal %}
                 {% ifequal state 3 %}
                     <span style="color:#55ba47">可投递</span>
@@ -35,10 +35,10 @@
              </div>
              <div class="update">更新: 2016-1-1</div>
             {% ifequal state 1 %}
-                 <img class="status-logo" src="/static/job/images/status_1.png">
+                 <img class="status-logo" src="/static/job/images/status_2.png">
             {% endifequal %}
             {% ifequal state 2 %}
-                 <img class="status-logo" src="/static/job/images/status_2.png">
+                 <img class="status-logo" src="/static/job/images/status_1.png">
             {% endifequal %}
             {% ifequal state 3 %}
                  <img class="status-logo" src="/static/job/images/status_3.png">

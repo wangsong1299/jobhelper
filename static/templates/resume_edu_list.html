@@ -59,26 +59,28 @@
     <script type="text/javascript">
         $(document).ready(function(){
             $('.J_delete').click(function(){
-                var edu_id=$(this).attr('data-id');
-                if(edu_id==''){
-                    alert("系统错误");
-                }else{
-                    $.ajax({
-                          type : "POST",
-                          url : "/resume/delete_edu/",
-                          data:{'edu_id':edu_id},
-                          dataType : "json",
-                          success : function(data){  
-                                if(data.code==200){
-                                    alert("删除成功");
-                                    $('.J_edubox_'+edu_id).remove();
-                                }else{
-                                    alert(data.message);
-                                }
-                          }
-                    })            
+                var con=confirm("确认删除");
+                if(con){
+                    var edu_id=$(this).attr('data-id');
+                    if(edu_id==''){
+                        alert("系统错误");
+                    }else{
+                        $.ajax({
+                              type : "POST",
+                              url : "/resume/delete_edu/",
+                              data:{'edu_id':edu_id},
+                              dataType : "json",
+                              success : function(data){  
+                                    if(data.code==200){
+                                        alert("删除成功");
+                                        $('.J_edubox_'+edu_id).remove();
+                                    }else{
+                                        alert(data.message);
+                                    }
+                              }
+                        })            
+                    }
                 }
-
             })
         })
     </script>
