@@ -43,6 +43,11 @@
         </div>
     {% endfor %}
     </div>
+    <div id="blocklayer" class="m-blocklayer J_blocklayer"></div>
+    <div class="u-alert J_alert">
+        <img src="" alt="" class="J_alertImg">
+        <div class="clickArea J_clickArea"></div>
+    </div>
     </div>
     <script src="{% static "job/js/zepto.min.js" %}"></script>
     <!--<script src="../js/router.min.js"></script>
@@ -53,7 +58,7 @@
                 var resume_id=$(this).attr('data-resume');
                 var recruit_id=$(this).attr('data-recruit');
                 if(resume_id==''||recruit_id==''){
-                    alert('系统出错');
+                    alertError();
                 }else{
                     $.ajax({
                           type : "POST",
@@ -62,16 +67,39 @@
                           dataType : "json",
                           success : function(data){  
                                 if(data.code==200){
-                                    alert('投递成功');
+                                    alertSuccess();
+                                    //alert('投递成功');
                                 }else if(data.code==201){
-                                    alert('请不要重复投递');
+                                    alertError();
+                                    //alert('请不要重复投递');
                                 }else{
-                                    alert(data.message);
+                                    alertError();
+                                    //alert(data.message);
                                 }
                           }
                     })   
                 }
             })
+
+            function alertSuccess(){
+                $('.J_blocklayer').show();
+                $('.J_alert').show();
+                $('.J_alertImg').attr('src','/static/job/images/success.png');
+                document.body.style.overflowY='hidden';
+            }
+            function alertError(){
+                $('.J_blocklayer').show();
+                $('.J_alert').show();
+                $('.J_alertImg').attr('src','/static/job/images/failed.png');
+                document.body.style.overflowY='hidden';
+            }
+
+            $('.J_blocklayer,.J_clickArea').click(function(){
+                $('.J_blocklayer').hide();
+                $('.J_alert').hide();
+                document.body.style.overflowY='auto';
+            })
+
         })
     </script>
 </body>
