@@ -3,7 +3,6 @@ from django.db import models
 
 # Create your models here.
 class Recruit(models.Model):
-	DEFAULT_LOGO='http://wx.qlogo.cn/mmopen/LIND77SSexibODU6MXJnyy4b4mxObW6IfFFgPydwOyYnI8XYiaSA66xXX6Z1a0mxVezV722ibqHONdJHwY7RBeAmw/0'
 	STATE_CHOICES = (
 		(0, '正常'),
 		(1, '已过期'),
@@ -22,8 +21,6 @@ class Recruit(models.Model):
 	address=models.CharField(max_length = 30,blank=True)
 	# 薪水
 	salary=models.CharField(max_length = 30,blank=True)
-	# 公司logo
-	logo = models.CharField(max_length = 200, blank = True, default = DEFAULT_LOGO)
 	# 职位描述
 	description=models.CharField(max_length = 30)
 	# 联系人
