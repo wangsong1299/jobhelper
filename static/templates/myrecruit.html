@@ -22,13 +22,22 @@
             <div class="company">{{value.company}}</div>
             <div class="detail">
                  <img src="/static/job/images/workicon_4.png" alt="" class="icon">
-                 <div class="ct">浙江-杭州</div>
+                 <div class="ct">{{value.address}}</div>
                  <img src="/static/job/images/workicon_1.png" alt="" class="icon">
-                 <div class="ct-2">本科</div>
+                 <div class="ct-2">{{value.degree}}</div>
             </div>  
             <div class="money">{{value.salary}}</div>
             <div class="time">刚刚</div>  
-            <div class="status">[已投递]</div>      
+            {% ifequal value.state 0 %}
+            <div class="status">【 已投递 】</div>     
+            {% endifequal %} 
+            {% ifequal value.state 1 %}
+            <div class="status status2">【 不合适 】</div>     
+            {% endifequal %} 
+            {% ifequal value.state 2 %}
+            <div class="status">【 已查看 】</div>     
+            {% endifequal %} 
+
         <a class="weui_btn weui_btn_mini weui_btn_primary J_btn" data-recruit={{value.id}} data-resume='2' href="javascript:;">删除</a>
      </div>
     {% endfor %}
