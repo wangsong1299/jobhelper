@@ -4,8 +4,9 @@ from django.db import models
 # Create your models here.
 class Recruit(models.Model):
 	STATE_CHOICES = (
-		(0, '正常'),
-		(1, '已过期'),
+		(0, '未审核'),
+		(1, '正常'),
+		(2, '已下架'),
 	)
 	# 岗位名称
 	position=models.CharField(max_length = 30)

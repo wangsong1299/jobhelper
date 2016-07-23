@@ -7,9 +7,9 @@ from django.http import HttpResponse,HttpResponseRedirect
 from django.shortcuts import render_to_response
 import simplejson as json
 
-#预览页面
+#招聘信息页面
 def index(request):
-	recruits=Recruit.objects.filter(state=0)
+	recruits=Recruit.objects.filter(state=1)
 	recruit_info={}
 	i=0
 	for r in recruits:
