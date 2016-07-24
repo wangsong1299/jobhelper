@@ -84,8 +84,14 @@
                 $(".aligned>.field-entry_time label").html("入学时间");
                 $(".aligned>.field-resign_time label").html("毕业时间");
                 $(".aligned>.field-description label").html("工作描述");
-               
-                var texts = $("#content>h1").html().replace(/resumes|resume/,"简历").replace(/educations|education/,"教育信息").replace(/companys|company/,"工作经历");
+                //投递关系
+                $(".aligned>.field-resume_id label").html("简历编号");
+                $(".aligned>.field-recruit_id label").html("招聘信息编号");
+                $(".aligned>.field-resume_address label").html("简历链接");
+                $("#connect_form .aligned>.field-email label").html("招聘方邮箱");
+                                                           
+             
+                var texts = $("#content>h1").html().replace(/resumes|resume/,"简历").replace(/educations|education/,"教育信息").replace(/companys|company/,"工作经历").replace(/connects|connect/,"投递关系");
                 $("#content>h1").html(texts);
                 //wangsong cvoer      
                      });                

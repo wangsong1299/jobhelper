@@ -43,12 +43,15 @@
                 //简历-工作经历
                 $(".column-conpany .text a").html("公司");
                 $(".column-position .text a").html("职位");
-               
+                //投递关系
+                $(".column-resume_id .text a").html("简历编号");
+                $(".column-recruit_id .text a").html("招聘信息编号");
+                              
 
-                temp = $(".paginator").html().replace(/resumes|resume/,"简历").replace(/educations|education/,"教育信息").replace(/companys|company/,"工作经历");
+                temp = $(".paginator").html().replace(/resumes|resume/,"简历").replace(/educations|education/,"教育信息").replace(/companys|company/,"工作经历").replace(/connects|connect/,"投递关系");
                 $(".paginator").html(temp);
                 
-                var texts = $("#content>h1").html().replace(/resumes|resume/,"简历").replace(/educations|education/,"教育信息").replace(/companys|company/,"工作经历");
+                var texts = $("#content>h1").html().replace(/resumes|resume/,"简历").replace(/educations|education/,"教育信息").replace(/companys|company/,"工作经历").replace(/connects|connect/,"投递关系");
                $("#content>h1").html(texts);
 
             });
