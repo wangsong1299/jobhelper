@@ -58,8 +58,8 @@
 
         (function($) {
             $(document).ready(function() {
+                //简历-个人信息
                 $(".aligned>.field-name label").html("姓名");
-
                 $(".aligned>.field-nation label").html("国家");
                 $(".aligned>.field-province label").html("省份");
                 $(".aligned>.field-city label").html("城市");
@@ -71,8 +71,15 @@
                 $(".aligned>.field-character label").html("性别描述");
                 $(".aligned>.field-email label").html("邮箱");
                 $(".aligned>.field-state label").html("状态");
-   
-                var texts = $("#content>h1").html().replace(/resumes|resume/,"简历");
+                //简历-教育信息
+                $(".aligned>.field-resume label").html("简历编号");
+                $(".aligned>.field-university label").html("大学");
+                $(".aligned>.field-major label").html("专业");
+                $(".aligned>.field-degree label").html("学历");
+                $(".aligned>.field-intended_time label").html("入学时间");
+                $(".aligned>.field-graduation_time label").html("毕业时间");
+
+                var texts = $("#content>h1").html().replace(/resumes|resume/,"简历").replace(/educations|education/,"教育信息");
                 $("#content>h1").html(texts);
                 //wangsong cvoer      
                      });                
