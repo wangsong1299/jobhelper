@@ -26,6 +26,25 @@
 </tr>
 </thead>
 <tbody>
+            
+   <script type="text/javascript">
+        (function($) {
+            $(document).ready(function() {
+                $(".column-name .text a").html("姓名");
+                $(".column-phone a").html("手机");
+                $(".column-sex a").html("性别");
+                $(".column-state .text a").html("简历状态");
+
+
+                temp = $(".paginator").html().replace(/resumes|resume/,"简历");
+                $(".paginator").html(temp);
+                
+                var texts = $("#content>h1").html().replace(/resumes|resume/,"简历");
+               $("#content>h1").html(texts);
+
+            });
+        })(django.jQuery);
+    </script>
 {% for result in results %}
 {% if result.form.non_field_errors %}
     <tr><td colspan="{{ result|length }}">{{ result.form.non_field_errors }}</td></tr>

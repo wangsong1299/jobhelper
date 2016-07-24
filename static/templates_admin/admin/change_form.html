@@ -16,7 +16,8 @@
 {% block breadcrumbs %}
 <div class="breadcrumbs">
 <a href="{% url 'admin:index' %}">{% trans 'Home' %}</a>
-&rsaquo; <a href="{% url 'admin:app_list' app_label=opts.app_label %}">{{ opts.app_config.verbose_name }}</a>
+<!--
+&rsaquo; <a href="{% url 'admin:app_list' app_label=opts.app_label %}">{{ opts.app_config.verbose_name }}</a>-->
 &rsaquo; {% if has_change_permission %}<a href="{% url opts|admin_urlname:'changelist' %}">{{ opts.verbose_name_plural|capfirst }}</a>{% else %}{{ opts.verbose_name_plural|capfirst }}{% endif %}
 &rsaquo; {% if add %}{% trans 'Add' %} {{ opts.verbose_name }}{% else %}{{ original|truncatewords:"18" }}{% endif %}
 </div>
@@ -53,6 +54,33 @@
 {% for fieldset in adminform %}
   {% include "admin/includes/fieldset.html" %}
 {% endfor %}
+  <script type="text/javascript">
+
+        (function($) {
+            $(document).ready(function() {
+                $(".aligned>.field-name label").html("姓名");
+
+                $(".aligned>.field-nation label").html("国家");
+                $(".aligned>.field-province label").html("省份");
+                $(".aligned>.field-city label").html("城市");
+                $(".aligned>.field-phone label").html("手机");
+                $(".aligned>.field-avatar label").html("头像地址");
+                $(".aligned>.field-sex label").html("性别");
+                $(".aligned>.field-birth label").html("出生日期");
+                $(".aligned>.field-start_work_date label").html("开始工作日期");
+                $(".aligned>.field-character label").html("性别描述");
+                $(".aligned>.field-email label").html("邮箱");
+                $(".aligned>.field-state label").html("状态");
+   
+                var texts = $("#content>h1").html().replace(/resumes|resume/,"简历");
+                $("#content>h1").html(texts);
+                //wangsong cvoer      
+                     });                
+        })(django.jQuery);
+    </script>
+
+
+
 {% endblock %}
 
 {% block after_field_sets %}{% endblock %}
@@ -81,5 +109,6 @@
 {% prepopulated_fields_js %}
 
 </div>
-</form></div>
+</form>
+</div>
 {% endblock %}
