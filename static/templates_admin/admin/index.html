@@ -1,7 +1,8 @@
 {% extends "admin/base_site.html" %}
 {% load i18n admin_static %}
 
-{% block extrastyle %}{{ block.super }}<link rel="stylesheet" type="text/css" href="{% static "admin/css/dashboard.css" %}" />{% endblock %}
+{% block extrastyle %}{{ block.super }}<link rel="stylesheet" type="text/css" href="{% static "admin/css/dashboard.css" %}" />
+{% endblock %}
 
 {% block coltype %}colMS{% endblock %}
 
@@ -10,32 +11,112 @@
 {% block breadcrumbs %}{% endblock %}
 
 {% block content %}
-<div id="content-main">
+<div id="content-menu" style="width:15%">
+    <div class="content-menu-block" id="auth">管理员</div>
+    <div class="content-menu-block" id="resume">简历信息</div>
+    <div class="content-menu-block" id="recruit">招聘信息</div>
+    <div class="content-menu-block content-menu-block-focus" id="connect">投递关系</div>
+    <div class="content-menu-block" id="other">其他</div>
+</div>
 
+
+<div id="content-main" style="float: left;width: 80%;margin-top:10px;">
+
+        <div class="app2-auth module module2" style="display:none">
+            <table>
+            <caption>
+                <div class="section" title="在应用程序 Authentication and Authorization 中的模型" >身份认证和授权</div>
+            </caption>       
+                <tr class="model-user">           
+                    <th scope="row"><a target="_blank" href="/admin/auth/user/">管理员名单</a></th>           
+                    <td><a target="_blank" href="/admin/auth/user/add/" class="addlink">增加</a></td>           
+                    <td><a target="_blank" href="/admin/auth/user/" class="changelink">修改</a></td>          
+                </tr>     
+                <tr class="model-group">          
+                    <th scope="row"><a target="_blank" href="/admin/auth/group/">组</a></th>           
+                    <td><a target="_blank" href="/admin/auth/group/add/" class="addlink">增加</a></td>                  
+                    <td><a target="_blank" href="/admin/auth/group/" class="changelink">修改</a></td>            
+                </tr>        
+            </table>
+        </div>
+
+        <div class="app2-resume module module2" style="display:none">
+            <table>
+            <caption>
+                <a href="/admin/resume/resume/" class="section" title="在应用程序 Resume 中的模型">简历信息</a>
+            </caption>
+                <tr class="model-resume">          
+                    <th scope="row"><a href="/admin/resume/resume/">个人信息</a></th>
+                    <td><a href="/admin/resume/resume/add/" class="addlink">增加</a></td>
+                    <td><a href="/admin/resume/resume/" class="changelink">修改</a></td>   
+                </tr>
+                <tr class="model-company">       
+                    <th scope="row"><a href="/admin/resume/company/">工作经历</a></th>
+                    <td><a href="/admin/resume/company/add/" class="addlink">增加</a></td>
+                    <td><a href="/admin/resume/company/" class="changelink">修改</a></td>
+                </tr>
+                <tr class="model-education">
+                    <th scope="row"><a href="/admin/resume/education/">教育信息</a></th>
+                    <td><a href="/admin/resume/education/add/" class="addlink">增加</a></td>
+                    <td><a href="/admin/resume/education/" class="changelink">修改</a></td>        
+                </tr>     
+            </table>
+        </div>
+
+        <div class="app2-recruit module module2" style="display:none">
+            <table>
+            <caption>
+                <a href="/admin/recruit/recruit/" class="section" title="在应用程序 Recruit 中的模型">招聘信息</a>
+            </caption>
+                <tr class="model-recruit">
+                    <th scope="row"><a href="/admin/recruit/recruit/">招聘信息</a></th>
+                    <td><a href="/admin/recruit/recruit/add/" class="addlink">增加</a></td>
+                    <td><a href="/admin/recruit/recruit/" class="changelink">修改</a></td>  
+                </tr>
+            </table>
+        </div>
+
+        <div class="app2-connect module module2">
+            <table>
+            <caption>
+                <a href="/admin/recruit/connect/" class="section" title="在应用程序 Recruit 中的模型">投递关系</a>
+            </caption>
+                <tr class="model-connect">
+                    <th scope="row"><a href="/admin/recruit/connect/">投递关系</a></th>
+                    <td><a href="/admin/recruit/connect/add/" class="addlink">增加</a></td>
+                    <td><a href="/admin/recruit/connect/" class="changelink">修改</a></td> 
+                </tr>
+            </table>
+        </div>
+
+</div>
+
+<!--
+<div id="content-main" style="width:90%;margin-top:20px;">
+<div style="background:white;width:100%;height:20px;"></div>
 {% if app_list %}
     {% for app in app_list %}
         <div class="app-{{ app.app_label }} module">
         <table>
-
         <caption>
-            <a href="{{ app.app_url }}" class="section" title="{% blocktrans with name=app.name %}Models in the {{ name }} application{% endblocktrans %}">{{ app.name }}</a>
+            <a target="_blank" href="{{ app.app_url }}" class="section" title="{% blocktrans with name=app.name %}Models in the {{ name }} application{% endblocktrans %}">{{ app.name }}</a>
         </caption>
         {% for model in app.models %}
             <tr class="model-{{ model.object_name|lower }}">
             {% if model.admin_url %}
-                <th scope="row"><a href="{{ model.admin_url }}">{{ model.name }}</a></th>
+                <th scope="row"><a target="_blank" href="{{ model.admin_url }}">{{ model.name }}</a></th>
             {% else %}
                 <th scope="row">{{ model.name }}</th>
             {% endif %}
 
             {% if model.add_url %}
-                <td><a href="{{ model.add_url }}" class="addlink">{% trans 'Add' %}</a></td>
+                <td><a target="_blank" href="{{ model.add_url }}" class="addlink">{% trans 'Add' %}</a></td>
             {% else %}
                 <td>&nbsp;</td>
             {% endif %}
 
             {% if model.admin_url %}
-                <td><a href="{{ model.admin_url }}" class="changelink">{% trans 'Change' %}</a></td>
+                <td><a target="_blank" href="{{ model.admin_url }}" class="changelink">{% trans 'Change' %}</a></td>
             {% else %}
                 <td>&nbsp;</td>
             {% endif %}
@@ -48,36 +129,80 @@
     <p>{% trans "You don't have permission to edit anything." %}</p>
 {% endif %}
 </div>
+-->
+
+<script type="text/javascript" src="../../static/admin/js/jquery.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $("#auth").click(function(){
+                if(!$(".app2-auth").is(":visible")){
+                     $(".module2").hide();
+                     $(".app2-auth").show();
+                     $(".content-menu-block").removeClass("content-menu-block-focus");
+                     $("#auth").addClass("content-menu-block-focus");                  
+                }
+            })
+
+            $("#resume").click(function(){
+                if(!$(".app2-resume").is(":visible")){
+                     $(".module2").hide();
+                     $(".app2-resume").show();
+                     $(".content-menu-block").removeClass("content-menu-block-focus");
+                     $("#resume").addClass("content-menu-block-focus");
+                     
+                }
+            })
+
+            $("#recruit").click(function(){
+                if(!$(".app2-recruit").is(":visible")){
+                     $(".module2").hide();
+                     $(".app2-recruit").show();
+                     $(".content-menu-block").removeClass("content-menu-block-focus");
+                     $("#recruit").addClass("content-menu-block-focus");
+                     
+                }
+            })
+            $("#connect").click(function(){
+                if(!$(".app2-connect").is(":visible")){
+                     $(".module2").hide();
+                     $(".app2-connect").show();
+                     $(".content-menu-block").removeClass("content-menu-block-focus");
+                     $("#connect").addClass("content-menu-block-focus");
+                }
+            })
+
+            var date = new Date();
+            var month = date.getMonth() + 1;
+
+
+            var part = getCookie("part");
+             switch(part){
+                    case("1"): {$("#auth").trigger("click");break;}
+                    case("2"): {$("#resume").trigger("click");break;}
+                    case("3"): {$("#recruit").trigger("click");break;}
+                    case("4"): {$("#connect").trigger("click");break;}
+                  }
+
+            function getCookie(c_name){
+                if (document.cookie.length>0){
+                  c_start=document.cookie.indexOf(c_name + "=")
+                  if (c_start!=-1)
+                    { 
+                    c_start=c_start + c_name.length+1 
+                    c_end=document.cookie.indexOf(";",c_start)
+                    if (c_end==-1) c_end=document.cookie.length
+                    return unescape(document.cookie.substring(c_start,c_end))
+                    } 
+                  }
+                return ""
+                } 
+
+
+        })
+    </script>
+
 {% endblock %}
 
-{% block sidebar %}
-<div id="content-related">
-    <div class="module" id="recent-actions-module">
-        <h2>{% trans 'Recent Actions' %}</h2>
-        <h3>{% trans 'My Actions' %}</h3>
-            {% load log %}
-            {% get_admin_log 10 as admin_log for_user user %}
-            {% if not admin_log %}
-            <p>{% trans 'None available' %}</p>
-            {% else %}
-            <ul class="actionlist">
-            {% for entry in admin_log %}
-            <li class="{% if entry.is_addition %}addlink{% endif %}{% if entry.is_change %}changelink{% endif %}{% if entry.is_deletion %}deletelink{% endif %}">
-                {% if entry.is_deletion or not entry.get_admin_url %}
-                    {{ entry.object_repr }}
-                {% else %}
-                    <a href="{{ entry.get_admin_url }}">{{ entry.object_repr }}</a>
-                {% endif %}
-                <br/>
-                {% if entry.content_type %}
-                    <span class="mini quiet">{% filter capfirst %}{% trans entry.content_type.name %}{% endfilter %}</span>
-                {% else %}
-                    <span class="mini quiet">{% trans 'Unknown content' %}</span>
-                {% endif %}
-            </li>
-            {% endfor %}
-            </ul>
-            {% endif %}
-    </div>
-</div>
-{% endblock %}
+
+
+
