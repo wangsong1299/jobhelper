@@ -40,12 +40,15 @@
                 $(".column-university a").html("大学");
                 $(".column-major .text a").html("专业");
                 $(".column-degree .text a").html("学历");
+                //简历-工作经历
+                $(".column-conpany .text a").html("公司");
+                $(".column-position .text a").html("职位");
+               
 
-
-                temp = $(".paginator").html().replace(/resumes|resume/,"简历").replace(/educations|education/,"教育信息");
+                temp = $(".paginator").html().replace(/resumes|resume/,"简历").replace(/educations|education/,"教育信息").replace(/companys|company/,"工作经历");
                 $(".paginator").html(temp);
                 
-                var texts = $("#content>h1").html().replace(/resumes|resume/,"简历").replace(/educations|education/,"教育信息");
+                var texts = $("#content>h1").html().replace(/resumes|resume/,"简历").replace(/educations|education/,"教育信息").replace(/companys|company/,"工作经历");
                $("#content>h1").html(texts);
 
             });
