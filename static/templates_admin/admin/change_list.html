@@ -26,6 +26,32 @@
 (function($) {
     $(document).ready(function($) {
         $("tr input.action-select").actions();
+
+      var href =window.location.href.split("/");
+      var part;
+      //console.log(href[4],href[5]);
+      switch(href[4]){
+        case("auth"): {part=1;break;}
+        case("resume"): {part=2;break;}
+        case("recruit"): {
+          if(href[5]=='recruit'){
+            part=3;
+          }else{
+            part=4;
+          };
+          break;}
+      }
+     //console.log(part);
+      setCookie('part',part,365);
+
+
+        function setCookie(c_name,value,expiredays){
+          var exdate=new Date()
+          exdate.setDate(exdate.getDate()+expiredays)
+          document.cookie=c_name+ "=" +escape(value)+
+          ((expiredays==null) ? "" : ";expires="+exdate.toGMTString())+";path=/";
+          }     
+
     });
 })(django.jQuery);
 </script>
@@ -38,7 +64,8 @@
 {% block breadcrumbs %}
 <div class="breadcrumbs">
 <a href="{% url 'admin:index' %}">{% trans 'Home' %}</a>
-&rsaquo; <a href="{% url 'admin:app_list' app_label=cl.opts.app_label %}">{{ cl.opts.app_config.verbose_name }}</a>
+<!--
+&rsaquo; <a href="{% url 'admin:app_list' app_label=cl.opts.app_label %}">{{ cl.opts.app_config.verbose_name }}</a>-->
 &rsaquo; {{ cl.opts.verbose_name_plural|capfirst }}
 </div>
 {% endblock %}
