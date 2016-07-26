@@ -1,0 +1,133 @@
+{% extends "admin/base_site.html" %}
+{% load i18n admin_urls admin_static admin_modify %}
+
+{% block extrahead %}{{ block.super }}
+<script type="text/javascript" src="{% url 'admin:jsi18n' %}"></script>
+{{ media }}
+{% endblock %}
+
+{% block extrastyle %}{{ block.super }}<link rel="stylesheet" type="text/css" href="{% static "admin/css/forms.css" %}" />{% endblock %}
+
+{% block coltype %}colM{% endblock %}
+
+{% block bodyclass %}{{ block.super }} app-{{ opts.app_label }} model-{{ opts.model_name }} change-form{% endblock %}
+
+{% if not is_popup %}
+{% block breadcrumbs %}
+<div class="breadcrumbs">
+<a href="{% url 'admin:index' %}">{% trans 'Home' %}</a>
+<!--
+&rsaquo; <a href="{% url 'admin:app_list' app_label=opts.app_label %}">{{ opts.app_config.verbose_name }}</a>-->
+&rsaquo; {% if has_change_permission %}<a href="{% url opts|admin_urlname:'changelist' %}">{{ opts.verbose_name_plural|capfirst }}</a>{% else %}{{ opts.verbose_name_plural|capfirst }}{% endif %}
+&rsaquo; {% if add %}{% trans 'Add' %} {{ opts.verbose_name }}{% else %}{{ original|truncatewords:"18" }}{% endif %}
+</div>
+{% endblock %}
+{% endif %}
+
+{% block content %}<div id="content-main">
+{% block object-tools %}
+{% if change %}{% if not is_popup %}
+  <ul class="object-tools">
+    {% block object-tools-items %}
+    <li>
+        {% url opts|admin_urlname:'history' original.pk|admin_urlquote as history_url %}
+        <a href="{% add_preserved_filters history_url %}" class="historylink">{% trans "History" %}</a>
+    </li>
+    {% if has_absolute_url %}<li><a href="{{ absolute_url }}" class="viewsitelink">{% trans "View on site" %}</a></li>{% endif%}
+    {% endblock %}
+  </ul>
+{% endif %}{% endif %}
+{% endblock %}
+<form {% if has_file_field %}enctype="multipart/form-data" {% endif %}action="{{ form_url }}" method="post" id="{{ opts.model_name }}_form" novalidate>{% csrf_token %}{% block form_top %}{% endblock %}
+<div>
+{% if is_popup %}<input type="hidden" name="{{ is_popup_var }}" value="1" />{% endif %}
+{% if to_field %}<input type="hidden" name="{{ to_field_var }}" value="{{ to_field }}" />{% endif %}
+{% if save_on_top %}{% block submit_buttons_top %}{% submit_row %}{% endblock %}{% endif %}
+{% if errors %}
+    <p class="errornote">
+    {% if errors|length == 1 %}{% trans "Please correct the error below." %}{% else %}{% trans "Please correct the errors below." %}{% endif %}
+    </p>
+    {{ adminform.form.non_field_errors }}
+{% endif %}
+
+{% block field_sets %}
+{% for fieldset in adminform %}
+  {% include "admin/includes/fieldset.html" %}
+{% endfor %}
+  <script type="text/javascript">
+
+        (function($) {
+            $(document).ready(function() {
+                //简历-个人信息
+                $(".aligned>.field-name label").html("姓名");
+                $(".aligned>.field-nation label").html("国家");
+                $(".aligned>.field-province label").html("省份");
+                $(".aligned>.field-city label").html("城市");
+                $(".aligned>.field-phone label").html("手机");
+                $(".aligned>.field-avatar label").html("头像地址");
+                $(".aligned>.field-sex label").html("性别");
+                $(".aligned>.field-birth label").html("出生日期");
+                $(".aligned>.field-start_work_date label").html("开始工作日期");
+                $(".aligned>.field-character label").html("性别描述");
+                $(".aligned>.field-email label").html("邮箱");
+                $(".aligned>.field-state label").html("状态");
+                //简历-教育信息
+                $(".aligned>.field-resume label").html("简历编号");
+                $(".aligned>.field-university label").html("大学");
+                $(".aligned>.field-major label").html("专业");
+                $(".aligned>.field-degree label").html("学历");
+                $(".aligned>.field-intended_time label").html("入学时间");
+                $(".aligned>.field-graduation_time label").html("毕业时间");
+                //简历-工作经历
+                $(".aligned>.field-company label").html("公司");
+                $(".aligned>.field-position label").html("职位");
+                $(".aligned>.field-entry_time label").html("入学时间");
+                $(".aligned>.field-resign_time label").html("毕业时间");
+                $(".aligned>.field-description label").html("工作描述");
+                //投递关系
+                $(".aligned>.field-resume_id label").html("简历编号");
+                $(".aligned>.field-recruit_id label").html("招聘信息编号");
+                $(".aligned>.field-resume_address label").html("简历链接");
+                $("#connect_form .aligned>.field-email label").html("招聘方邮箱");
+                                                           
+             
+                var texts = $("#content>h1").html().replace(/resumes|resume/,"简历").replace(/educations|education/,"教育信息").replace(/companys|company/,"工作经历").replace(/connects|connect/,"投递关系");
+                $("#content>h1").html(texts);
+                //wangsong cvoer      
+                     });                
+        })(django.jQuery);
+    </script>
+
+
+
+{% endblock %}
+
+{% block after_field_sets %}{% endblock %}
+
+{% block inline_field_sets %}
+{% for inline_admin_formset in inline_admin_formsets %}
+    {% include inline_admin_formset.opts.template %}
+{% endfor %}
+{% endblock %}
+
+{% block after_related_objects %}{% endblock %}
+
+{% block submit_buttons_bottom %}{% submit_row %}{% endblock %}
+
+{% if adminform and add %}
+    <script type="text/javascript">
+        (function($) {
+            $(document).ready(function() {
+                $('form#{{ opts.model_name }}_form :input:visible:enabled:first').focus()
+            });
+        })(django.jQuery);
+    </script>
+{% endif %}
+
+{# JavaScript for prepopulated fields #}
+{% prepopulated_fields_js %}
+
+</div>
+</form>
+</div>
+{% endblock %}

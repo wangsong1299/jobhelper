@@ -1,0 +1,69 @@
+{% load i18n admin_static %}{% load cycle from future %}
+{% if result_hidden_fields %}
+<div class="hiddenfields">{# DIV for HTML validation #}
+{% for item in result_hidden_fields %}{{ item }}{% endfor %}
+</div>
+{% endif %}
+{% if results %}
+<div class="results">
+<table id="result_list">
+<thead>
+<tr>
+{% for header in result_headers %}
+<th scope="col" {{ header.class_attrib }}>
+   {% if header.sortable %}
+     {% if header.sort_priority > 0 %}
+       <div class="sortoptions">
+         <a class="sortremove" href="{{ header.url_remove }}" title="{% trans "Remove from sorting" %}"></a>
+         {% if num_sorted_fields > 1 %}<span class="sortpriority" title="{% blocktrans with priority_number=header.sort_priority %}Sorting priority: {{ priority_number }}{% endblocktrans %}">{{ header.sort_priority }}</span>{% endif %}
+         <a href="{{ header.url_toggle }}" class="toggle {% if header.ascending %}ascending{% else %}descending{% endif %}" title="{% trans "Toggle sorting" %}"></a>
+       </div>
+     {% endif %}
+   {% endif %}
+   <div class="text">{% if header.sortable %}<a href="{{ header.url_primary }}">{{ header.text|capfirst }}</a>{% else %}<span>{{ header.text|capfirst }}</span>{% endif %}</div>
+   <div class="clear"></div>
+</th>{% endfor %}
+</tr>
+</thead>
+<tbody>
+            
+   <script type="text/javascript">
+        (function($) {
+            $(document).ready(function() {
+                //简历-个人信息
+                $(".column-name .text a").html("姓名");
+                $(".column-phone a").html("手机");
+                $(".column-sex a").html("性别");
+                $(".column-state .text a").html("简历状态");
+                //简历-教育信息
+                $(".column-resume a").html("简历编号");
+                $(".column-university a").html("大学");
+                $(".column-major .text a").html("专业");
+                $(".column-degree .text a").html("学历");
+                //简历-工作经历
+                $(".column-conpany .text a").html("公司");
+                $(".column-position .text a").html("职位");
+                //投递关系
+                $(".column-resume_id .text a").html("简历编号");
+                $(".column-recruit_id .text a").html("招聘信息编号");
+                              
+
+                temp = $(".paginator").html().replace(/resumes|resume/,"简历").replace(/educations|education/,"教育信息").replace(/companys|company/,"工作经历").replace(/connects|connect/,"投递关系");
+                $(".paginator").html(temp);
+                
+                var texts = $("#content>h1").html().replace(/resumes|resume/,"简历").replace(/educations|education/,"教育信息").replace(/companys|company/,"工作经历").replace(/connects|connect/,"投递关系");
+               $("#content>h1").html(texts);
+
+            });
+        })(django.jQuery);
+    </script>
+{% for result in results %}
+{% if result.form.non_field_errors %}
+    <tr><td colspan="{{ result|length }}">{{ result.form.non_field_errors }}</td></tr>
+{% endif %}
+<tr class="{% cycle 'row1' 'row2' %}">{% for item in result %}{{ item }}{% endfor %}</tr>
+{% endfor %}
+</tbody>
+</table>
+</div>
+{% endif %}
