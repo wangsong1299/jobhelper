@@ -7,13 +7,13 @@ from django.http import HttpResponse,HttpResponseRedirect
 from django.shortcuts import render_to_response
 import simplejson as json
 
-#预览页面
+#招聘信息页面
 def index(request):
-	recruits=Recruit.objects.filter(state=0)
+	recruits=Recruit.objects.filter(state=1)
 	recruit_info={}
 	i=0
 	for r in recruits:
-		recruit_info[i]={'position':r.position,'company':r.company,'degree':r.degree,'years':r.years,'sex':r.sex,'address':r.address,'salary':r.salary,'logo':r.logo,'description':r.description,'id':r.id}
+		recruit_info[i]={'position':r.position,'company':r.company,'degree':r.degree,'years':r.years,'sex':r.sex,'address':r.address,'salary':r.salary,'description':r.description,'id':r.id}
 		i=i+1
 	return render_to_response('recruit.html',{'recruit_info':recruit_info})
 #首页
@@ -26,7 +26,7 @@ def myshow(request,id):
 	for c in connects:
 		recruit_id=c.recruit_id
 		r=Recruit.objects.filter(id=recruit_id)[0]
-		myshow_info[i]={'company':r.company,'description':r.description,'id':recruit_id}
+		myshow_info[i]={'position':r.position,'company':r.company,'years':r.years,'degree':r.degree,'sex':r.sex,'salary':r.salary,'id':recruit_id,'state':c.state}
 		i=i+1
 	return render_to_response('myrecruit.html',{'myshow_info':myshow_info})
 
