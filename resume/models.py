@@ -44,6 +44,10 @@ class Resume(models.Model):
 	email=models.CharField(max_length = 30)
 	# 简历状态
 	state=models.IntegerField(default = 1, choices = STATE_CHOICES)
+	# 产生时间
+	create_time = models.DateTimeField(auto_now_add = True, blank = True)
+	# 更新时间
+	update_time = models.DateTimeField(auto_now_add = True, blank = True)
 
 	def __unicode__(self):
 		return unicode(self.id) + '_' + self.name
