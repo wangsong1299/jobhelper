@@ -89,9 +89,13 @@
                 $(".aligned>.field-recruit_id label").html("招聘信息编号");
                 $(".aligned>.field-resume_address label").html("简历链接");
                 $("#connect_form .aligned>.field-email label").html("招聘方邮箱");
-                                                           
-             
-                var texts = $("#content>h1").html().replace(/resumes|resume/,"简历").replace(/educations|education/,"教育信息").replace(/companys|company/,"工作经历").replace(/connects|connect/,"投递关系");
+                //招聘信息
+                $(".aligned>.field-years label").html("工作年限");
+                $(".aligned>.field-address label").html("工作地址");
+                $(".aligned>.field-salary label").html("期待薪水");
+                $(".aligned>.field-contacts label").html("联系人");
+           
+                var texts = $("#content>h1").html().replace(/resumes|resume/,"简历").replace(/educations|education/,"教育信息").replace(/companys|company/,"工作经历").replace(/connects|connect/,"投递关系").replace(/recruits|recruit/,"招聘信息");
                 $("#content>h1").html(texts);
                 //wangsong cvoer      
                      });                

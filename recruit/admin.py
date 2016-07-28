@@ -4,7 +4,7 @@ from django.contrib import admin
 from recruit import models
 
 class RecruitAdmin(admin.ModelAdmin):
-    list_display = ('id', 'company')
+    list_display = ('id', 'position','company','state')
 
 class ConnectAdmin(admin.ModelAdmin):
     list_display = ('id', 'resume_id','recruit_id','state')
