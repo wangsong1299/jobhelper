@@ -14,10 +14,10 @@ class WechatApi:
     def __init__(self):
         # 开发者私有配置信息
         self.Token = 'job'
-        self.EncodingAESKey = 'vbZh1E8ra0ypyo3DgmNAnKInVyfVqQ0FxtDVKVJqvM7'
+        self.EncodingAESKey = 'WTUqjVPuIBrsR0jmWR7Gwk0fDYL0bx9t9cJKl8zr3qW'
         # 测试号码
-        self.AppID = 'wxea61534b1e615fd3'   # 开发者平台分配的AppID
-        self.AppSecret = '0c7d2783e7dd86f7c2c9eff4d72b5ae1'
+        self.AppID = 'wxa5dc117bb384c924'   # 开发者平台分配的AppID
+        self.AppSecret = '2a8602ad21700fdb69ad3a9588d09387'
 
         # 使用微信接口获得的信息
         self.AccessToken = '' # 公众号的access_token
