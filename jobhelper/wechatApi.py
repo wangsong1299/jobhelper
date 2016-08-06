@@ -235,10 +235,10 @@ class WechatApi:
 
     def initMenu(self):
         #创建菜单
-        REDIRECT_URI='http://120.27.48.180:8085'
-        #resumeUrl='https://open.weixin.qq.com/connect/oauth2/authorize?appid='+self.AppID+'&redirect_uri='+REDIRECT_URI+'&response_type=code&scope=snsapi_base&state=STATE#wechat_redirect'
+        REDIRECT_URI='http://www.deemeng.com.cn/wenjiebang'
+        resumeUrl='https://open.weixin.qq.com/connect/oauth2/authorize?appid='+self.AppID+'&redirect_uri='+REDIRECT_URI+'&response_type=code&scope=snsapi_base&state=STATE#wechat_redirect'
         ## 点击跳转到简历首页的时候，去得到openid
-        resumeUrl='http://120.27.48.180:8085'
+        #resumeUrl='http://120.27.48.180:8085'
         buttonList = [
                 {
                     "type":"view",

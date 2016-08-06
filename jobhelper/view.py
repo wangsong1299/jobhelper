@@ -13,7 +13,7 @@ sys.setdefaultencoding('utf8')
 
 def index(request):
     path=request.get_full_path()
-    path='?code=111&state=222'#test
+    print path
     params=path.split('?')
     if(len(params)>1):
         param=params[1].split('&')
@@ -21,8 +21,28 @@ def index(request):
             key=p.split('=')[0]
             if key=='code':
                 code=p.split('=')[1]
-        #openid=wechatApi.wx.getOpenid(code)['openid']
-        openid='obqbYwPAb-4ATQ5ht2yxh5wpDjRE'#test
+        print code
+        openid=wechatApi.wx.getOpenid(code)['openid']
+        #openid='obqbYwPAb-4ATQ5ht2yxh5wpDjRE'#test
+        print openid
+        user=Resume.objects.filter(openid=openid)
+        if len(user)==0:
+            info=wechatApi.wx.getUserInfo(openid)
+            print info
+            province=info['province']
+            city=info['city']
+            nickname=info['nickname']
+            headimgurl=info['headimgurl']
+            nation=info['country']
+            r=Resume(name = nickname,
+                    openid = openid,
+                    province=province,
+                    city=city,
+                    avatar=headimgurl,
+                    nation=nation)
+            r.save()
+        else:
+            print 'user already exist'
         resume=Resume.objects.filter(openid=openid)[0]
         id=resume.id
         province=resume.province
@@ -45,7 +65,7 @@ def wechatjob(request):
             echostr = request.REQUEST.get('echostr', '')
             signature = request.REQUEST.get('signature', '')  
             signature_my = wechatApi.wx.checkSignature(timestamp, nonce)
-            print signature_my,signature,echostr,timestamp
+            #print signature_my,signature,echostr,timestamp
             if signature==signature_my:
                 return HttpResponse(echostr)
             else:

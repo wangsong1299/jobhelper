@@ -13,7 +13,7 @@ urlpatterns = patterns('',
 
     #url(r'^wechat/', view.wechat),
 
-    url(r'^$', view.index),
+    url(r'^index$', view.index),
 
    	url(r'^wechatjob', view.wechatjob),
 
