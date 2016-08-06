@@ -1,15 +1,7 @@
-{% load i18n admin_static %}
-<!DOCTYPE html>
-<html lang="zh-cmn-Hans">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
-    <title>WeUI</title>
-    <link rel="stylesheet" href="{% static "job/css/weui.min.css" %}"/>
-    <link rel="stylesheet" href="{% static "job/css/style.css" %}"/>
-</head>
-<body ontouchstart>
-    <div class="container" id="container">
+ {% extends "base_erp.html" %}
+ {% load i18n admin_static %}
+
+{% block content %}
     <div class="m-hd">
         我的简历
     </div>
@@ -114,7 +106,7 @@
             </div>
         </div>
         {% endfor %}
-
     </div>
+{% endblock %}
 </body>
 </html>

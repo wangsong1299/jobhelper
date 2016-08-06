@@ -1,0 +1,25 @@
+{% load i18n admin_static %}
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+    <title>WeUI</title>
+    <link rel="stylesheet" href="{% static "job/css/weui.min.css" %}"/>
+    <link rel="stylesheet" href="{% static "job/css/style.css" %}"/>
+{% block head %}
+{% endblock %}
+</head>
+
+<body ontouchstart>
+    <div class="container" id="container">
+    	{% block content %}
+		{% endblock %}
+    </div>
+    <script src="{% static "job/js/zepto.min.js" %}"></script>
+        {% block javascript %}
+		{% endblock %}
+</body>
+</html>
+
+
