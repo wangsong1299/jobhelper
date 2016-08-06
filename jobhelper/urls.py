@@ -12,7 +12,7 @@ urlpatterns = patterns('',
     url(r'^index/recruit/', include('recruit.urls')),
 
     #url(r'^wechat/', view.wechat),
-
+    url(r'^$', view.redirect),
     url(r'^index$', view.index),
 
    	url(r'^wechatjob', view.wechatjob),
