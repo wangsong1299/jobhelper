@@ -128,7 +128,7 @@
             <img src="/static/job/images/navicon_2.png" alt="" class="icon">
             <span class="tt">教育背景</span>
             <div class="desc">必填</div>
-            <a href="/index/resume/fill#edu=1">
+            <a href="/resume/fill#edu=1">
                 <span class="edit">新增</span>
                 <img src="/static/job/images/add.png" alt="" class="editicon">            
             </a>
@@ -192,7 +192,7 @@
             <img src="/static/job/images/navicon_2.png" alt="" class="icon">
             <span class="tt">工作经历</span>
             <div class="desc">必填</div>
-            <a href="/index/resume/fill#com=1">
+            <a href="/resume/fill#com=1">
                 <span class="edit">新增</span>
                 <img src="/static/job/images/add.png" alt="" class="editicon">            
             </a>
@@ -296,7 +296,7 @@
             }else{
                 $.ajax({
                       type : "POST",
-                      url : "/index/resume/fill_info/",
+                      url : "/resume/fill_info/",
                       data:{'name':name,'sex':sex,'birth':birth,'startwork':startwork,'province':province,'city':city,'character':character,'phone':phone,'email':email},
                       dataType : "json",
                       success : function(data){  
@@ -336,7 +336,7 @@
             }else{
                 $.ajax({
                       type : "POST",
-                      url : "/index/resume/fill_edu/",
+                      url : "/resume/fill_edu/",
                       data:{'resume_id':resume_id,'university':university,'intended_time':intended_time,'graduation_time':graduation_time,'major':major,'degree':degree},
                       dataType : "json",
                       success : function(data){  
@@ -384,7 +384,7 @@
             }else{
                 $.ajax({
                       type : "POST",
-                      url : "/index/resume/fill_comp/",
+                      url : "/resume/fill_comp/",
                       data:{'resume_id':resume_id,'company':company,'entry_time':entry_time,'resign_time':resign_time,'position':position,'description':description},
                       dataType : "json",
                       success : function(data){  
