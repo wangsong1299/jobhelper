@@ -35,6 +35,30 @@ class WechatApi:
         convertedXml = xmltodict.unparse(dictVal)
         return convertedXml
 
+    def jsonToReturnXml(self, dictVal):
+        dictVal = self.formatJson(dictVal)
+        dictVal = { 'xml': dictVal }
+        convertedXml = xmltodict.unparse(dictVal).replace('&lt;', '<').replace('&gt;', '>')
+        return convertedXml
+
+    def formatJson(self, dictVal):
+        resDict = {}
+        for dictKey in dictVal:
+            if isinstance(dictVal[dictKey], str) or isinstance(dictVal[dictKey], unicode):
+                resDict[dictKey] = '<![CDATA[%s]]>' % dictVal[dictKey]
+            elif isinstance(dictVal[dictKey], list) or isinstance(dictVal[dictKey], tuple):
+                tmpList = []
+                for i in range(dictVal[dictKey]):
+                    tmpList.append(self.formatJson(dictVal[dictKey][i]))
+                resDict[dictKey] = tmpList
+            elif isinstance(dictVal[dictKey], dict):
+                resDict[dictKey] = {}
+                for i in dictVal[dictKey]:
+                    resDict[dictKey][i] = self.formatJson(dictVal[dictKey][i])
+            else:
+                resDict[dictKey] = dictVal[dictKey]
+        return resDict
+
     def reqHttpData(self, url, method = 'post', data = {}):
         params = urllib.urlencode(data)
 
@@ -126,7 +150,7 @@ class WechatApi:
         url = 'https://api.weixin.qq.com/cgi-bin/getcallbackip'
         data = {
             'access_token': self.AccessToken
-	}
+    }
         resData = self.reqHttpData(url, 'get', data)
         return json.loads(resData)
 
@@ -135,8 +159,8 @@ class WechatApi:
         url = 'https://api.weixin.qq.com/cgi-bin/user/get'
         data= {
             'access_token': self.AccessToken,
-    	    'next_openid': next_openid
-    	}
+            'next_openid': next_openid
+        }
         resData = self.reqHttpData(url, 'get', data)
         return json.loads(resData)
 
@@ -145,9 +169,9 @@ class WechatApi:
         url = 'https://api.weixin.qq.com/cgi-bin/user/info'
         data= {
             'access_token': self.AccessToken,
-    	    'openid': openid,
+            'openid': openid,
             'lang': 'zh_CN'
-    	}
+        }
         resData = self.reqHttpData(url, 'get', data)
         return json.loads(resData)
     
@@ -159,7 +183,7 @@ class WechatApi:
             post_user_list.append({'openid': user, 'lang': 'zh-CN'})
         data= {
             'user_list': post_user_list
-    	}
+        }
         resData = self.reqHttpData(url, 'post', data)
         return json.loads(resData)
 
