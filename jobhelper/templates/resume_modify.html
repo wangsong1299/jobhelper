@@ -163,7 +163,7 @@
             var email=$('.J_email').val().trim();
             $.ajax({
                   type : "POST",
-                  url : "/resume/modify_info/",
+                  url : "/index/resume/modify_info/",
                   data:{'name':name,'sex':sex,'birth':birth,'startwork':startwork,'province':province,'city':city,'character':character,'phone':phone,'email':email},
                   dataType : "json",
                   success : function(data){  
@@ -272,7 +272,7 @@
                 var degree=$('.J_degree').val().trim();    
                 $.ajax({
                       type : "POST",
-                      url : "/resume/modify_edu/",
+                      url : "/index/resume/modify_edu/",
                       data:{'edu_id':edu_id,'university':university,'intended_time':intended_time,'graduation_time':graduation_time,'major':major,'degree':degree},
                       dataType : "json",
                       success : function(data){  
@@ -359,7 +359,7 @@
                 var description=$('.J_description').val().trim();
                 $.ajax({
                       type : "POST",
-                      url : "/resume/modify_comp/",
+                      url : "/index/resume/modify_comp/",
                       data:{'com_id':com_id,'company':company,'entry_time':entry_time,'resign_time':resign_time,'position':position,'description':description},
                       dataType : "json",
                       success : function(data){  

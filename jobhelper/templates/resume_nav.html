@@ -48,10 +48,10 @@
         <div class="u-navlistbox">
             <!--基本信息-->
             {% ifequal state 0 %}
-            <a class="" href="/resume/fill/">
+            <a class="" href="/index/resume/fill/">
             {% endifequal %}
             {% ifnotequal state 0 %}
-            <a class="" href="/resume/info_list">
+            <a class="" href="/index/resume/info_list">
             {% endifnotequal %}         
                 <div class="u-list">
                     <p class="u-list-1">个人信息</p>
@@ -63,10 +63,10 @@
             {% endifequal %}
             {% ifnotequal state 0 %}
                 {% ifequal edus_blank 1 %}
-                <a class="" href="/resume/fill#edu=1">
+                <a class="" href="/index/resume/fill#edu=1">
                 {% endifequal %}
                 {% ifnotequal edus_blank 1 %}
-                <a class="" href="/resume/edu_list">
+                <a class="" href="/index/resume/edu_list">
                 {% endifnotequal %}
             {% endifnotequal %}         
                 <div class="u-list">
@@ -79,10 +79,10 @@
             {% endifequal %}
             {% ifnotequal state 0 %}
                 {% ifequal coms_blank 1 %}
-                <a class="" href="/resume/fill#com=1">
+                <a class="" href="/index/resume/fill#com=1">
                 {% endifequal %}
                 {% ifnotequal coms_blank 1 %}
-                 <a class="" href="/resume/com_list">
+                 <a class="" href="/index/resume/com_list">
                 {% endifnotequal %}
             {% endifnotequal %}         
                 <div class="u-list">
@@ -90,7 +90,7 @@
                 </div>
             </a>
         </div>
-        <a href="/resume/preview">
+        <a href="/index/resume/preview">
             <div class="u-btn">
                 预览简历
             </div>

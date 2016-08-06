@@ -7,9 +7,9 @@ urlpatterns = patterns('',
     # url(r'^$', 'jobhelper.views.home', name='home'),
     # url(r'^blog/', include('blog.urls')),
 
-    url(r'^admin/', include(admin.site.urls)),
-    url(r'^resume/', include('resume.urls')),
-    url(r'^recruit/', include('recruit.urls')),
+    url(r'^index/admin/', include(admin.site.urls)),
+    url(r'^index/resume/', include('resume.urls')),
+    url(r'^index/recruit/', include('recruit.urls')),
 
     #url(r'^wechat/', view.wechat),
 

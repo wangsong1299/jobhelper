@@ -18,7 +18,7 @@
             <img src="/static/job/images/navicon_2.png" alt="" class="icon">
             <span class="tt">工作经历</span>
             <div class="desc">必填</div>
-            <a href="/resume/fill#com=1">
+            <a href="/index/resume/fill#com=1">
                 <span class="edit">新增</span>
                 <img src="/static/job/images/add.png" alt="" class="editicon">            
             </a>
@@ -48,7 +48,7 @@
                     {{value.description}}
                 </div>
             </div>
-            <a href="/resume/modify/3/{{value.id}}" class="btn">
+            <a href="/index/resume/modify/3/{{value.id}}" class="btn">
                 <img src="/static/job/images/edit.png" alt="" class="edit">             
             </a>
                 <img src="/static/job/images/delete.png" alt="" class="delete J_delete" data-id={{value.id}}>
@@ -70,7 +70,7 @@
                     }else{
                         $.ajax({
                               type : "POST",
-                              url : "/resume/delete_com/",
+                              url : "/index/resume/delete_com/",
                               data:{'com_id':com_id},
                               dataType : "json",
                               success : function(data){  

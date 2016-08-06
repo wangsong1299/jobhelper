@@ -18,7 +18,7 @@
             <img src="/static/job/images/navicon_2.png" alt="" class="icon">
             <span class="tt">教育背景</span>
             <div class="desc">必填</div>
-            <a href="/resume/fill#edu=1">
+            <a href="/index/resume/fill#edu=1">
                 <span class="edit">新增</span>
                 <img src="/static/job/images/add.png" alt="" class="editicon">            
             </a>
@@ -45,7 +45,7 @@
                 <div class="ctk">毕业时间</div>
                 <div class="ctv">{{value.graduation_time}}</div>
             </div>
-            <a href="/resume/modify/2/{{value.id}}" class="btn">
+            <a href="/index/resume/modify/2/{{value.id}}" class="btn">
                 <img src="/static/job/images/edit.png" alt="" class="edit">             
             </a>
                 <img src="/static/job/images/delete.png" alt="" class="delete J_delete" data-id={{value.id}}>
@@ -67,7 +67,7 @@
                     }else{
                         $.ajax({
                               type : "POST",
-                              url : "/resume/delete_edu/",
+                              url : "/index/resume/delete_edu/",
                               data:{'edu_id':edu_id},
                               dataType : "json",
                               success : function(data){  
