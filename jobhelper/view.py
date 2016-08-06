@@ -13,8 +13,8 @@ sys.setdefaultencoding('utf8')
 
 def index(request):
     path=request.get_full_path()
-    path='index?code=111&state='#test
-    print path
+    #path='index?code=111&state='#test
+    #print path
     params=path.split('?')
     if(len(params)>1):
         param=params[1].split('&')
@@ -23,8 +23,8 @@ def index(request):
             if key=='code':
                 code=p.split('=')[1]
         #print code
-        #openid=wechatApi.wx.getOpenid(code)['openid']
-        openid='obqbYwPAb-4ATQ5ht2yxh5wpDjRE'#test
+        openid=wechatApi.wx.getOpenid(code)['openid']
+        #openid='obqbYwPAb-4ATQ5ht2yxh5wpDjRE'#test
         #print openid
         user=Resume.objects.filter(openid=openid)
         if len(user)==0:
