@@ -30,8 +30,7 @@
             {% ifequal value.state 2 %}
             <div class="status">【 已查看 】</div>     
             {% endifequal %} 
-
-        <a class="weui_btn weui_btn_mini weui_btn_primary J_btn" data-recruit={{value.id}} data-resume='2' href="javascript:;">删除</a>
+             <img src="/static/job/images/delete.png" alt="" class="delete J_delete" data-recruit={{value.id}} data-resume='2'>
      </div>
     {% endfor %}
     </div>
@@ -43,7 +42,7 @@
     <script src="../js/example.js"></script>-->
     <script type="text/javascript">
         $(document).ready(function(){
-            $('.J_btn').click(function(){
+            $('.J_delete').click(function(){
                 var resume_id=$(this).attr('data-resume');
                 var recruit_id=$(this).attr('data-recruit');
                 if(resume_id==''||recruit_id==''){
