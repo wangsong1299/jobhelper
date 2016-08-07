@@ -238,8 +238,9 @@ def info_list(request):
 	id=request.session.get('id',False)
 	r=Resume.objects.filter(id=id)[0]
 	sex_choice={0:'保密',1:'男',2:'女'}
+	seximg_choice={0:'infoicon_1',1:'infoicon_11',2:'infoicon_1'}
 	birth=(r.birth).split('-')[0]+'-'+(r.birth).split('-')[1]
-	info={'name':r.name,'phone':r.phone,'province':r.province,'city':r.city,'email':r.email,'sex':sex_choice[r.sex],'birth':birth,'startwork':r.start_work_date,'character':r.character,'avatar':r.avatar}
+	info={'name':r.name,'phone':r.phone,'province':r.province,'city':r.city,'email':r.email,'sex':sex_choice[r.sex],'seximg':seximg_choice[r.sex],'birth':birth,'startwork':r.start_work_date,'character':r.character,'avatar':r.avatar}
 	return render_to_response('resume_info_list.html',{'info':info})
 
 #简历edu_list页
