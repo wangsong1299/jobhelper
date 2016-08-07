@@ -38,10 +38,23 @@ def myshow(request,id):
 	connects=Connect.objects.filter(resume_id=id)
 	myshow_info={}
 	i=0
+	now = datetime.datetime.now()
+	nowtime=time.mktime(now.timetuple())
 	for c in connects:
+		create_time=time.mktime(c.create_time.timetuple())
+		timediff=nowtime-create_time
+		timediffday=str(int(timediff/(60*60*24)))
+		timediffHour=str(int(timediff/(60*60)))
+		timediffSec=str(int(timediff/(60)))
+		if(timediffday>0):
+			timeGo=timediffday+'天'
+		elif(timediffHour>0):
+			timeGo=timediffHour+'小时'
+		else:
+			timeGo=timediffSec+'分'
 		recruit_id=c.recruit_id
 		r=Recruit.objects.filter(id=recruit_id)[0]
-		myshow_info[i]={'position':r.position,'company':r.company,'years':r.years,'degree':r.degree,'sex':r.sex,'salary':r.salary,'id':recruit_id,'state':c.state,'resume_id':id}
+		myshow_info[i]={'position':r.position,'company':r.company,'years':r.years,'degree':r.degree,'sex':r.sex,'salary':r.salary,'id':recruit_id,'state':c.state,'resume_id':id,'timeGo':timeGo}
 		i=i+1
 	return render_to_response('myrecruit.html',{'myshow_info':myshow_info})
 
