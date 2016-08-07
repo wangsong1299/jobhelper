@@ -119,7 +119,7 @@ body{background: #f4f3ef}
 .u-workbox .detail .ct-2{width: 50px}
 .u-workbox .detail .ct-3{width: 40px}
 .u-workbox .money{position: absolute;right: 5px;top:15px;width: 75px;height: 20px;background: #f7f4ed;color: #ef6e35;border-radius:10px;text-align: center;}
-.u-workbox .time{position: absolute;right: 15px;top:50px;width: 40px;height: 20px;color: #bab6ae;text-align: right;}
+.u-workbox .time{position: absolute;right: 15px;top:50px;width: 80px;height: 20px;color: #bab6ae;text-align: right;}
 .u-workbox-2{width:90%;min-height:195px;background: #fff;margin: 0 auto}
 .u-workbox-2 .icon{width: 15px;height: 18px;float: left;margin-left: 15px;margin-top: 5px}
 .u-workbox-2 .address{width: 200px;height: 16px;line-height: 16px;font-size: 12px;margin-left: 15px;display: inline-block;}

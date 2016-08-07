@@ -6,14 +6,29 @@ from django.views.decorators.csrf import csrf_exempt
 from django.http import HttpResponse,HttpResponseRedirect
 from django.shortcuts import render_to_response
 import simplejson as json
+import datetime
 
 #招聘信息页面
 def index(request):
+	id=request.session.get('id',False)
 	recruits=Recruit.objects.filter(state=1)
 	recruit_info={}
 	i=0
+	now = datetime.datetime.now()
+	nowtime=time.mktime(now.timetuple())
 	for r in recruits:
-		recruit_info[i]={'position':r.position,'company':r.company,'degree':r.degree,'years':r.years,'sex':r.sex,'address':r.address,'salary':r.salary,'description':r.description,'id':r.id}
+		create_time=time.mktime(r.create_time.timetuple())
+		timediff=nowtime-create_time
+		timediffday=str(int(timediff/(60*60*24)))
+		timediffHour=str(int(timediff/(60*60)))
+		timediffSec=str(int(timediff/(60)))
+		if(timediffday>0):
+			timeGo=timediffday+'天'
+		elif(timediffHour>0):
+			timeGo=timediffHour+'小时'
+		else:
+			timeGo=timediffSec+'分'
+		recruit_info[i]={'position':r.position,'company':r.company,'degree':r.degree,'years':r.years,'sex':r.sex,'address':r.address,'salary':r.salary,'description':r.description,'id':r.id,'resume_id':id,'timeGo':timeGo}
 		i=i+1
 	return render_to_response('recruit.html',{'recruit_info':recruit_info})
 #首页
