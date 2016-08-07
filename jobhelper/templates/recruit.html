@@ -19,7 +19,7 @@
                  <div class="ct-3">{{value.sex}}</div>
             </div>  
             <div class="money">{{value.salary}}</div>
-            <div class="time">刚刚</div>    
+            <div class="time">{{value.timeGo}}前</div>    
         </div>
         <div class="u-hr"></div>
         <div class="u-workbox-2">
@@ -29,7 +29,7 @@
             <div class="desc">
                 {{value.description}}
             </div>
-            <div class="btn J_btn"  data-recruit={{value.id}} data-resume='2'>投递</div>
+            <div class="btn J_btn"  data-recruit={{value.id}} data-resume={{value.resume_id}}>投递</div>
             <div style="height:15px"></div>
         </div>
     {% endfor %}
