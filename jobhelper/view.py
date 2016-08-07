@@ -13,7 +13,8 @@ sys.setdefaultencoding('utf8')
 
 def index(request):
     path=request.get_full_path()
-    print path
+    #path='index?code=111&state='#test
+    #print path
     params=path.split('?')
     if(len(params)>1):
         param=params[1].split('&')
@@ -21,10 +22,10 @@ def index(request):
             key=p.split('=')[0]
             if key=='code':
                 code=p.split('=')[1]
-        print code
+        #print code
         openid=wechatApi.wx.getOpenid(code)['openid']
         #openid='obqbYwPAb-4ATQ5ht2yxh5wpDjRE'#test
-        print openid
+        #print openid
         user=Resume.objects.filter(openid=openid)
         if len(user)==0:
             info=wechatApi.wx.getUserInfo(openid)
@@ -125,4 +126,7 @@ def test(request):
 
 def error(request):
     return render_to_response('test.html')
+
+def redirect(request):
+    return HttpResponseRedirect("/index")
 

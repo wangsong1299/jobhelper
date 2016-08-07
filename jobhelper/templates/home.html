@@ -1,16 +1,13 @@
-{% load i18n admin_static %}
-<!DOCTYPE html>
-<html lang="zh-cmn-Hans">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
-    <title>WeUI</title>
-    <link rel="stylesheet" href="{% static "job/css/weui.min.css" %}"/>
-    <link rel="stylesheet" href="{% static "job/css/style.css" %}"/>
-</head>
-<body ontouchstart>
-    <div class="container" id="container">
-    <div class="bd">
+ {% extends "base_erp.html" %}
+ {% load i18n admin_static %}
+
+{% block origin_head %}
+    <link rel="stylesheet" href="http://www.deemeng.com.cn:8002/static/job/css/weui.min.css" />
+    <link rel="stylesheet" href="http://www.deemeng.com.cn:8002/static/job/css/style.css"/>
+{% endblock %}
+
+{% block content %}
+ <div class="bd">
         <div class="m-hd_bg">
             
         </div>
@@ -22,17 +19,17 @@
              <div class="u-area">{{province}}&nbsp;&nbsp;{{city}}</div>
         </div>
         <div class="u-listbox">
-            <a href="/resume/nav/">
+            <a href="http://www.deemeng.com.cn:8002/resume/nav/">
                 <div class="u-list">
                     <p class="u-list-1">我的简历</p>
                 </div>
             </a>
-            <a href="/recruit/">
+            <a href="http://www.deemeng.com.cn:8002/recruit/">
                 <div class="u-list">
                     <p class="u-list-2">招聘信息</p>
                 </div>
             </a>
-            <a href="/recruit/myshow/2">
+            <a href="http://www.deemeng.com.cn:8002/recruit/myshow/2">
                 <div class="u-list">
                     <p class="u-list-3">我的投递</p>
                 </div>
@@ -43,9 +40,4 @@
         </div>
 
     </div>
-    </div>
-    <script src="{% static "job/js/zepto.min.js" %}"></script>
-    <!--<script src="../js/router.min.js"></script>
-    <script src="../js/example.js"></script>-->
-</body>
-</html>
+{% endblock %}
