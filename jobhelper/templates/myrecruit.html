@@ -30,7 +30,7 @@
             {% ifequal value.state 2 %}
             <div class="status">【 已查看 】</div>     
             {% endifequal %} 
-             <img src="/static/job/images/delete.png" alt="" class="delete J_delete" data-recruit={{value.id}} data-resume='2'>
+             <img src="/static/job/images/delete.png" alt="" class="delete J_delete" data-recruit={{value.id}} data-resume={{value.resume_id}}>
      </div>
     {% endfor %}
     </div>
