@@ -23,28 +23,32 @@ def index(request):
             if key=='code':
                 code=p.split('=')[1]
         #print code
-        openid=wechatApi.wx.getOpenid(code)['openid']
-        #openid='obqbYwPAb-4ATQ5ht2yxh5wpDjRE'#test
-        #print openid
-        user=Resume.objects.filter(openid=openid)
-        if len(user)==0:
-            info=wechatApi.wx.getUserInfo(openid)
-            print info
-            province=info['province']
-            city=info['city']
-            nickname=info['nickname']
-            headimgurl=info['headimgurl']
-            nation=info['country']
-            r=Resume(name = nickname,
-                    openid = openid,
-                    province=province,
-                    city=city,
-                    avatar=headimgurl,
-                    nation=nation)
-            r.save()
+        data = wechatApi.wx.getOpenid(code)
+        if('openid' in data):
+            openid=data['openid']
+            user=Resume.objects.filter(openid=openid)
+            if len(user)==0:
+                info=wechatApi.wx.getUserInfo(openid)
+                print info
+                province=info['province']
+                city=info['city']
+                nickname=info['nickname']
+                headimgurl=info['headimgurl']
+                nation=info['country']
+                r=Resume(name = nickname,
+                        openid = openid,
+                        province=province,
+                        city=city,
+                        avatar=headimgurl,
+                        nation=nation,
+                        state=0)
+                r.save()
+            else:
+                print 'user already exist'
+            resume=Resume.objects.filter(openid=openid)[0]
         else:
-            print 'user already exist'
-        resume=Resume.objects.filter(openid=openid)[0]
+            id=request.session.get('id',False)
+            resume=Resume.objects.filter(id=id)[0]
         id=resume.id
         province=resume.province
         city=resume.city
@@ -122,6 +126,7 @@ def wechatjob(request):
     
 
 def test(request):
+    request.session['id'] = 2
     return render_to_response('test.html')
 
 def error(request):
