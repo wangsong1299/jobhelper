@@ -10,6 +10,7 @@ import simplejson as json
 
 @csrf_exempt
 def fill_info(request):
+	id=request.session.get('id',False)
 	name = request.POST.get('name', None)
 	sex = request.POST.get('sex', None)
 	birth = request.POST.get('birth', None)
@@ -20,7 +21,7 @@ def fill_info(request):
 	phone = request.POST.get('phone', None)
 	email = request.POST.get('email', None)
 	try:
-		r=Resume(name = name,
+		Resume.objects.filter(id=id).update(name = name,
                 sex = sex,
                 birth = birth,
                 start_work_date=startwork,
@@ -30,11 +31,10 @@ def fill_info(request):
                 phone=phone,
                 email=email,
                 nation='中国')
-		r.save()
 	except Exception, e:
+		print e
 		return comutils.baseresponse(e, 500)
-	resume_id=Resume.objects.filter(phone=phone)[0].id
-	return HttpResponse(json.dumps({'code':200,'resume_id':resume_id}))
+	return HttpResponse(json.dumps({'code':200,'resume_id':id}))
 
 @csrf_exempt
 def modify_info(request):
@@ -59,6 +59,7 @@ def modify_info(request):
                 phone=phone,
                 email=email,
                 nation='中国')
+		Resume.objects.filter(id=resume_id).update(state=1)
 	except Exception, e:
 		return comutils.baseresponse(e, 500)
 	return HttpResponse(json.dumps({'code':200}))
@@ -80,6 +81,7 @@ def fill_edu(request):
                 major=major,
                 degree=degree)
 		edu.save()
+		Resume.objects.filter(id=id).update(state=1)
 	except Exception, e:
 		return comutils.baseresponse(e, 500)
 	return HttpResponse(json.dumps({'code':200}))
@@ -128,7 +130,7 @@ def fill_comp(request):
                 position=position,
                 description=description)
 		comp.save()
-		Resume.objects.filter(id=resume_id).update(state=2)
+		Resume.objects.filter(id=resume_id).update(state=1)
 	except Exception, e:
 		return comutils.baseresponse(e, 500)
 	return HttpResponse(json.dumps({'code':200}))
@@ -165,7 +167,9 @@ def preview(request):
 	id=request.session.get('id',False)
 	r=Resume.objects.filter(id=id)[0]
 	sex_choice={0:'保密',1:'男',2:'女'}
-	info={'name':r.name,'phone':r.phone,'province':r.province,'city':r.city,'email':r.email,'sex':sex_choice[r.sex],'birth':r.birth,'startwork':r.start_work_date,'character':r.character,'avatar':r.avatar}
+	birth=(r.birth).split('-')[0]+'-'+(r.birth).split('-')[1]
+	seximg_choice={0:'infoicon_1',1:'infoicon_11',2:'infoicon_1'}
+	info={'name':r.name,'phone':r.phone,'province':r.province,'city':r.city,'email':r.email,'sex':sex_choice[r.sex],'seximg':seximg_choice[r.sex],'birth':birth,'startwork':r.start_work_date,'character':r.character,'avatar':r.avatar}
 	edus=Education.objects.filter(resume=r)
 	edu_info={}
 	i=0
@@ -187,7 +191,9 @@ def preview_all(request,salt):
 	id=decoded.split('-')[0]
 	r=Resume.objects.filter(id=id)[0]
 	sex_choice={0:'保密',1:'男',2:'女'}
-	info={'name':r.name,'phone':r.phone,'province':r.province,'city':r.city,'email':r.email,'sex':sex_choice[r.sex],'birth':r.birth,'startwork':r.start_work_date,'character':r.character,'avatar':r.avatar}
+	birth=(r.birth).split('-')[0]+'-'+(r.birth).split('-')[1]
+	seximg_choice={0:'infoicon_1',1:'infoicon_11',2:'infoicon_1'}
+	info={'name':r.name,'phone':r.phone,'province':r.province,'city':r.city,'email':r.email,'sex':sex_choice[r.sex],'seximg':seximg_choice[r.sex],'birth':birth,'startwork':r.start_work_date,'character':r.character,'avatar':r.avatar}
 	edus=Education.objects.filter(resume=r)
 	edu_info={}
 	i=0
@@ -220,7 +226,6 @@ def nav(request):
 	name=resume.name
 	edus_blank=1
 	coms_blank=1
-	state=1
 	if state==0:
 		return render_to_response('resume_blank.html')
 	else:
