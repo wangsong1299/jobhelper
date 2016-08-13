@@ -250,18 +250,32 @@
 
     <script type="text/javascript">
     $(document).ready(function(){
+        function getHash(hash){
+            var hs=hash.split('&');
+            var obj={}
+            for(var h in hs){
+                obj[hs[h].split('=')[0]]=hs[h].split('=')[1];
+            }
+            return obj;
+        }
+
         var hash=window.location.hash.split("#")[1];
         var resume_id={{id|safe}};
-        if(hash){
-            var section=hash.split('=')[0];
+        var hashObj=getHash(hash);
+        console.log(hashObj);
+        if(hashObj){
+            var section=hashObj['sec'];
+            var existFlag=hashObj['exist'];
             if(section=='com'){
                 $("#sec_info").hide();
                 $("#sec_com").show();  
                 $('.J_resume_id').val(resume_id);
+                if(existFlag){$('.J_next_3').html('保存');}
             }else if(section=='edu'){
                 $("#sec_edu").show();
                 $("#sec_info").hide();
                 $('.J_resume_id').val(resume_id);
+                if(existFlag){$('.J_next_2').html('保存');}
             }
         }
 
@@ -348,6 +362,8 @@
                                     $('.J_graduation_time').val('');
                                     $('.J_major').val('');
                                     $('.J_degree').val('');
+                                }else if(existFlag){
+                                    window.location.href="/resume/edu_list/";
                                 }else{
                                     $("#sec_edu").hide();
                                     $("#sec_com").show();                                   

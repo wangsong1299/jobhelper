@@ -105,7 +105,7 @@ body{background: #f4f3ef}
 .m-edubox .u-line .ctv{width: 190px;height: 30px;line-height: 30px;text-align: left;color: #443506;float: left;}
 .m-edubox .edit{position: absolute;right: 40px;top:0px;width: 16px;height: 16px;padding: 12px 8px;}
 .m-edubox .delete{position: absolute;right: 0px;top:0px;width: 16px;height: 16px;padding: 12px 20px 12px 8px;}
-.m-edubox .textarea{min-height: 140px;width: 90%;padding: 0 5%;}
+.m-edubox .textarea{min-height: 110px;width: 90%;padding: 30px 5% 0;}
 .m-edubox .u-line-1{min-height: 140px;}
 
 /*招聘信息页*/
