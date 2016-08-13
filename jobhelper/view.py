@@ -8,6 +8,7 @@ import sys
 import wechatApi
 from resume.models import Resume,Education,Company
 from HrStatus import rds # HrStatus
+import pdb
 
 reload(sys)
 sys.setdefaultencoding('utf8')
@@ -83,43 +84,53 @@ def wechatjob(request):
             # request_xml = etree.fromstring(xml_str)
             request_json = wechatApi.wx.xmlToJson(request_xml)
             print request_json
-
             msgType = request_json['xml']['MsgType']
             if 'Event' in request_json['xml']:
                 event = request_json['xml']['Event']
             fromUserName = request_json['xml']['FromUserName']
             toUserName = request_json['xml']['ToUserName']
-            #content = request_json['xml']['Content']
+            if 'Content' in request_json['xml']:
+                content = request_json['xml']['Content']
+            else:
+                content = ''
 
             if 'EventKey' in request_json['xml']:
                 eventKey = request_json['xml']['EventKey']
                 if(eventKey=='woyaozhaopin'):
+                    tip = rds.setStatus(fromUserName, 'reset')
                     response_json = {
                         'ToUserName': fromUserName,
                         'FromUserName': toUserName,
                         'CreateTime': int(time.time()),
                         'MsgType': 'text',
-                        'Content': '您好，请按照以下格式输入相应的岗位信息。'
+                        'Content': tip # '您好，请按照以下格式输入相应的岗位信息。'
                     }
-                    response_xml = wechatApi.wx.jsonToReturnXml(response_json)
-                    print response_xml
-                    getZhaopin()
-                    return HttpResponse(response_xml)
+                    print tip
+
+                else:
+                    response_json = {
+                        'ToUserName': fromUserName,
+                        'FromUserName': toUserName,
+                        'CreateTime': int(time.time()),
+                        'MsgType': 'text',
+                        'Content': 'xxxxxxxx'
+                    }
+                    
             else:
-                return HttpResponse()
+                tip = rds.setStatus(fromUserName, content)
+                response_json = {
+                    'ToUserName': fromUserName,
+                    'FromUserName': toUserName,
+                    'CreateTime': int(time.time()),
+                    'MsgType': 'text',
+                    'Content': tip # '您好，请按照以下格式输入相应的岗位信息。'
+                }
+                print tip
+            response_xml = wechatApi.wx.jsonToReturnXml(response_json)
+            return HttpResponse(response_xml)
+
     except Exception, e:
         print e
-
-def getZhaopin():
-    user = 'test'
-    message = '' #'reset'
-    rds = HrStatus(host = '127.0.0.1', port = 6379, auth = '')
-    while True:
-        tip = rds.setStatus(user, message)
-        if tip == 'over':
-            print rds.getInfo(user)
-            return 'wss'
-            break
 
 
 def test(request):

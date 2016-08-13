@@ -45,6 +45,7 @@ class HrStatus:
     def setStatus(self, user, message = ''):
         rds_key = 'jobhelper_hunter_%s' % unicode(user)
         rds_info = 'jobhelper_hunter_info_%s' % unicode(user)
+        print 'wss'
         
         if message == 'reset':
             self.rConn.set(rds_key, 0)
@@ -52,7 +53,7 @@ class HrStatus:
             self.rConn.setnx(rds_key, 0)
         status = self.rConn.get(rds_key) # 前状态
         [valid, tip] = self.validateInput(status, message)
-##        print status, message
+        print status, message
         if valid:
             if int(status) > 0:
                 self.rConn.hset(rds_info, status, message)
