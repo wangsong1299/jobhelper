@@ -81,7 +81,7 @@ def fill_edu(request):
                 major=major,
                 degree=degree)
 		edu.save()
-		Resume.objects.filter(id=id).update(state=1)
+		Resume.objects.filter(id=resume_id).update(state=1)
 	except Exception, e:
 		return comutils.baseresponse(e, 500)
 	return HttpResponse(json.dumps({'code':200}))
