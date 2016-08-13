@@ -47,6 +47,7 @@ def index(request):
                 print 'user already exist'
             resume=Resume.objects.filter(openid=openid)[0]
         else:
+            #request.session['id'] = 2#test
             id=request.session.get('id',False)
             resume=Resume.objects.filter(id=id)[0]
         id=resume.id
