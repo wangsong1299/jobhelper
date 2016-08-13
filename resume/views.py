@@ -38,7 +38,7 @@ def fill_info(request):
 
 @csrf_exempt
 def modify_info(request):
-	id=request.session.get('id',False)
+	resume_id=request.session.get('id',False)
 	name = request.POST.get('name', None)
 	sex = request.POST.get('sex', None)
 	birth = request.POST.get('birth', None)
@@ -49,7 +49,7 @@ def modify_info(request):
 	phone = request.POST.get('phone', None)
 	email = request.POST.get('email', None)
 	try:
-		Resume.objects.filter(id=id).update(name = name,
+		Resume.objects.filter(id=resume_id).update(name = name,
                 sex = sex,
                 birth = birth,
                 start_work_date=startwork,
@@ -281,7 +281,7 @@ def modify(request,section,item_id):
 	if section==1:
 		r=Resume.objects.filter(id=id)[0]
 		sex_choice={0:'保密',1:'男',2:'女'}
-		info={'name':r.name,'phone':r.phone,'province':r.province,'city':r.city,'email':r.email,'sex':sex_choice[r.sex],'birth':r.birth,'startwork':r.start_work_date,'character':r.character,'avatar':r.avatar}
+		info={'id':id,'name':r.name,'phone':r.phone,'province':r.province,'city':r.city,'email':r.email,'sex':sex_choice[r.sex],'birth':r.birth,'startwork':r.start_work_date,'character':r.character,'avatar':r.avatar}
 	if section==2:
 		e=Education.objects.filter(id=item_id)[0]
 		info={'university':e.university,'intended_time':e.intended_time,'graduation_time':e.graduation_time,'major':e.major,'degree':e.degree}

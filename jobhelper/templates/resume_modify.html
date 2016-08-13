@@ -124,7 +124,7 @@
                 <div style="height:20px"></div>   
         </div>
         <div class="u-btn-mini J_back">返回</div>
-        <div class="u-btn-mini J_modify">修改</div>
+        <div class="u-btn-mini J_modify" data-id={{info.id}}>修改</div>
         <div style="height:40px"></div>
     </div>        
     </article>
@@ -152,6 +152,7 @@
         });    
 
         $('.J_modify').click(function(){
+            var id=$(this).attr('data-id');
             var name=$('.J_name').val().trim();
             var sex=$('.J_sex').val().trim();
             var birth=$('.J_birth').val().trim();
@@ -164,11 +165,12 @@
             $.ajax({
                   type : "POST",
                   url : "/resume/modify_info/",
-                  data:{'name':name,'sex':sex,'birth':birth,'startwork':startwork,'province':province,'city':city,'character':character,'phone':phone,'email':email},
+                  data:{'id':id,'name':name,'sex':sex,'birth':birth,'startwork':startwork,'province':province,'city':city,'character':character,'phone':phone,'email':email},
                   dataType : "json",
                   success : function(data){  
                         if(data.code==200){
                             alert('修改成功');
+                            window.location.href='/resume/info_list/';
                         }else{
                             alert(data.message);
                         }
