@@ -82,7 +82,7 @@ def wechatjob(request):
             request_xml = xml_str
             # request_xml = etree.fromstring(xml_str)
             request_json = wechatApi.wx.xmlToJson(request_xml)
-            print request_json
+            #print request_json
 
             msgType = request_json['xml']['MsgType']
             if 'Event' in request_json['xml']:
@@ -100,29 +100,9 @@ def wechatjob(request):
                 'MsgType': 'text',
                 'Content': content
             }
-
             response_xml = wechatApi.wx.jsonToReturnXml(response_json)
-            print response_xml
-            # if msgType=='event':
-            #     if event=='VIEW':
-            #         info=wechatApi.wx.getUserInfo(openid)
-            #         user=Resume.objects.filter(openid=openid)
-            #         if len(user)==0:
-            #             province=info['province']
-            #             city=info['city']
-            #             nickname=info['nickname']
-            #             headimgurl=info['headimgurl']
-            #             nation=info['country']
-            #             r=Resume(name = nickname,
-            #                     openid = openid,
-            #                     province=province,
-            #                     city=city,
-            #                     avatar=headimgurl,
-            #                     nation=nation)
-            #             r.save()
-            #         else:
-            #             print 'user already exist'
-            return HttpResponse(response_xml)
+            #print response_xml
+            return HttpResponse()
     except Exception, e:
         print e
     
