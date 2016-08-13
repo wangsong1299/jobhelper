@@ -52,7 +52,7 @@
                     </div>
                     <div class="weui_cell_bd weui_cell_primary">
                         <select class="weui_select u-sel sex J_sex" name="sex">
-                            <option value="0" selected>保密</option>
+                            <option value="0">保密</option>
                             <option value="1">男</option>
                             <option value="2">女</option>
                         </select>
@@ -146,7 +146,7 @@
         });          
         var sex='{{info.sex|safe}}';
         $(".J_sex>option").each(function(a,b){
-                if($(b).val()==sex){
+                if($(b).html()==sex){
                     $(b).attr("selected",true);
                 }
         });    
