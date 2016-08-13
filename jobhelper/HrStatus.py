@@ -17,7 +17,7 @@ class HrStatus:
     # need connect redis
     status_map = {
         '0': u'start',
-        '1': u'请输入职位名称:',
+        '1': u'您好,请根据提示输入招聘信息。请输入职位名称:',
         '2': u'请输入公司名称:',
         '3': u'请输入薪资范围:',
         '4': u'请输入学历要求:',
@@ -37,9 +37,9 @@ class HrStatus:
         print 'redis disconnected!'
 
     def validateInput(self, status, message = ""):
-        if status == '6':
-            if (message != 'male') and (message != '女'):
-                return [False, u'性别请输入男或女']
+        #if status == '6':
+         #   if (message != 'male') and (message != '女'):
+          #      return [False, u'性别请输入男或女']
         return [True, '']
         
     def setStatus(self, user, message = ''):

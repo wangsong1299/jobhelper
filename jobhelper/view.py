@@ -9,6 +9,8 @@ import wechatApi
 from resume.models import Resume,Education,Company
 from HrStatus import rds # HrStatus
 import pdb
+from resume import utils as comutils
+from recruit.models import Recruit,Connect
 
 reload(sys)
 sys.setdefaultencoding('utf8')
@@ -83,7 +85,7 @@ def wechatjob(request):
             request_xml = xml_str
             # request_xml = etree.fromstring(xml_str)
             request_json = wechatApi.wx.xmlToJson(request_xml)
-            print request_json
+            #print request_json
             msgType = request_json['xml']['MsgType']
             if 'Event' in request_json['xml']:
                 event = request_json['xml']['Event']
@@ -94,8 +96,10 @@ def wechatjob(request):
             else:
                 content = ''
 
+            #事件触发
             if 'EventKey' in request_json['xml']:
                 eventKey = request_json['xml']['EventKey']
+                #判断是否是点击『我要招聘』
                 if(eventKey=='woyaozhaopin'):
                     tip = rds.setStatus(fromUserName, 'reset')
                     response_json = {
@@ -103,32 +107,46 @@ def wechatjob(request):
                         'FromUserName': toUserName,
                         'CreateTime': int(time.time()),
                         'MsgType': 'text',
-                        'Content': tip # '您好，请按照以下格式输入相应的岗位信息。'
+                        'Content': tip 
                     }
-                    print tip
-
+                   #print tip
                 else:
                     response_json = {
                         'ToUserName': fromUserName,
                         'FromUserName': toUserName,
                         'CreateTime': int(time.time()),
                         'MsgType': 'text',
-                        'Content': 'xxxxxxxx'
-                    }
-                    
+                        'Content': '系统错误，请重新发送'
+                    }          
             else:
                 tip = rds.setStatus(fromUserName, content)
-                response_json = {
-                    'ToUserName': fromUserName,
-                    'FromUserName': toUserName,
-                    'CreateTime': int(time.time()),
-                    'MsgType': 'text',
-                    'Content': tip # '您好，请按照以下格式输入相应的岗位信息。'
-                }
-                print tip
+                #over表示接收完成，如没完成则执行下一步
+                if(tip!='over'):
+                    response_json = {
+                        'ToUserName': fromUserName,
+                        'FromUserName': toUserName,
+                        'CreateTime': int(time.time()),
+                        'MsgType': 'text',
+                        'Content': tip 
+                    }
+                else:
+                    info=rds.getInfo(fromUserName)
+                    #print info
+                    try:
+                        r=Recruit(position = info['1'],company = info['2'],degree = info['3'],years=info['4'],address=info['5'],sex=info['6'],salary=info['7'],description=info['8'])
+                        r.save()
+                    except Exception, e:
+                        return comutils.baseresponse(e, 500)
+                    infotext="职位:"+info['1']+'_公司:'+info['2']+'_学历要求:'+info['3']+'_年限要求:'+info['4']+'_公司地址:'+info['5']+'_性别要求:'+info['6']+'_薪水范围:'+info['7']+'_工作描述:'+info['8']
+                    response_json = {
+                        'ToUserName': fromUserName,
+                        'FromUserName': toUserName,
+                        'CreateTime': int(time.time()),
+                        'MsgType': 'text',
+                        'Content': '您好，您已完成招聘信息的填写,管理员审核通过后可在招聘信息处呈现。信息如下:'+infotext
+                    }                
             response_xml = wechatApi.wx.jsonToReturnXml(response_json)
             return HttpResponse(response_xml)
-
     except Exception, e:
         print e
 
