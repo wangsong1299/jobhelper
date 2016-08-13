@@ -47,7 +47,7 @@ class Resume(models.Model):
 	# 产生时间
 	create_time = models.DateTimeField(auto_now_add = True, blank = True)
 	# 更新时间
-	update_time = models.DateTimeField(auto_now_add = True, blank = True)
+	update_time = models.DateTimeField(auto_now = True, blank = True)
 
 	def __unicode__(self):
 		return unicode(self.id) + '_' + self.name

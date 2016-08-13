@@ -25,10 +25,7 @@
             <div class="status">【 已投递 】</div>     
             {% endifequal %} 
             {% ifequal value.state 1 %}
-            <div class="status status2">【 不合适 】</div>     
-            {% endifequal %} 
-            {% ifequal value.state 2 %}
-            <div class="status">【 已查看 】</div>     
+            <div class="status status2">【 投递成功 】</div>     
             {% endifequal %} 
              <img src="/static/job/images/delete.png" alt="" class="delete J_delete" data-recruit={{value.id}} data-resume={{value.resume_id}}>
      </div>

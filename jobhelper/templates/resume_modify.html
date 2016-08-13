@@ -52,7 +52,7 @@
                     </div>
                     <div class="weui_cell_bd weui_cell_primary">
                         <select class="weui_select u-sel sex J_sex" name="sex">
-                            <option value="0" selected>保密</option>
+                            <option value="0">保密</option>
                             <option value="1">男</option>
                             <option value="2">女</option>
                         </select>
@@ -124,7 +124,7 @@
                 <div style="height:20px"></div>   
         </div>
         <div class="u-btn-mini J_back">返回</div>
-        <div class="u-btn-mini J_modify">修改</div>
+        <div class="u-btn-mini J_modify" data-id={{info.id}}>修改</div>
         <div style="height:40px"></div>
     </div>        
     </article>
@@ -146,12 +146,13 @@
         });          
         var sex='{{info.sex|safe}}';
         $(".J_sex>option").each(function(a,b){
-                if($(b).val()==sex){
+                if($(b).html()==sex){
                     $(b).attr("selected",true);
                 }
         });    
 
         $('.J_modify').click(function(){
+            var id=$(this).attr('data-id');
             var name=$('.J_name').val().trim();
             var sex=$('.J_sex').val().trim();
             var birth=$('.J_birth').val().trim();
@@ -164,11 +165,12 @@
             $.ajax({
                   type : "POST",
                   url : "/resume/modify_info/",
-                  data:{'name':name,'sex':sex,'birth':birth,'startwork':startwork,'province':province,'city':city,'character':character,'phone':phone,'email':email},
+                  data:{'id':id,'name':name,'sex':sex,'birth':birth,'startwork':startwork,'province':province,'city':city,'character':character,'phone':phone,'email':email},
                   dataType : "json",
                   success : function(data){  
                         if(data.code==200){
                             alert('修改成功');
+                            window.location.href='/resume/info_list/';
                         }else{
                             alert(data.message);
                         }
@@ -191,7 +193,7 @@
             <img src="/static/job/images/navicon_2.png" alt="" class="icon">
             <span class="tt">教育背景</span>
             <div class="desc">必填</div>
-            <a href="/resume/fill#edu=1">
+            <a href="/resume/fill/#edu=1">
                 <span class="edit">新增</span>
                 <img src="/static/job/images/add.png" alt="" class="editicon">            
             </a>
@@ -299,7 +301,7 @@
             <img src="/static/job/images/navicon_2.png" alt="" class="icon">
             <span class="tt">工作经历</span>
             <div class="desc">必填</div>
-            <a href="/resume/fill#com=1">
+            <a href="/resume/fill/#com=1">
                 <span class="edit">新增</span>
                 <img src="/static/job/images/add.png" alt="" class="editicon">            
             </a>

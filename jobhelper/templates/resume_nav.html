@@ -29,7 +29,7 @@
                     <span style="color:#55ba47">可投递</span>
                 {% endifequal %}
              </div>
-             <div class="update">更新: 2016-1-1</div>
+             <div class="update">更新: {{update_time}}</div>
             {% ifequal state 1 %}
                  <img class="status-logo" src="/static/job/images/status_2.png">
             {% endifequal %}
@@ -59,7 +59,7 @@
             {% endifequal %}
             {% ifnotequal state 0 %}
                 {% ifequal edus_blank 1 %}
-                <a class="" href="/resume/fill/#edu=1">
+                <a class="" href="/resume/fill/#edu=1&sec=edu">
                 {% endifequal %}
                 {% ifnotequal edus_blank 1 %}
                 <a class="" href="/resume/edu_list">
@@ -75,7 +75,7 @@
             {% endifequal %}
             {% ifnotequal state 0 %}
                 {% ifequal coms_blank 1 %}
-                <a class="" href="/resume/fill/#com=1">
+                <a class="" href="/resume/fill/#com=1&sec=com">
                 {% endifequal %}
                 {% ifnotequal coms_blank 1 %}
                  <a class="" href="/resume/com_list">

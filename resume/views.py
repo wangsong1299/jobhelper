@@ -38,7 +38,7 @@ def fill_info(request):
 
 @csrf_exempt
 def modify_info(request):
-	id=request.session.get('id',False)
+	resume_id=request.session.get('id',False)
 	name = request.POST.get('name', None)
 	sex = request.POST.get('sex', None)
 	birth = request.POST.get('birth', None)
@@ -49,7 +49,7 @@ def modify_info(request):
 	phone = request.POST.get('phone', None)
 	email = request.POST.get('email', None)
 	try:
-		Resume.objects.filter(id=id).update(name = name,
+		Resume.objects.filter(id=resume_id).update(name = name,
                 sex = sex,
                 birth = birth,
                 start_work_date=startwork,
@@ -81,7 +81,7 @@ def fill_edu(request):
                 major=major,
                 degree=degree)
 		edu.save()
-		Resume.objects.filter(id=id).update(state=1)
+		Resume.objects.filter(id=resume_id).update(state=1)
 	except Exception, e:
 		return comutils.baseresponse(e, 500)
 	return HttpResponse(json.dumps({'code':200}))
@@ -224,6 +224,7 @@ def nav(request):
 	city=resume.city
 	avatar=resume.avatar
 	name=resume.name
+	update_time=resume.update_time.strftime("%Y-%m-%d")
 	edus_blank=1
 	coms_blank=1
 	if state==0:
@@ -236,7 +237,7 @@ def nav(request):
 				edus_blank=0
 			if(len(coms)>0):
 				coms_blank=0
-		return render_to_response('resume_nav.html',{'state':state,'id':id,'province':province,'city':city,'avatar':avatar,'name':name,'edus_blank':edus_blank,'coms_blank':coms_blank})
+		return render_to_response('resume_nav.html',{'state':state,'id':id,'province':province,'city':city,'avatar':avatar,'name':name,'edus_blank':edus_blank,'coms_blank':coms_blank,'update_time':update_time})
 
 #简历info_list页
 def info_list(request):
@@ -281,7 +282,7 @@ def modify(request,section,item_id):
 	if section==1:
 		r=Resume.objects.filter(id=id)[0]
 		sex_choice={0:'保密',1:'男',2:'女'}
-		info={'name':r.name,'phone':r.phone,'province':r.province,'city':r.city,'email':r.email,'sex':sex_choice[r.sex],'birth':r.birth,'startwork':r.start_work_date,'character':r.character,'avatar':r.avatar}
+		info={'id':id,'name':r.name,'phone':r.phone,'province':r.province,'city':r.city,'email':r.email,'sex':sex_choice[r.sex],'birth':r.birth,'startwork':r.start_work_date,'character':r.character,'avatar':r.avatar}
 	if section==2:
 		e=Education.objects.filter(id=item_id)[0]
 		info={'university':e.university,'intended_time':e.intended_time,'graduation_time':e.graduation_time,'major':e.major,'degree':e.degree}
