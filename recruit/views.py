@@ -35,6 +35,7 @@ def index(request):
 
 #我的投递
 def myshow(request,id):
+	id=request.session.get('id',False)
 	connects=Connect.objects.filter(resume_id=id)
 	myshow_info={}
 	i=0
