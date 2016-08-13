@@ -7,6 +7,7 @@ import datetime, time
 import sys
 import wechatApi
 from resume.models import Resume,Education,Company
+from HrStatus import rds # HrStatus
 
 reload(sys)
 sys.setdefaultencoding('utf8')
