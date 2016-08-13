@@ -224,6 +224,7 @@ def nav(request):
 	city=resume.city
 	avatar=resume.avatar
 	name=resume.name
+	update_time=resume.update_time.strftime("%Y-%m-%d")
 	edus_blank=1
 	coms_blank=1
 	if state==0:
@@ -236,7 +237,7 @@ def nav(request):
 				edus_blank=0
 			if(len(coms)>0):
 				coms_blank=0
-		return render_to_response('resume_nav.html',{'state':state,'id':id,'province':province,'city':city,'avatar':avatar,'name':name,'edus_blank':edus_blank,'coms_blank':coms_blank})
+		return render_to_response('resume_nav.html',{'state':state,'id':id,'province':province,'city':city,'avatar':avatar,'name':name,'edus_blank':edus_blank,'coms_blank':coms_blank,'update_time':update_time})
 
 #简历info_list页
 def info_list(request):
