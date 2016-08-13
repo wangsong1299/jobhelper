@@ -82,30 +82,45 @@ def wechatjob(request):
             request_xml = xml_str
             # request_xml = etree.fromstring(xml_str)
             request_json = wechatApi.wx.xmlToJson(request_xml)
-            #print request_json
+            print request_json
 
             msgType = request_json['xml']['MsgType']
             if 'Event' in request_json['xml']:
                 event = request_json['xml']['Event']
-            if 'EventKey' in request_json['xml']:
-                eventKey = request_json['xml']['EventKey']
             fromUserName = request_json['xml']['FromUserName']
             toUserName = request_json['xml']['ToUserName']
-            content = request_json['xml']['Content']
+            #content = request_json['xml']['Content']
 
-            response_json = {
-                'ToUserName': fromUserName,
-                'FromUserName': toUserName,
-                'CreateTime': int(time.time()),
-                'MsgType': 'text',
-                'Content': content
-            }
-            response_xml = wechatApi.wx.jsonToReturnXml(response_json)
-            #print response_xml
-            return HttpResponse()
+            if 'EventKey' in request_json['xml']:
+                eventKey = request_json['xml']['EventKey']
+                if(eventKey=='woyaozhaopin'):
+                    response_json = {
+                        'ToUserName': fromUserName,
+                        'FromUserName': toUserName,
+                        'CreateTime': int(time.time()),
+                        'MsgType': 'text',
+                        'Content': '您好，请按照以下格式输入相应的岗位信息。'
+                    }
+                    response_xml = wechatApi.wx.jsonToReturnXml(response_json)
+                    print response_xml
+                    getZhaopin()
+                    return HttpResponse(response_xml)
+            else:
+                return HttpResponse()
     except Exception, e:
         print e
-    
+
+def getZhaopin():
+    user = 'test'
+    message = '' #'reset'
+    rds = HrStatus(host = '127.0.0.1', port = 6379, auth = '')
+    while True:
+        tip = rds.setStatus(user, message)
+        if tip == 'over':
+            print rds.getInfo(user)
+            return 'wss'
+            break
+
 
 def test(request):
     request.session['id'] = 2
