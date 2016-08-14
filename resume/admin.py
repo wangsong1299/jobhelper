@@ -13,6 +13,11 @@ class EducationAdmin(admin.ModelAdmin):
 class CompanyAdmin(admin.ModelAdmin):
     list_display = ('id', 'resume','company','position')
 
+class ImageAdmin(admin.ModelAdmin):
+    list_display = ('id', 'productImg')
+
 admin.site.register(models.Resume, ResumeAdmin)
 admin.site.register(models.Education, EducationAdmin)
 admin.site.register(models.Company, CompanyAdmin)
+admin.site.register(models.Image, ImageAdmin)
+
