@@ -246,9 +246,9 @@ class WechatApi:
                     "url":resumeUrl
                 },
                 {
-                    "type":"view",
+                    "type":"click",
                     "name":"我要招聘",
-                    "url":"http://www.baidu.com"
+                    "key":"woyaozhaopin"
                 },
                 {
                     "type":"view",
