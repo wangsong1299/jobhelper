@@ -21,5 +21,6 @@ urlpatterns = patterns('',
 
     url(r'^error$', view.error),
 
+    url(r'^upload/$',view.upload),
 
 )
