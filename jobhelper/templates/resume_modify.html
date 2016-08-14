@@ -34,9 +34,10 @@
                 <!--头像-->
                 <div class="weui_cell">
                     <div class="weui_cell_hd"><label class="weui_label">头像</label></div>
-                    <div class="weui_cell_bd weui_cell_primary u-img">
+                    <div class="weui_cell_bd weui_cell_primary u-img J_file_hover">
                         <img src="{{info.avatar}}" class="headimg" alt="">
                     </div>
+                    <input type="file" class="J_file" style="display:none">
                 </div>
                 <!--姓名-->
                 <div class="weui_cell">
@@ -177,7 +178,12 @@
                   }
             })
 
-        })      
+        })  
+
+        /*头像更新*/
+        $('.J_file_hover').click(function(){
+            $('.J_file').trigger('click');
+        })    
    
     })
     </script>
