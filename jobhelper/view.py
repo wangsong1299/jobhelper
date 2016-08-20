@@ -134,7 +134,7 @@ def wechatjob(request):
                     info=rds.getInfo(fromUserName)
                     #print info
                     try:
-                        r=Recruit(position = info['1'],company = info['2'],degree = info['3'],years=info['4'],address=info['5'],sex=info['6'],salary=info['7'],description=info['8'])
+                        r=Recruit(position = info['1'],company = info['2'],degree = info['3'],years=info['4'],address=info['5'],sex=info['6'],salary=info['7'],description=info['8'],email=info['9'])
                         r.save()
                     except Exception, e:
                         return comutils.baseresponse(e, 500)
