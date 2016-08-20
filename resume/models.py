@@ -84,3 +84,8 @@ class Company(models.Model):
 	description=models.CharField(max_length = 200)
 	# 产生时间
 	create_time = models.DateTimeField(auto_now_add = True, blank = True)
+
+class Image(models.Model):
+    productID = models.CharField(max_length = 30,default=0)
+    productImg = models.FileField(upload_to = './upload/')
+    productName = models.CharField(max_length = 128)

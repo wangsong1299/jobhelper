@@ -291,3 +291,11 @@ def modify(request,section,item_id):
 		info={'company':c.company,'entry_time':c.entry_time,'resign_time':c.resign_time,'position':c.position,'description':c.description}
 	return render_to_response('resume_modify.html',{'section':section,'info':info})
 
+@csrf_exempt
+def change_headImg(request):
+	resume_id = request.POST.get('id', None)
+	avatar = Resume.objects.filter(id=resume_id)[0].avatar
+	return HttpResponse(json.dumps({'code':200,'src':avatar}))
+
+
+

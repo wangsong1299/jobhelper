@@ -6,8 +6,9 @@ import simplejson as json
 import datetime, time
 import sys
 import wechatApi
-from resume.models import Resume,Education,Company
+from resume.models import Resume,Education,Company,Image
 from HrStatus import rds # HrStatus
+import md5, re
 import pdb
 from resume import utils as comutils
 from recruit.models import Recruit,Connect
@@ -17,7 +18,7 @@ sys.setdefaultencoding('utf8')
 
 def index(request):
     path=request.get_full_path()
-    #path='index?code=111&state='#test
+    path='index?code=111&state='#test
     #print path
     params=path.split('?')
     if(len(params)>1):
@@ -51,7 +52,7 @@ def index(request):
                 print 'user already exist'
             resume=Resume.objects.filter(openid=openid)[0]
         else:
-            #request.session['id'] = 2#test
+            request.session['id'] = 2#test
             id=request.session.get('id',False)
             resume=Resume.objects.filter(id=id)[0]
         id=resume.id
@@ -150,10 +151,42 @@ def wechatjob(request):
     except Exception, e:
         print e
 
+@csrf_exempt
+def upload(request):
+    if request.method == "POST":
+        uf = UserForm(request.POST,request.FILES)
+        file_handle = request.FILES['headImg']
+
+        if uf.is_valid():
+            productID = uf.cleaned_data['id']
+            productImg = uf.cleaned_data['headImg']
+            md5_str = md5.new()
+            md5_str.update(file_handle.read())
+            #pdb.set_trace()
+            re_str = re.findall('\.[^.]+$', file_handle.name)
+            file_handle.name = md5_str.hexdigest() + re_str[0]
+            user = Image()
+            user.productID = productID
+            #print productID
+            user.productImg = file_handle
+            user.productName = file_handle.name
+            #print productImg
+            user.save()
+            headimgurl=Image.objects.filter(productID=productID).order_by('-id')[0]
+            headimgurl='http://127.0.0.1:8000/static/upload/'+str(headimgurl.productName)
+            Resume.objects.filter(id=productID).update(avatar=headimgurl)
+            return HttpResponse('上传完成!')
+
+
+from django import forms
+class UserForm(forms.Form):
+    id = forms.CharField()
+    headImg = forms.FileField()
 
 def test(request):
     request.session['id'] = 2
-    return render_to_response('test.html')
+    uf = UserForm()
+    return render_to_response('test.html',{'uf':uf});
 
 def error(request):
     return render_to_response('test.html')
