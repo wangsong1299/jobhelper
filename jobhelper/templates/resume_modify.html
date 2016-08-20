@@ -32,13 +32,17 @@
             </div>
             <div class="weui_cells weui_cells_form m-info-form">
                 <!--头像-->
-                <div class="weui_cell">
-                    <div class="weui_cell_hd"><label class="weui_label">头像</label></div>
-                    <div class="weui_cell_bd weui_cell_primary u-img J_file_hover">
-                        <img src="{{info.avatar}}" class="headimg" alt="">
+                <iframe name="hiddeniframe" src="" frameborder="0" style="display:none;"></iframe>
+                <form method="post" enctype="multipart/form-data" action='/upload/' target="hiddeniframe">
+                    <div class="weui_cell">         
+                            <div class="weui_cell_hd"><label class="weui_label">头像</div>
+                            <div class="weui_cell_bd weui_cell_primary u-img J_file_hover">
+                                <img src="{{info.avatar}}" class="headimg J_headImg" alt="">
+                                <input id="id_id" name="id" type="text" value={{info.id}} style="display:none">
+                                <input type="file" id="id_headImg" name="headImg" style="position:absolute; top: 0; right: 0; width:100px;height:100px;font-size:20px;opacity:0;">
+                            </div>
                     </div>
-                    <input type="file" class="J_file" style="display:none">
-                </div>
+                </form>
                 <!--姓名-->
                 <div class="weui_cell">
                     <div class="weui_cell_hd"><label class="weui_label">姓名</label></div>
@@ -131,6 +135,26 @@
     </article>
     <script type="text/javascript">
     $(document).ready(function(){
+        document.forms[0]['headImg'].onchange=function(){
+            document.forms[0].submit();
+            setTimeout(function(){
+                var id=$('.J_modify').attr('data-id');
+                $.ajax({
+                      type : "POST",
+                      url : "/resume/change_headImg/",
+                      data:{'id':id},
+                      dataType : "json",
+                      success : function(data){  
+                            if(data.code==200){
+                                $('.J_headImg').attr('src',data.src);
+                            }else{
+                                alert(data.message);
+                            }
+                      }
+                })         
+            },100)
+
+        }
         new PCAS("province","city","area");
         var province='{{info.province|safe}}';
         $(".J_province>option").each(function(a,b){

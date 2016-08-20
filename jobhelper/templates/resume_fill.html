@@ -1,4 +1,4 @@
-{% load i18n admin_static %}
+ {% load i18n admin_static %}
 <!DOCTYPE html>
 <html lang="zh-cmn-Hans">
 <head>
@@ -262,7 +262,7 @@
         var hash=window.location.hash.split("#")[1];
         var resume_id={{id|safe}};
         var hashObj=getHash(hash);
-        console.log(hashObj);
+        //console.log(hashObj);
         if(hashObj){
             var section=hashObj['sec'];
             var existFlag=hashObj['exist'];

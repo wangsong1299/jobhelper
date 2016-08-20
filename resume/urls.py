@@ -31,6 +31,8 @@ urlpatterns = patterns('',
      url(r'^modify/(\d{1,6})/(\d{1,6})/$', views.modify),
      #新建页
      url(r'^fill/$', views.fill),
+     #修改头像
+     url(r'^change_headImg/$', views.change_headImg),
 
 
 
