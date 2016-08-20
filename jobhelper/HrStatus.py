@@ -24,7 +24,8 @@ class HrStatus:
         '5': u'请输入工作年限:',
         '6': u'请输入性别:',
         '7': u'请输入公司地址:',
-        '8': u'请输入职位描述，以分号分隔:'
+        '8': u'请输入职位描述:',
+        '9': u'请输入联系邮箱:'
     }
     
     def __init__(self, host = '183.136.128.100', port = 63794, db = 0, auth = 'gupiaocelve'):
@@ -45,7 +46,6 @@ class HrStatus:
     def setStatus(self, user, message = ''):
         rds_key = 'jobhelper_hunter_%s' % unicode(user)
         rds_info = 'jobhelper_hunter_info_%s' % unicode(user)
-        print 'wss'
         
         if message == 'reset':
             self.rConn.set(rds_key, 0)

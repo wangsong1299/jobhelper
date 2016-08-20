@@ -25,9 +25,9 @@ class Recruit(models.Model):
 	# 职位描述
 	description=models.CharField(max_length = 30)
 	# 联系人
-	contacts=models.CharField(max_length = 30)
+	contacts=models.CharField(max_length = 30,blank=True)
 	# 联系电话
-	phone=models.CharField(max_length = 12)
+	phone=models.CharField(max_length = 12,blank=True)
 	# 联系邮箱
 	email=models.CharField(max_length = 30)
 	# time
