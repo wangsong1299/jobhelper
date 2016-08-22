@@ -93,6 +93,7 @@ body{background: #f4f3ef}
   margin-top: -3px;
 }
 .m-info-form .u-ipt{text-align: right;}
+.m-info-form .u-ipt-date{float: right;width: 120px;margin-right: -20px}
 .m-info-form .u-sel{color:#776f5b;}
 .m-info-form .u-sel.sex{padding-left:70%}
 .m-info-form .u-sel.area{padding-left:65%;}
