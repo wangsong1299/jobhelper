@@ -40,25 +40,28 @@
     <script type="text/javascript">
         $(document).ready(function(){
             $('.J_delete').click(function(){
-                var resume_id=$(this).attr('data-resume');
-                var recruit_id=$(this).attr('data-recruit');
-                if(resume_id==''||recruit_id==''){
-                    alert('系统出错');
-                }else{
-                    $.ajax({
-                          type : "POST",
-                          url : "/recruit/delete_connect/",
-                          data:{'resume_id':resume_id,'recruit_id':recruit_id},
-                          dataType : "json",
-                          success : function(data){  
-                                if(data.code==200){
-                                    alert('删除成功');
-                                    $('.J_box_'+recruit_id).remove();
-                                }else{
-                                    alert(data.message);
-                                }
-                          }
-                    })   
+                var con=confirm("确认删除");
+                if(con){
+                    var resume_id=$(this).attr('data-resume');
+                    var recruit_id=$(this).attr('data-recruit');
+                    if(resume_id==''||recruit_id==''){
+                        alert('系统出错');
+                    }else{
+                        $.ajax({
+                              type : "POST",
+                              url : "/recruit/delete_connect/",
+                              data:{'resume_id':resume_id,'recruit_id':recruit_id},
+                              dataType : "json",
+                              success : function(data){  
+                                    if(data.code==200){
+                                        alert('删除成功');
+                                        $('.J_box_'+recruit_id).remove();
+                                    }else{
+                                        alert(data.message);
+                                    }
+                              }
+                        })   
+                    }
                 }
             })
         })
