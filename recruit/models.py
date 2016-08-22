@@ -23,7 +23,7 @@ class Recruit(models.Model):
 	# 薪水
 	salary=models.CharField(max_length = 30,blank=True)
 	# 职位描述
-	description=models.CharField(max_length = 30)
+	description=models.CharField(max_length = 200,blank=True)
 	# 联系人
 	contacts=models.CharField(max_length = 30,blank=True)
 	# 联系电话

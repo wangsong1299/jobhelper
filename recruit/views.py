@@ -11,7 +11,7 @@ import datetime
 #招聘信息页面
 def index(request):
 	id=request.session.get('id',False)
-	recruits=Recruit.objects.filter(state=1)
+	recruits=Recruit.objects.filter(state=1).order_by('-id')
 	recruit_info={}
 	i=0
 	now = datetime.datetime.now()
@@ -36,7 +36,7 @@ def index(request):
 #我的投递
 def myshow(request,id):
 	id=request.session.get('id',False)
-	connects=Connect.objects.filter(resume_id=id)
+	connects=Connect.objects.filter(resume_id=id).order_by('-id')
 	myshow_info={}
 	i=0
 	now = datetime.datetime.now()

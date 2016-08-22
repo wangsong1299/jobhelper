@@ -18,7 +18,7 @@ sys.setdefaultencoding('utf8')
 
 def index(request):
     path=request.get_full_path()
-    path='index?code=111&state='#test
+    #path='index?code=111&state='#test
     #print path
     params=path.split('?')
     if(len(params)>1):
@@ -52,7 +52,7 @@ def index(request):
                 print 'user already exist'
             resume=Resume.objects.filter(openid=openid)[0]
         else:
-            request.session['id'] = 2#test
+            #request.session['id'] = 2#test
             id=request.session.get('id',False)
             resume=Resume.objects.filter(id=id)[0]
         id=resume.id
@@ -134,7 +134,7 @@ def wechatjob(request):
                     info=rds.getInfo(fromUserName)
                     #print info
                     try:
-                        r=Recruit(position = info['1'],company = info['2'],degree = info['3'],years=info['4'],address=info['5'],sex=info['6'],salary=info['7'],description=info['8'],email=info['9'])
+                        r=Recruit(position = info['1'],company = info['2'],salary = info['3'],degree=info['4'],years=info['5'],sex=info['6'],address=info['7'],description=info['8'],email=info['9'])
                         r.save()
                     except Exception, e:
                         return comutils.baseresponse(e, 500)
@@ -173,7 +173,7 @@ def upload(request):
             #print productImg
             user.save()
             headimgurl=Image.objects.filter(productID=productID).order_by('-id')[0]
-            headimgurl='http://127.0.0.1:8000/static/upload/'+str(headimgurl.productName)
+            headimgurl='http://120.27.48.180:8002/static/upload/'+str(headimgurl.productName)
             Resume.objects.filter(id=productID).update(avatar=headimgurl)
             return HttpResponse('上传完成!')
 
