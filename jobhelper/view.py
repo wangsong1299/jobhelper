@@ -71,16 +71,16 @@ from django.utils.encoding import smart_str
 def wechatjob(request):
     try:
         if request.method == 'GET':
-            timestamp = request.REQUEST.get('timestamp', '')
-            nonce = request.REQUEST.get('nonce', '')
-            echostr = request.REQUEST.get('echostr', '')
-            signature = request.REQUEST.get('signature', '')  
+            timestamp = request.GET.get('timestamp', '')
+            nonce = request.GET.get('nonce', '')
+            echostr = request.GET.get('echostr', '')
+            signature = request.GET.get('signature', '')  
             signature_my = wechatApi.wx.checkSignature(timestamp, nonce)
-            #print signature_my,signature,echostr,timestamp
+            print signature_my,signature,echostr,timestamp
             if signature==signature_my:
-                return HttpResponse(echostr)
+                return HttpResponse(echostr)   
             else:
-                return HttpResponse('FAILED')   
+                return HttpResponse('FAILED')  
         elif request.method == 'POST':
             xml_str = smart_str(request.body)
             request_xml = xml_str
