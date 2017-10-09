@@ -13,16 +13,11 @@ sys.setdefaultencoding('utf8')
 class WechatApi:
     def __init__(self):
         # 开发者私有配置信息
-        # self.Token = 'job'
-        # self.EncodingAESKey = 'WTUqjVPuIBrsR0jmWR7Gwk0fDYL0bx9t9cJKl8zr3qW'
-        # # 测试号码
-        # self.AppID = 'wxa5dc117bb384c924'   # 开发者平台分配的AppID
-        # self.AppSecret = '2a8602ad21700fdb69ad3a9588d09387'
         self.Token = 'job'
         self.EncodingAESKey = ''
         # 测试号码
-        self.AppID = 'wxea61534b1e615fd3'   # 开发者平台分配的AppID
-        self.AppSecret = '0c7d2783e7dd86f7c2c9eff4d72b5ae1'
+        self.AppID = 'wxa4dea5931c6dc2ab'   # 开发者平台分配的AppID
+        self.AppSecret = '74c146f361f1dc2991764fc667222b6a'
 
         # 使用微信接口获得的信息
         self.AccessToken = '' # 公众号的access_token
@@ -240,7 +235,7 @@ class WechatApi:
 
     def initMenu(self):
         #创建菜单
-        REDIRECT_URI='http://www.deemeng.com.cn/wenjiebang'
+        REDIRECT_URI='http://115.29.191.213:8002/index'
         resumeUrl='https://open.weixin.qq.com/connect/oauth2/authorize?appid='+self.AppID+'&redirect_uri='+REDIRECT_URI+'&response_type=code&scope=snsapi_base&state=STATE#wechat_redirect'
         ## 点击跳转到简历首页的时候，去得到openid
         #resumeUrl='http://120.27.48.180:8085'
@@ -277,7 +272,7 @@ class WechatApi:
         
 wx = WechatApi()
 
-#wx.initMenu()
+wx.initMenu()
 
 ##print p.getCallbackIP()
 ##print p.getUserList()

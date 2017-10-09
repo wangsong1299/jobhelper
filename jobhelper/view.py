@@ -76,7 +76,6 @@ def wechatjob(request):
             echostr = request.GET.get('echostr', '')
             signature = request.GET.get('signature', '')  
             signature_my = wechatApi.wx.checkSignature(timestamp, nonce)
-            print signature_my,signature,echostr,timestamp
             if signature==signature_my:
                 return HttpResponse(echostr)   
             else:
@@ -132,7 +131,7 @@ def wechatjob(request):
                     }
                 else:
                     info=rds.getInfo(fromUserName)
-                    #print info
+                    print info
                     try:
                         r=Recruit(position = info['1'],company = info['2'],salary = info['3'],degree=info['4'],years=info['5'],sex=info['6'],address=info['7'],description=info['8'],email=info['9'])
                         r.save()
@@ -173,7 +172,7 @@ def upload(request):
             #print productImg
             user.save()
             headimgurl=Image.objects.filter(productID=productID).order_by('-id')[0]
-            headimgurl='http://120.27.48.180:8002/static/upload/'+str(headimgurl.productName)
+            headimgurl='http://115.29.191.213:8002/static/upload/'+str(headimgurl.productName)
             Resume.objects.filter(id=productID).update(avatar=headimgurl)
             return HttpResponse('上传完成!')
 
