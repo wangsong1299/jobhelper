@@ -1,11 +1,9 @@
 #! -*- coding:utf-8 -*-
-from django.conf.urls import patterns, include, url
+from django.conf.urls import include, url
 from resume import views
 from resume import tests
 
-urlpatterns = patterns('',
-    # 首页
-    #url(r'^home/$', views.home),
+urlpatterns = [
     #api
      url(r'^fill_info/$', views.fill_info),
      url(r'^fill_edu/$', views.fill_edu),
@@ -34,11 +32,5 @@ urlpatterns = patterns('',
      #修改头像
      url(r'^change_headImg/$', views.change_headImg),
 
-
-
-
-
-
-
-)
+]
 

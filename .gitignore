@@ -1,0 +1,6 @@
+*.pyc
+resume/migrations/*
+recruit/migrations/*
+jobhelper/wsgi.py
+jobhelper/settings.py
+media/*
