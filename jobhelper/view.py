@@ -19,7 +19,7 @@ sys.setdefaultencoding('utf8')
 def index(request):
     path=request.get_full_path()
     #path='index?code=111&state='#test
-    #print path
+    print path
     params=path.split('?')
     if(len(params)>1):
         param=params[1].split('&')
