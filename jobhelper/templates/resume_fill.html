@@ -263,6 +263,7 @@
         }
 
         var hash=window.location.hash.split("#")[1];
+        hash = hash ? hash :'';
         var resume_id={{id|safe}};
         var hashObj=getHash(hash);
         //console.log(hashObj);
