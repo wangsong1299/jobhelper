@@ -272,7 +272,7 @@ class WechatApi:
         
 wx = WechatApi()
 
-wx.initMenu()
+#wx.initMenu()
 
 ##print p.getCallbackIP()
 ##print p.getUserList()
