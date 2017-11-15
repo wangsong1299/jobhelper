@@ -74,7 +74,7 @@ def fill_connect(request):
 		try:
 			key=str(resume_id)+'-'+str(time.time())
 			salt = base64.b64encode(key)
-			resume_address = 'http://www.deemeng.com.cn:8002/resume/preview_all/'+str(salt)
+			resume_address = 'http://yituijian.com/resume/preview_all/'+str(salt)
 			email=Recruit.objects.filter(id=recruit_id)[0].email
 			conn=Connect(resume_id = resume_id,recruit_id=recruit_id,resume_address=resume_address,email=email)
 			conn.save()

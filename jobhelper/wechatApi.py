@@ -141,6 +141,7 @@ class WechatApi:
         }
         tokenObj = self.reqHttpData(url, method = 'get', data = data)
         tokenObj = json.loads(tokenObj)
+        print tokenObj
         self.ExpiresTime = time.time() + tokenObj['expires_in']
         self.AccessToken = tokenObj['access_token']
         print 'refresh access_token:', self.AccessToken
@@ -252,7 +253,7 @@ class WechatApi:
                 },
                 {
                     "type":"view",
-                    "name":"百度一下",
+                    "name":"百度两下",
                     "url":"http://www.baidu.com"
                 },
             ]
@@ -272,7 +273,7 @@ class WechatApi:
         
 wx = WechatApi()
 
-#wx.initMenu()
+wx.initMenu()
 
 ##print p.getCallbackIP()
 ##print p.getUserList()

@@ -56,11 +56,34 @@
                         <input class="weui_input u-ipt u-ipt-date J_birth" type="date" value=""/>
                     </div>
                 </div>
-                <!--参加工作时间-->
+                <!--参加工作年限-->
                 <div class="weui_cell">
-                    <div class="weui_cell_hd"><label for="" class="weui_label">工作时间</label></div>
+                    <div class="weui_cell_hd"><label for="" class="weui_label">工作年限</label></div>
                     <div class="weui_cell_bd weui_cell_primary">
-                        <input class="weui_input u-ipt u-ipt-date J_startwork" type="date" value=""/>
+                        <select class="weui_select u-sel sex J_startwork" name="starkwork">
+                            <option value="0" selected>0</option>
+                            <option value="1">1年</option>
+                            <option value="2">2年</option>
+                            <option value="3">3年</option>
+                            <option value="4">4年</option>
+                            <option value="5">5年</option>
+                            <option value="6">6年</option>
+                            <option value="7">7年</option>
+                            <option value="8">8年</option>
+                            <option value="9">9年</option>
+                            <option value="10">10年</option>
+                            <option value="11">11年</option>
+                            <option value="12">12年</option>
+                            <option value="13">13年</option>
+                            <option value="14">14年</option>
+                            <option value="15">15年</option>
+                            <option value="16">16年</option>
+                            <option value="17">17年</option>
+                            <option value="18">18年</option>
+                            <option value="19">19年</option>
+                            <option value="20">20年</option>
+                            <option value="19">20年以上</option>
+                        </select>
                     </div>
                 </div>
                 <!--居住城市-->
@@ -300,7 +323,7 @@
             }else if(birth==''){
                 alert("请选择出生日期");
             }else if(startwork==''){
-                alert("请选择开始工作时间");
+                alert("请选择工作年限");
             }else if(phone==''||!(/^1[3,4,5,6,7,8]\d{9}$/.test(phone))){
                 alert("请填写正确的手机号");
             }else if(province==''){

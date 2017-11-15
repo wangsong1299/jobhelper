@@ -71,11 +71,34 @@
                         <input class="weui_input u-ipt u-ipt-date J_birth" type="date" value={{info.birth}}>
                     </div>
                 </div>
-                <!--参加工作时间-->
+                <!--参加工作年限-->
                 <div class="weui_cell">
-                    <div class="weui_cell_hd"><label for="" class="weui_label">参加工作时间</label></div>
+                    <div class="weui_cell_hd"><label for="" class="weui_label">参加工作年限</label></div>
                     <div class="weui_cell_bd weui_cell_primary">
-                        <input class="weui_input u-ipt u-ipt-date J_startwork" type="date" value={{info.startwork}}>
+                        <select class="weui_select u-sel sex J_startwork" name="starkwork">
+                            <option value="0" selected>0</option>
+                            <option value="1">1年</option>
+                            <option value="2">2年</option>
+                            <option value="3">3年</option>
+                            <option value="4">4年</option>
+                            <option value="5">5年</option>
+                            <option value="6">6年</option>
+                            <option value="7">7年</option>
+                            <option value="8">8年</option>
+                            <option value="9">9年</option>
+                            <option value="10">10年</option>
+                            <option value="11">11年</option>
+                            <option value="12">12年</option>
+                            <option value="13">13年</option>
+                            <option value="14">14年</option>
+                            <option value="15">15年</option>
+                            <option value="16">16年</option>
+                            <option value="17">17年</option>
+                            <option value="18">18年</option>
+                            <option value="19">19年</option>
+                            <option value="20">20年</option>
+                            <option value="19">20年以上</option>
+                        </select>
                     </div>
                 </div>
                 <!--居住城市-->
@@ -175,8 +198,13 @@
                 if($(b).html()==sex){
                     $(b).attr("selected",true);
                 }
+        });   
+        var startwork='{{info.startwork|safe}}';
+        $(".J_startwork>option").each(function(a,b){
+            if($(b).html()==startwork){
+                $(b).attr("selected",true);
+            }
         });    
-
         $('.J_modify').click(function(){
             var id=$(this).attr('data-id');
             var name=$('.J_name').val().trim();

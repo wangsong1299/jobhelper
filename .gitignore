@@ -4,3 +4,4 @@ recruit/migrations/*
 jobhelper/wsgi.py
 jobhelper/settings.py
 media/*
+.DS_Store

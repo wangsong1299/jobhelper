@@ -172,7 +172,7 @@ def upload(request):
             #print productImg
             user.save()
             headimgurl=Image.objects.filter(productID=productID).order_by('-id')[0]
-            headimgurl='http://115.29.191.213:8002/static/upload/'+str(headimgurl.productName)
+            headimgurl='http://120.55.57.75:8002/static/upload/'+str(headimgurl.productName)
             Resume.objects.filter(id=productID).update(avatar=headimgurl)
             return HttpResponse('上传完成!')
 

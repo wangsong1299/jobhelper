@@ -29,7 +29,7 @@ class Resume(models.Model):
 	province=models.CharField(max_length = 30)
 	city=models.CharField(max_length = 30)
 	# 手机号码
-	phone = models.CharField(max_length = 12, unique = True)
+	phone = models.CharField(max_length = 12)
 	# 头像
 	avatar = models.CharField(max_length = 200, blank = True, default = DEFAULT_AVATAR)
 	# 性别
