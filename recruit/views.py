@@ -75,8 +75,9 @@ def fill_connect(request):
 			key=str(resume_id)+'-'+str(time.time())
 			salt = base64.b64encode(key)
 			resume_address = 'http://yituijian.com/resume/preview_all/'+str(salt)
+			resume_address2 = 'http://yituijian.com/resume/preview_all2/'+str(salt)
 			email=Recruit.objects.filter(id=recruit_id)[0].email
-			conn=Connect(resume_id = resume_id,recruit_id=recruit_id,resume_address=resume_address,email=email)
+			conn=Connect(resume_id = resume_id,recruit_id=recruit_id,resume_address=resume_address,resume_address2=resume_address2,email=email)
 			conn.save()
 		except Exception, e:
 			return comutils.baseresponse(e, 500)

@@ -1,0 +1,113 @@
+ {% extends "base_erp.html" %}
+ {% load i18n admin_static %}
+
+{% block content %}
+    <div class="m-hd">
+        <a href="javascript:window.history.go(-1);" class="m-back"></a>
+        我的简历
+    </div>
+    <div class="bd">
+        <div class="u-subtt">
+            <img src="/static/job/images/navicon_1.png" alt="" class="icon">
+            <span class="tt">个人信息</span>
+        </div>
+        <div class="m-infobox">
+            <div class="u-line u-line-1">
+                <img src="{{info.avatar}}" alt="" class="headimg">
+                <div class="name">{{info.name}}</div>
+                <div class="detail">
+                     <img src="/static/job/images/infoicon_1.png" alt="" class="icon">
+                     <div class="ct">{{info.sex}}</div>
+                     <div class="split"></div>
+                     <img src="/static/job/images/infoicon_2.png" alt="" class="icon">
+                     <div class="ct-2">{{info.birth}}</div>
+                     <div class="split"></div>
+                     <img src="/static/job/images/infoicon_3.png" alt="" class="icon">
+                     <div class="ct-3">本科</div>
+                </div>
+            </div>
+            <div class="u-line">
+                <div class="ctk">工作年限</div>
+                <div class="ctv">{{info.startwork}}</div>
+            </div>
+            <div class="u-line">
+                <div class="ctk">现居住城市</div>
+                <div class="ctv">{{info.province}}&nbsp;&nbsp;{{info.city}}</div>
+            </div>
+            <div class="u-line">
+                <div class="ctk">手机号码</div>
+                <div class="ctv">请回复邮件获取联系方式</div>              
+            </div>
+            <div class="u-line">
+                <div class="ctk">邮箱地址</div>
+                <div class="ctv">请回复邮件获取联系方式</div>              
+            </div>
+        </div>
+        <div class="u-subtt" style="margin-top:10px">
+            <img src="/static/job/images/navicon_2.png" alt="" class="icon">
+            <span class="tt">教育背景</span>
+        </div>
+        {% for key, value in edu_info.items %}
+        <div class="m-edubox J_edubox_{{value.id}}">
+            <div class="u-line">
+                <div class="ctk">学校名称</div>
+                <div class="ctv">{{value.university}}</div>
+            </div>
+            <div class="u-line">
+                <div class="ctk">专业名称</div>
+                <div class="ctv">{{value.major}}</div>
+            </div>
+            <div class="u-line">
+                <div class="ctk">学历/学位</div>
+                <div class="ctv">{{value.degree}}</div>
+            </div>
+            <div class="u-line">
+                <div class="ctk">入学时间</div>
+                <div class="ctv">{{value.intended_time}}</div>
+            </div>
+            <div class="u-line">
+                <div class="ctk">毕业时间</div>
+                <div class="ctv">{{value.graduation_time}}</div>
+            </div>
+        </div>
+        {% endfor %}
+
+       <div class="u-subtt" style="margin-top:10px">
+            <img src="/static/job/images/navicon_2.png" alt="" class="icon">
+            <span class="tt">工作经历</span>
+        </div>
+        {% for key, value in com_info.items %}
+        <div class="m-edubox J_edubox_{{value.id}}">
+            <div class="u-line">
+                <div class="ctk">公司名称</div>
+                <div class="ctv">{{value.company}}</div>
+            </div>
+            <div class="u-line">
+                <div class="ctk">行业类别</div>
+                <div class="ctv"></div>
+            </div>
+            <div class="u-line">
+                <div class="ctk">职位名称</div>
+                <div class="ctv">{{value.position}}</div>
+            </div>
+            <div class="u-line">
+                <div class="ctk">起始任职</div>
+                <div class="ctv">{{value.entry_time}}</div>
+            </div>
+            <div class="u-line">
+                <div class="ctk">结束任职</div>
+                <div class="ctv">{{value.resign_time}}</div>
+            </div>
+            <div class="u-line u-line-1">
+                <div class="ctk">工作描述</div>
+                <div class="ctv"></div>
+                <div class="textarea">
+                    {{value.description}}
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+{% endblock %}
+</body>
+</html>

@@ -16,6 +16,7 @@ urlpatterns = [
      #预览页
      url(r'^preview$', views.preview),
      url(r'^preview_all/(\w{1,100})/$', views.preview_all),
+     url(r'^preview_all2/(\w{1,100})/$', views.preview_all2),
      #对外的预览页
 
 

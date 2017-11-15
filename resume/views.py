@@ -208,6 +208,31 @@ def preview_all(request,salt):
 		i=i+1
 	return render_to_response('resume_preview.html',{'info':info,'edu_info':edu_info,'com_info':com_info})
 
+#对外公开的预览页面,隐藏联系方式
+import base64
+def preview_all2(request,salt):
+	decoded = base64.b64decode(salt)
+	id=decoded.split('-')[0]
+	r=Resume.objects.filter(id=id)[0]
+	sex_choice={0:'保密',1:'男',2:'女'}
+	birth=(r.birth).split('-')[0]+'-'+(r.birth).split('-')[1]
+	seximg_choice={0:'infoicon_1',1:'infoicon_11',2:'infoicon_1'}
+	info={'name':r.name,'phone':r.phone,'province':r.province,'city':r.city,'email':r.email,'sex':sex_choice[r.sex],'seximg':seximg_choice[r.sex],'birth':birth,'startwork':r.start_work_date,'character':r.character,'avatar':r.avatar}
+	edus=Education.objects.filter(resume=r)
+	edu_info={}
+	i=0
+	for e in edus:
+		edu_info[i]={'university':e.university,'intended_time':e.intended_time,'graduation_time':e.graduation_time,'major':e.major,'degree':e.degree}
+		i=i+1
+	coms=Company.objects.filter(resume=r)
+	com_info={}
+	i=0
+	for c in coms:
+		com_info[i]={'company':c.company,'entry_time':c.entry_time,'resign_time':c.resign_time,'position':c.position,'description':c.description}
+		i=i+1
+	return render_to_response('resume_preview2.html',{'info':info,'edu_info':edu_info,'com_info':com_info})
+
+
 #简历新建页
 def fill(request):
 	id=request.session.get('id',False)

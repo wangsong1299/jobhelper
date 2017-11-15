@@ -46,6 +46,8 @@ class Connect(models.Model):
 	recruit_id=models.CharField(max_length = 30)
 	# 简历预览地址
 	resume_address=models.CharField(max_length = 200,blank=True)
+	# 简历预览地址
+	resume_address2=models.CharField(max_length = 200,blank=True)
 	# email
 	email=models.CharField(max_length = 30,blank=True)
 	# time
