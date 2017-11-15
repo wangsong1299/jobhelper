@@ -61,8 +61,8 @@
                                     alertSuccess();
                                     //alert('投递成功');
                                 }else if(data.code==201){
-                                    //alertError();
-                                    alert('请不要重复投递');
+                                    alertError2();
+                                    //alert('请不要重复投递');
                                 }else{
                                     alertError();
                                     //alert(data.message);
@@ -84,7 +84,12 @@
                 $('.J_alertImg').attr('src','/static/job/images/failed.png');
                 document.body.style.overflowY='hidden';
             }
-
+            function alertError2(){
+                $('.J_blocklayer').show();
+                $('.J_alert').show();
+                $('.J_alertImg').attr('src','/static/job/images/failed2.png');
+                document.body.style.overflowY='hidden';
+            }
             $('.J_blocklayer,.J_clickArea').click(function(){
                 $('.J_blocklayer').hide();
                 $('.J_alert').hide();
